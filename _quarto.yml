@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "These R the Voyages"
@@ -10,12 +11,10 @@ website:
         href: https://github.com/lambdamoses
       - icon: mastodon
         href: https://fosstodon.org/@lambdamoses
-      - icon: twitter
-        href: https://twitter.com/LambdaMoses
 format:
   html:
-    theme: cerulean
+    theme: minty
     css: styles.css
 
-editor: visual
+editor: source
 

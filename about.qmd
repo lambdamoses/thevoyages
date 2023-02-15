@@ -1,19 +1,58 @@
 ---
-title: "About"
-image: profile.jpg
+title: "Lambda Moses"
+image: profile.jpeg
 about:
-  template: jolla
+  template: trestles
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com
+    - icon: mastodon
+      text: Mastodon
+      href: https://fosstodon.org/@lambdamoses
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/lambdamoses
+    - icon: strava
+      text: Strava
+      href: https://www.strava.com/athletes/90483887
 ---
 
-About this blog
+::: {.column-page}
+
+Space, the current frontier, where "space" means geospatial as often assumed in spatial statistics. These are the voyages of the starship Voyager. Its ongoing mission, to explore strange new worlds, to seek out new views and new neighborhoods, to boldly go where Lambda has never gone before.
+
+My name is Lambda, she/her. I live in Hahamongna, Tongva territory, or in Anglo terms, Pasadena, Los Angeles (LA) County. One of my favorite aspects of LA is that there are many crazy people, crazy in cool ways. Hopefully I'm one of them. I'm a left-wing heterodox Muslim convert Aspie cultural rebel zero waster living in LA without a car for over 9 years. 
+
+This blog is about Voyager. On the one hand, data analyses related to the R package Voyager, bringing decades of glorious tradition of spatial data analysis to the relatively new field of spatial -omics. On the other hand, the starship Voyager, which is my human powered ship that made me learn about the different cultures and landscapes of LA. Starship Voyager also made me think about spatial statistics and inspired many ideas in the R package Voyager project. This is the personal side of the "from geospatial to spatial -omics" on R package Voyager's documentation website.
+
+## Education
+
+California Institute of Technology | Pasadena, CA | PhD in Biology | Sept 2017 - present
+
+University of California, Los Angeles | Los Angeles, CA | B.S. in Molecular, Cell, and Developmental Biology, and Computation and Systems Biology, _summa cum laude_ | Sept 2013 - June 2017
+
+[ORCID](https://orcid.org/0000-0002-7092-9427)
+
+## Bioconductor packages
+
+[Voyager](https://pachterlab.github.io/voyager/) | From geospatial to spatial -omics based on SFE
+
+[SpatialFeatureExperiment](https://bioconductor.org/packages/release/bioc/html/SpatialFeatureExperiment.html) (SFE) | S4 class using Simple Features to represent geometries for spatial -omics data based on SpatialExperiment and SingleCellExperiment
+
+[SFEData](https://bioconductor.org/packages/release/data/experiment/html/SFEData.html) | Example datasets for Voyager and SFE
+
+[BUSpaRse](https://bioconductor.org/packages/release/bioc/html/BUSpaRse.html) | R utilities for kallisto bustools from their early days; kept for historical reasons, use the newest version of kallisto and bustools instead of this package.
+
+## Publications
+
+**Museum of spatial transcriptomics.** _Moses L_, Pachter L. Nature Methods. 2022 May;19(5):534-546. doi: 10.1038/s41592-022-01409-2. Epub 2022 Mar 10. Erratum in: Nature Methods. 2022 Apr 19;: PMID: 35273392.
+
+**Modular, efficient and constant-memory single-cell RNA-seq preprocessing.** Melsted P, Booeshaghi AS, Liu L, Gao F, _Moses L_, Min KHJ, da Veiga Beltrame E, Hjörleifsson KE, Gehring J, Pachter L. Nature Biotechnology. 2021 Jul;39(7):813-818. doi: 10.1038/s41587-021-00870-2. Epub 2021 Apr 1. PMID: 33795888.
+
+## Presentations
+
+2023 | Invited talk: From geospatial to spatial -omics with SpatialFeatureExperiment and Voyager, Advanced Biomedical Computation series, Brigham & Women's Hospital, Harvard Medical School
+
+2022 | Package demo: SpatialFeatureExperiment: An S4 Class Bringing Geospatial Tools To Spatial Omics, Bioconductor Conference ([video](https://youtu.be/LNClJFoFlSA))
+
+2020 | Short talk: Museum of Spatial Transcriptomics, Bioconductor Conference ([video](https://youtu.be/bD_zaBpzCKY?t=1347))
+
+:::

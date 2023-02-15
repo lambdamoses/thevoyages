@@ -1,0 +1,54 @@
+---
+title: "Watercolor sky"
+author: "Lambda Moses"
+date: "2023-02-14"
+categories: [cycling]
+---
+
+Captain's Log, stardate 100721.41. Hello world Captain's Log v2! In v1, I wrote often lengthy descriptions of the voyage and thoughts from the voyage in the Strava description field of each activity, which I call Captain's Log. I'll explain my quirky terminology in another blog post. I also put photos there. However, I can't run R code there, and adding references is more difficult, since Strava's description isn't really meant for my kind of Aspie overthinking about the activities. I had a blog before, made with `blogdown`, but I haven't touched it for over 3 years, in part because I don't have the web development expertise to deal with the 3rd party theme and over time I got more and more security alerts from GitHub urging me to update the dependencies, and I got some breaking changes. Eventually I decided to revive my blog here with [Quarto](https://quarto.org/docs/websites/website-blog.html), because from my experiences with `pkgdown` R package documentation websites based on `bootswatch` themes, I find the `bootswatch` themes much easier to deal with without web development experiences. Furthermore, my Captain's Logs are often the length of blog posts, so I already have a _de facto_ blog on Strava. So here we go, this is my Captain's Log for today's voyage:
+
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="8563012549"></div><script src="https://strava-embeds.com/embed.js"></script>
+
+I didn't bring my real camera, because initially I intended to do C++ style to save some time. However, I couldn't resist my inner useR; I couldn't help but stopped for photos. Why waste the opportunity when it's so beautiful out there? So I took some photos with my phone. Anyway, with to many stop signs and turns, because I want to (not so) boldly go into the nooks and crannies I have never gone before, it's impossible to ride hard and fast all the time C++ style. Why not soak in the scenery?
+
+First new addition to my [Hall of Fame](https://www.google.com/maps/d/u/0/edit?hl=en&mid=1zV-NPbYqmKXorW604kD7Ha97T40NX0M&ll=34.14938484517667%2C-118.11276151545717&z=11): W Montecito Ave, between Michilinda Ave to the west and Lima St to the east, in Sierra Madre. I enjoyed the solitude and the flower scent, presumably from those little white flowers. I really can't decide what my favorite region of LA is, because they are so different. While I like this quiet and posh area, it doesn't have the edge of Boyle Heights.
+
+![W Montecito Ave, Sierra Madre](https://dgtzuqphqg23d.cloudfront.net/Y_6fLz9gzBbrN3YE4TAR_ihFkTHsYLCqC1CGDvMDSuA-2048x1536.jpg)
+
+Next I rode through the periphery of downtown Sierra Madre, then to the heart of Monrovia on Myrtle Ave, climbing all the way to the top, through the posh and seemingly quite new neighborhood called Gold Hills. That's a wall, much of which is over 17%. I was gasping for air. In the last 13% steep part, after the worse 17% wall, I got a strong headwind coming from above, making the climb more challenging. Indeed with hardship comes ease! There isn't really a spectacular view near the top. The cool part is just recognizing familiar places from afar, such as the Santa Fe Dam to the east, and Monrovia High School, which I just passed, to the southeast. I didn't stop at the top but immediately descended.
+
+Which brought me to the next new addition to my Hall of Fame, as if one turn led me into another world, which is why I'm fascinated with [negative spatial autocorrelation](https://www.mdpi.com/2571-905X/2/3/27): N Hidden Valley Rd, for its quiet greenery of wilderness. 
+
+![N Alta Vista Rd, Monrovia](https://dgtzuqphqg23d.cloudfront.net/YvT9Q3DX_Ew68KGUmzrWoBkeWm8lXaYbiENYetP7RAU-2048x1536.jpg)
+
+Look at the clouds! That's what I mean when I say "watercolor sky". The white tower in the mid lower left of the photo below should be Monrovia High School. The steep switchback descent soon after this spot isn't easy. I would like to climb this part in a another trip. It's steep and hence challenging, but I get to spend more time in this awesome view.
+
+![A little down N Alta Vista Ave Rd](https://dgtzuqphqg23d.cloudfront.net/CmWqemgutnFGUJ7FwZQ5DMJuvtNtwTkLtz1P3MAXO88-2048x1536.jpg)
+
+The wind was getting stronger. Fortunately I didn't pump up the tires, as the part of Huntington Dr in the heart of Arcadia was wet. It must have rained earlier when I was indoors, and I felt a few drops of rain during this ride.
+
+It's been a while since I last visited the LA County Arboretum area. The last trip was in September 2021, before my first group ride with the Women on Wheels (WoW) group of the Pasadena Athletic Association (PAA). I just bought Voyager early September, 2021. I rode my commuter bike, Enterprise, to the Arboretum, to visit the Santa Anita Park and the Arboretum. That area is not bike friendly. I don't really dare to ride on that part of Baldwin Ave, and there was no bike rack, so I had to lock up Enterprise on a sign, which is not best practice since it's easier to break the thin perforated metal pole of the sign than a real bike rack, as the pole is meant to break when hit by a car. I had to walk quite a bit into the Santa Anita Park, by the shopping mall and vast parking lots, as I read on the park's website that bikes weren't allowed inside. But I had a nice trip, since that was my first time watching racing horses galloping and I love the Art Deco building of the facility. That said, there have been animal cruelty scandals in horse racing. 
+
+I coined the term "cyborg jockey" to refer to cyclists, because of the Victorian "mechanical horse" expression to refer to a bike, and because I wondered if the best racing horse raced the best human time trialist, who would win? The answer is the human cyborg jockey. The [Guiness World Record](https://www.guinnessworldrecords.com/world-records/fastest-speed-for-a-race-horse/) of horse speed, over 402 meters, is 43.97 mph. The [human powered speed record](https://www.aerovelo.com/) on a flat course without drafting, over 200 meters, is 89.59 mph, achieved in a fully faired recumbent bike. While the human speed record is over a shorter distance, I'm sure that the rider must have been much faster than 50 mph soon before and after the 200 m flying start time trial, so I think the human wins. I went there the morning before that group ride because I'm a night owl and I'm not used to getting up so early for the group ride, so I would spend more time in the sunshine to hack my circadian rhythm. 
+
+Anyway, enough of 2021 digression about this location. I rode on Hugo Reid Dr south of the Arboretum. Again, many peacocks. They were introduced [by Elias "Lucky" Baldwin in the 1880s](https://sanmarinofinehomes.com/wild-peacocks-arcadia-ca/), founder of City of Arcadia, from India, and have remained since. Sometimes I even see them in Pasadena and San Marino. And [why Hugo Reid Dr](https://lastreetnames.com/street/hugo-reid-drive/)? Because long before Arcadia was incorporated in 1903, and when California was part of Mexico, Hugo Reid was awarded Rancho Santa Anita in 1841. Hugo Reid married Tongva widow Victoria Reid, and wrote about the Tongva in his [letters to Los Angeles Star](https://www.loc.gov/item/68008964), which to this day are precious resources on pre-colonial Tongva. 
+
+![On Hugo Reid Dr, Arcadia, with peacocks on the lawn](https://dgtzuqphqg23d.cloudfront.net/RLiRqQIYlACC89aKyhOY-8SLvFdWp62eNgpEz-UzbUI-2048x1536.jpg)
+
+Then back to Pasadena. According to my Strava personal heatmap, southeast Pasadena and unincorporated East Pasadena are underexplored, so I went there on purpose. 
+
+![Rose Villa St and Allen Ave, Pasadena](https://dgtzuqphqg23d.cloudfront.net/V7R8EmwtUEfZCerwDAi2bCqUtTKdO4tCaFSUzsX2-a0-1536x2048.jpg)
+
+The watercolor cloud was southeast of Pasadena, behind the palm trees in the photo below. I looked back at it from Pasadena Community College (PCC). 
+
+![PCC parking lot on Hill Ave](https://dgtzuqphqg23d.cloudfront.net/vxoHfjjQ3MZNdRnFIB2ecU9Q9uwyrBhyUZR2chF20FA-2048x1536.jpg)
+
+In the earlier photo from the Monrovia foothill, the clouds were above the mountains. The strong wind from the north blew the clouds away from the mountains.
+
+![Mountains now clear, from PCC](https://dgtzuqphqg23d.cloudfront.net/BkBF3UrFf0ynn2qtjq7thcdOYISG5ZSIokM0XcVfjm8-2048x1536.jpg)
+
+If I learnt anything from English classes, it is "show, don't tell". Now behold the wind blowing the palm trees, as I was riding on Cordova to the west. I felt like flying an airplane in turbulence, but Voyager doesn't have seat belts. 
+
+![Cordova, almost to Lake Ave](https://dgtzuqphqg23d.cloudfront.net/coJ2T1ZUhjRyhNcLAu_p0EPsWebl2rXzb_9sanhb_Bo-2048x1536.jpg)
+
+That's it for the trip. I'll continue writing the R package Voyager.
