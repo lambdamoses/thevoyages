@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lambda Moses">
+<meta name="dcterms.date" content="2023-02-20">
+
+<title>These R the Voyages - East Side Riders</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">These R the Voyages</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">Lambda Moses</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lambdamoses"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://fosstodon.org/@lambdamoses"><i class="bi bi-mastodon" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">East Side Riders</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">cycling</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Lambda Moses </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 20, 2023</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<blockquote class="blockquote">
+<p>Hate has caused a lot of problems in the world, but has not solved one yet. –Maya Angelou</p>
+</blockquote>
+<p>Captain’s Log, stardate 100712.73. Earth date 02/11/2023, but it took me a while to write the Captain’s Log. To support free and open source software (FOSS), I put my photos on <a href="https://pixelfed.social/i/web/profile/529845376367415532">Pixelfed</a>, a FOSS alternative to Instagram that can be self-hosted, though they’re not well-organized there; Captain’s Log is where you find their contexts but you can dig through all my photos on Pixelfed. I wish that there’s a FOSS alternative to Strava. It’s probably not difficult to implement. However, I haven’t completely quit corporate mass surveillance social media because many people and organizations I follow are only on corporate social media. I’ve been pretty satisfied with Mastodon so far. Still new to Pixelfed so can’t comment much yet. Mastodon, Pixelfed, and many other social network apps are part of the <a href="https://github.com/emilebosch/awesome-fediverse">Fediverse</a>. Please give Fediverse a shot!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="esr-2023-02-11.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Flyer for this ride; I’m not the only person calling bike rides “voyages”.</figcaption><p></p>
+</figure>
+</div>
+<p>“I probably can’t make it,” I said to myself, as I just snoozed for 20 minutes. Now I’m blessed with flexible work schedule, but if I keep on living this way, then I’ll be doomed once I lose this flexibility after I graduate. I kept on getting up too late, until I need to yank myself out of bed to either conform to an earlier social schedule of events or maximize daylight time for a voyage. Because without <a href="https://getcoldturkey.com/features/">Frozen Turkey</a>, I often have trouble stopping what I’m doing, ending up staying up. Willowbrook is kind of far from Pasadena. Taking into account traffic lights and the slow and chaotic part of DTLA, it would realistically take me about 1 and a half hours to ride hard and fast to cover the 21 miles to get to Willowbrook, where this family friendly <a href="https://esrbc.org/">East Side Rider</a> ride took place. I only had less than 1:15 left. Anyway, if I still feel tired, then I’ll go elsewhere, like re_ grocery first and then Monrovia. Or worst case scenario, they leave without me, and I’ll just continue on my own adventure, to check out some murals and interesting places on Central Ave that I blew past last time in CicLAvia last December. Or perhaps, just like the Tour de North Carson last March, I rode hard but still arrived 2 minutes late, only to find out that they wouldn’t roll until half an hour later, so I had quite a bit of time to kill, talking to other riders.</p>
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="8545943541">
+
+</div>
+<script src="https://strava-embeds.com/embed.js"></script>
+<section id="on-the-way-to-willowbrook" class="level1">
+<h1>On the way to Willowbrook</h1>
+<p>The slow part of DTLA began, slow because of frequent stops, from traffic lights, and because cars and shared scooters not being ridden often block the bike lane. My usual route through DTLA takes the N Spring St bike lane. The part of Spring St by the LA City Hall was closed, for an Iranian protest, presumably against the official celebration of the 44th anniversary of the Iranian “Islamic” Republic. The protest hadn’t started yet. But Boo! Lots of Iranian Imperial flags. Maybe monarchists there. Death to monarchy, and death to all forms of authoritarianism! Anyway, I was running late. No time to take photos or to talk to people. While the road was closed, I could ride on the sidewalk, just more slowly. Meanwhile – not to downplay the atrocities committed by the blasphemous Iranian government – I wonder, on January 21, why couldn’t we close the road when we protested against the <a href="https://www.streetsareforeveryone.org/blog/dying-on-the-streets-of-los-angeles">death of 312 people from traffic violence in LA City in 2022</a>, which was overshadowed by the Monterey Park shooting that night in the news? Why couldn’t we close the road to protest against climate suicide as the car and fossil fuel industries resist climate action? Even many progressives don’t question car culture.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Die-in-11.jpeg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Streets Are For Everyone (SAFE) die in on January 21, 2023, photo from BikinginLA. I’m the person next to the Grim Reaper and beneath the Vision Zero is Dying sign, holding the Cars Kill Chidren sign. Senator Portantino is at the lower right corner, in white and red. I talked to the person in the Grim Reaper costume. She has lived in LA for 7 years without a car. There’s the claim that most residential areas in LA are mostly flat, and with the nice weather, there’s no excuse for LA not to be a bike mecca. I think from my personal experience, the mostly flat claim is mosty true, but I need to do a formal analysis to see how true it is.</figcaption><p></p>
+</figure>
+</div>
+<p>Initially I planned to take a detour at 52nd street and Avalon Blvd to see the murals at Dr.&nbsp;Maya Angelou Community High School (where the “Hate has caused a lot of problems…” comes from) on the way to Willowbrook, but decided to go there on the way back instead because I was running late and my traffic light luck wasn’t great. There were many murals and walls full of graffiti in this region. Having been fascinated with graffiti since 2008 due to my first trip to LA, I put these graffiti walls in Highland Park in my <a href="https://www.google.com/maps/d/u/0/edit?hl=en&amp;mid=1zV-NPbYqmKXorW604kD7Ha97T40NX0M&amp;ll=34.08633688906221%2C-118.2446612364961&amp;z=10">Hall of Fame</a>, but there were too many here for me to keep track. While it’s nice to have a protected bike lane, it’s annoying when it’s often blocked by cars (now I need to dodge the bollards) and when there’s more trash and potentially flat causing debris in the bike lane. I passed several cyclists, most likely local, riding cheap mountain or commuter bikes, often riding on the sidewalk, a very different culture from that of the rich middle aged men in Lycra (MAMILs). I wonder what those cyclists thought when I passed them. While I don’t really feel like I fit into the MAMIL culture, as if my voyages (especially the urban adventures) is a completely different sport, I certainly did dress the MAMIL way, adjusted for gender and age. It was cold, but I rode hard enough to work up a sweat.</p>
+</section>
+<section id="kill-some-time-before-rolling" class="level1">
+<h1>Kill some time before rolling</h1>
+<p>Finally, left turn at 120th St.&nbsp;I just rode over 120 blocks! Somehow that sounded impressive. Actually more than 120, because there are streets with the same number but different suffices, such as 52nd St and 52nd Pl. Here’s <a href="https://laist.com/news/transportation/los-angeles-la-street-names-duplicate-avenue-drive-place-explain">an imperfect explanation for the duplicates</a>. I was at least 15 minutes late. I was right. When I got to Central Ave, I saw a bunch of cyclists at the parking lot at the East Side Riders bike shop and co-op, haven’t departed yet. This is a family friendly ride, not meant for speed craving road warriors. But everyone was welcome. This shop really likes fat-tired lowrider bikes. It also sold skates, which I also see used in CicLAvia. I also saw cruiser style e-bikes, and two Razor mini electric motorcycles without pedals. Nor was I the only roadiot there. There was at least one recent model road bike, and a few vintage ones.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/EGhQqyvFeoIM/ryMTHyipkYNdjIqGTcU6mOJNwUZ16XvtVi89HpEg.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Lowrider and cruiser bikes at the ESR bike shop</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/nno1ZpH3rZ4P/fDpokneZMzVDytdcsWaBxAOG6SmTj9E607BtI0Pz.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The lowrider bike depicted on that high vis vest, and the skates</figcaption><p></p>
+</figure>
+</div>
+<p>While I enjoy the thrill of speed, I did not come here for speed. Rather, I came to learn about the culture of South LA, in solidarity with this working class neighborhood of color. True, there are more dangerous roads and gangs, but I tend to find poor neighborhoods more vibrant and edgy than rich ones and graffiti is part of it. It’s precisely the edge that I like. A long term goal of the voyages is to learn about the different cultures of each region of LA, as well as different cycling cultures. Travel doesn’t have to be out of town. As an environmentalist, I try my best not to fly. So far the diverse nooks and crannies of LA have been sufficient to keep me mentally stimulated and made me more connected to the land and care more about local politics and history. That’s one of my favorite aspects of LA. I have participated in various types of cycling culture, such as the MAMIL roadie culture and road racing culture at my main club <a href="https://paacycling.net/">Pasadena Athletic Association (PAA)</a>, track racing culture at the <a href="https://www.dignityhealthsportspark.com/stadium-info/venues/velo">Carson velodrome</a>, advocacy culture with <a href="https://www.la-bike.org/">Bike LA</a> (formerly LACBC), <a href="https://www.pasadenacsc.org/">Pasadena Complete Streets Coalition</a>, <a href="https://www.ciclavia.org/">CicLAvia</a>, <a href="https://www.activesgv.org/">Active SGV</a> and Critical Mass, and bikepacking and touring culture.</p>
+<p>I came to this specific ride, of the advocacy culture (and I suppose lowrider culture as well), which I heard about from BikeLA’s newsletter, because I admire the missions of East Side Riders (ESR), which started off handing out food to the less fortunate by bike and has improved bike safety in Watts so <a href="https://la.curbed.com/2016/4/13/11428342/watts-bike-lanes-east-side-riders">“gang members know not to bother folks on bikes”</a>, and <a href="https://www.peopleformobilityjustice.org/">People for Mobility Justice</a>, which advocates for active transport in poor neighborhoods of color. I’m fascinated with murals and there are many in South Central (some I visited in this trip); that started with People for Mobility Justice’s <a href="https://www.peopleformobilityjustice.org/eastside-mural-ride-self-guided-1">Eastside mural ride guide</a>. These murals document community history that may not be told in “official” history written by those in power, and they continue to influence my life, especially the <a href="https://www.themcla.org/murals/we-are-not-minority">“We are NOT a Minority” mural</a> at Estrada Courts on Olympic from the Chicano Moratorium, which gave me confidence and hope in the rebellious movements behind the thin veneer engineered by those in power to show the tourists.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/Nu6yyTW1Vkl0/P6JETeppJLZW5Q5wgLcTYCEuKlG0cp4RA0It4i6H.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Indeed, ride for love</figcaption><p></p>
+</figure>
+</div>
+<p>Most riders I saw were Black or Hispanic, but there were a few Asian and White riders. With my real camera, I could probably pass as the official photographer. I met two other guys with real cameras, at least one was the real official photographer, whose camera had a microphone attached to the hot shoe. He greeted me with a special sense of camaraderie as he saw me taking photos with my real camera.</p>
+<p>It turned out that I wasn’t the one who came the furthest. One of the ride marshals drove all the way from <em>Riverside</em>. Maybe not the best for the environment, but he grew up around Willowbrook and Watts and misses the community here, so most likely he would rather live here rather than Riverside if possible. This reminds me of many students who fly across the continent or abroad several times a year to see their families. We need more systemic changes to save our planet, so those who wish to live together can more easily do so, and so plutocratic developers don’t undemocratically displace people from their deeply rooted communities at whim. Of course, a prerequisite is to liberate ourselves from egotistical microfascism and oppressive systems of beliefs, so we don’t end up like White NIMBYs protesting a Black neighbor moving in. LA is <a href="https://www.latimes.com/california/story/2019-09-29/gentrification-housing-homeless-supervisors-county-election">losing Black people</a>, from gentrification of Black neighborhoods, pushing them to Antelope Valley and Inland Empire.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/BtTrmq4LBjDc/dxNHkCy8IMyUmBq3HgDxECtDK9JKYgLma9LoASjt.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Razor electric mini motorcycle. Earlier someone crashed it as it accelerated too quickly and she lost control.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="ride-4-love" class="level1">
+<h1>Ride 4 love</h1>
+<p>It was almost 11 am. Finally ready to roll! It was so slow that I shifted to the small chain ring. Again, just like in Critical Mass, sometimes I would ride faster, getting way ahead of the “peloton”, to take photos of them coming, or I may stop by the side to take photos from behind and later catch up. We took up an entire lane, with the confidence and courage from safety in numbers, mostly riding outside the bike lane, where it’s only practical to ride single file. At intersections, the ride marshals in high vis vests would hold up traffic when the light turned red, so we could remain in one bloc. At one point (forgot exactly where) holding up traffic made the drivers quite furious, with horns blaring, but most of the time nobody complained and the traffic wasn’t heavy anyway.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/cSy65TpHX94k/opkPYLNMP74zallavwpuOumdME9KR9ItXbKTVKZT.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A few announcements before we roll. Those are the Ride 4 Love sweater, with two bike wheels forming a heart shape.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/Teibq4n5ifAZ/JswKTq8qeHu3iCLvkBIPWmjR1XN4bgTgiM1T5m0V.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">We took up an entire lane, heading north on Central</figcaption><p></p>
+</figure>
+</div>
+<p>Not having the route, I didn’t know the length of the ride, but I overheard someone saying about 12 miles. Riding 12 miles at this pace is no problem for me without refreshment, but we stopped a few times for refreshment and group photos, to cater to all fitness levels. I think that’s nice, because back in January 2021, I was so out of shape after years of unhealthy lifestyle that left me underweight that biking 2 miles or up a 2% hill could feel challenging. Each rest stop was quite long, which I spent in part talking to other riders.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/sn1jgHvIUsF6/EwclSVvNkS1PFLtwkq7ewfexPTnMrWcYvUKVnmHG.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Lowrider at the first rest stop at the plaza around Central and 109th St, with public art</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/nQdabSPMtawO/qWPlbIe2wOELoYg4Cdnj73wmHVlKS3Dk9TCKNLkR.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Gathering for the first group photo</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="P2110078.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">I looked elsewhere while others posed for the group photo</figcaption><p></p>
+</figure>
+</div>
+<p>These are some riders I talked to: Jenny from West Hollywood, and Maru from southeast LA. Jenny is an art student who often rides with various groups in the edgy fixie culture. She likes fixies and single speed bikes because of their simplicity and the challenge to climb on too hard a gear. Also, these bikes tend to be cheap and less attractive to thieves. She biked up Griffith Park and Elysian Park hills on a single speed bike and knows a group that does the Griffith Park ride at 6:30 am on fixies. I have met a fixie group at the scenic turnout in Griffith Park at dusk, probably a different group. Impressive, as I used my small chain ring for the climb. At the Tour de North Carson ride, I also met some fixie riders, one wearing an aero time trial helmet and fascinated with track racing while also riding a fixie with high gear ratio on the road.</p>
+<p>We agree that South Central isn’t very safe to ride in, despite the Avalon bike lane, because of aggressive drivers, probably aggressive because the road designed for speed <a href="https://thehill.com/opinion/finance/3853943-secretary-petes-safe-streets-plan-wont-succeed-if-engineers-continue-business-as-usual/">invites the aggression</a>. Poor neighborhoods of color are often turned into highways, leading to more dangerous roads and worse pollution. Here we have the wide and fast roads, Avalon, Central, Florence, El Segundo, Firestone, Century Blvd, Imperial Hwy, and etc. crisscrossing the neighborhoods. In Santa Monica, Pasadena, and Boyle Heights, freeways have destroyed neighborhoods of color, while White neighborhoods were more likely to <a href="https://www.kcet.org/shows/lost-la/why-isnt-there-a-freeway-to-beverly-hills">fight off planned freeways</a>. How many highways are there in San Marino? Huntington Dr and Sierra Madre Blvd, and the part in San Marino isn’t that bad, with a lot of greenery. No freeways. I should do a more formal analysis of length of freeways and multi lane highways with high speed limit in different regions of LA and how that relates to redlining.</p>
+<p>We also both like Highland Park, for her a climb, for me mostly bombing down the hills but I have to climb on the way back. While I learnt to ride a fixie at the Carson velodrome, I would only ride one in the velodrome as I can’t be sure to stop promptly at each intersection. What I learnt from the fixie is the track racing culture, which is very different from the urban fixie culture, such as that the track racers I met were overwhelmingly White while urban fixie riders I met tend to be more diverse, and that the urban fixie riders tend to show more of a rebellious vibe than track racers. However, from that Carson rider, there may be some overlap. I’m not sure if the <a href="https://www.bahatifoundation.org/">Bahati Foundation</a> that grew out of Compton is relevant to the intersection. On city streets, I have also witnessed the BMX culture, but I have never participated in it so I don’t know anything about it. See, I really think it would take years of research and a PhD thesis to write a book to comprehensively document all those different bike cultures in different regions of LA.</p>
+<p>Maru introduced me to the Pave Commute app which in theory has employers or sponsoring companies pay us for bike commutes. I signed up with the <a href="https://cibic.bike/">CiBiC LA</a> group. I used the app a few times this week and got quite some “coins”, but I don’t yet know what I can use those coins for. It’s supposed to match people with similar routes to form group to commute together. I haven’t gotten a group yet, probably because I don’t go to my office on a fixed schedule and the app caters more to regions adjacent to DTLA and Lincoln Heights though it allowed me to join from Pasadena. We exchanged phone numbers, if we wish to ride together or if we want to go to CicLAvia and Critical Mass.</p>
+<p>Watts isn’t what I thought it is. We rode through a brand new seemingly posh and mostly uninhabited neighborhood around Century Blvd west of Alameda and we stopped at the Starbucks there, where I got some water. However, soon after, we saw much less posh Estrada Courts style apartment complexes. This is the <a href="https://www.hacla.org/en/development-services/development/jordan-downs-redevelopment">Jordan Downs redevelopment</a> and the shopping plaza with this Starbucks and Nike is also part of the redevelopment. The uninhabited buildings were probably not completed yet. Just like Estrada Courts, Jordan Downs is a public housing project initially built to house World War II workers. The <a href="https://www.liveatjordandowns.com/">new buildings</a> are the redeveloped region, with a mix of market rate and affordable units, though the website doesn’t say exactly how many units are affordable. As of writing, the website says the rent of a one bedroom apartment is $673 and that of a two bedroom apartment is $1330, which does sound like an affordable rate, by Pasadena and Westside standards. Bummer: no pets 😿. The Estrada Courts style buildings are the old Jordan Downs. Burning question, does the redevelopment cause gentrification? Whichever case, even if it’s meant for gentrification, I see how it’s absorbing the surrounding culture, such as the mural at Starbucks, a style I don’t see in shopping centers targeting richer people in Pasadena, Glendale, Century City, and Beverly Hills.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/0pk9PKEs8e3T/72pdryTzzHGoXFQZy2o9KzSHAgGJcHYYIKWKOuKX.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Starbucks mural</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/oIAYztTCVKsR/5QHej6Y6JWX8RxYN5ZnMcboWgAVbv0s1ZNbYoIf5.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">New Jordan Downs</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/0LETOUoMOHCl/4eYQQ9wyIAvHriohLzjzyVsah2N46q4MbYBBgNlw.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Old Jordan Downs</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/dwzUM9Ju7AoI/q7yDPnFNtA6LFNrgmrRVDg4r2oFB2eJnszEMwbpM.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">This is more typical of Watts, and see that lowrider in action. I tend to see more people riding bikes for errands in poor neighborhoods, and the bike on the sidewalk is unrelated to this ride.</figcaption><p></p>
+</figure>
+</div>
+<p>Next stop was Watts Towers, which I have visited twice before, first after the Tour de North Carson, and then in CicLAvia last December.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/IDY3LvxkoGiv/flX7x6Nnhu5z7csH9EnUqVrC1MZTelNflbJjOrww.jpg" class="img-fluid"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/6wfwU1wDvLFi/r6UABXssIgktAd9pkfCsp9rrcFx3nnwtdDXQ4kTy.jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/GgB3MkyDH5vF/RnySUSYE7G72ddgiitQR2by2YitrFtTKoat6O2Dl.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The crowd at the Watts Towers plaza</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/GBNE2dlc6A58/3nNPQG8P9bbjTsdIsQ0vtmeGoNlqyIwIdhIuBLI8.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Arts Center buliding</figcaption><p></p>
+</figure>
+</div>
+<p>The sun was behind the towers when seen from the plaza, making some photos facing the sun challenging. But it can be a feature rather than a bug when I realized that the shadows cast by the towers are a feature.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/kI19gIppfKXo/JhbN5z6Rgv6Au7gpWiREAfdLtOUS47qsU4N9aQBA.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">About to roll again</figcaption><p></p>
+</figure>
+</div>
+<p>Also because of the direction of the sun, I got a better look up close at the other side of Watts Towers.</p>
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/B1a14Sj48fji/69Ct5MqsdIlJ2JuotRnVPc3j1gz0dsYK0H9wLLNB.jpg" class="img-fluid"></p>
+<p>Then we rode down Willowbrook Ave, next to the railroad, before the last rest stop at the Willowbrooks/Rosa Parks transit center. The ride leader said we were behind schedule and would make a shortcut to go back to the bike shop. I don’t know what the original plan was. Here Jenny took off, heading back to West Hollywood.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/wqzkw7xdWDWM/TpB6HGNevEXdGrflvMIDa2glhPRL31dS7SmpHTCy.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The mini motorcycles in action on Willowbrook Ave</figcaption><p></p>
+</figure>
+</div>
+<p>Oh, I forgot to mention. We had a DJ, though I didn’t hear the music much because the peloton was so spread out. Here I caught the DJ bike in action:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/xTqs378psaQD/tAU4NtNigxOHtPR1hpCdPosjUVqWMtlO9dh2Pif6.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The DJ bike, and look at what good time they’re having!</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/w9wYoU5U4uX4/8JONoaZgL0sgZKwgtkryG7lYwINyMaidgQyRHSbL.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">See her big smile mirroring mine</figcaption><p></p>
+</figure>
+</div>
+<p>Back at the bike shop. What did I learn? Well, that sounds too much like a school field trip and I’m too old for that. I did experience this community and culture and had fun. It’s only once, so not in depth. The ESR holds a ride every month, and I may come back. Let the experience ferment and influence me in subtle and subconscious ways, and let this thread of experience be woven into my tapestry of worldview. Oh, actually I can put some of what I learn to words: Thank you, ESR, for making Watts more awesome! I know that Watts has a bad reputation as one of the most dangerous neighborhoods in LA. It’s not my first time here though I always preferred to visit in a group for safety reasons (like I rode with the Carson fixie riders to Watts back in March and CicLAvia already has a group pretext), but this event further showed that Watts has a cool and vibrant culture and made me want to learn more about it. My visits humanized this much avoided neighborhood.</p>
+<p>I was hungry and asked the locals to recommend a restaurant. They recommended Mariscos Las Palmas on 120th St, which they go all the time. It specializes in seafood, but I saw some vegetarian options on their menu so I went. I ordered a veggie burrito, but when I started eating, I realized that I got fish, due to a misunderstanding. Anyway, I went vegetarian to reduce my carbon footprint and I don’t claim that God absolutely forbids eating meat, so I didn’t complain, especially that the fish burrito was really good.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/QOqOJ4BQxRNc/iGBbN4XnFnJclKHk48y1wFF5JjcMKqHPRFu7VjTt.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Mariscos Las Palmas restaurant</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/XXWU0VM5zdhK/jN2Ey3baObiUIRLDmrq1rbSvLDMCwnpuVbwRSqV6.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Crossing Compton Creek on 120th St</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="solo-adventure-of-south-central" class="level1">
+<h1>Solo adventure of South Central</h1>
+<p>Then I began to head back north on Central Ave, to check out some cool places I blew past last December in CicLAvia. While Central isn’t bike friendly, and true, it didn’t feel good to ride on, it didn’t feel too bad either. OK, it’s bad. Just look at how little space I had in the photo below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/LrSXm691B2F9/Hm0PisHRGN08fgNzA9cMQXT9qWShVh39jb3CpFsb.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Almost back at Imperial and then 114th St, where we already rode as a group</figcaption><p></p>
+</figure>
+</div>
+<p>I stopped by <a href="https://youthjusticela.org/chucos-justice-center/">Chuco’s Justice Center</a> at 76th St whose murals I greatly admire, one of which says “Fight for your freedom”. This is an aspect of the vibrancy of poor neighborhoods of color that I like, which I greatly relate to. I also love the rebellious wild type graffiti font, which I find more elegant than aristocratic curly letters, as the former signals solidarity from below while the latter signals snobbery. I used to take regular walks in the rich suburban city San Marino right south of the Caltech campus (even Lincoln Heights feels more like a city; this is probably why “LA” usually does not strictly refer to LA City and I’ll elaborate in another blog post). True, it’s pretty, but nothing is going on, no graffiti, backyard parties, music blaring audible from the street, yard sales, people working on bikes and cars, or kids giving out lemonade that I saw in poorer regions. Also, the security tech signs signaling invisible fences and some actual super elaborate fences guarding obscenely huge mansions made me feel unwelcome.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/d8fzFVcNrDPb/jq5hSTehWLFOqyI0Jbne7sBtddRBOP8he1P9vJNv.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Chuco mural</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/IuFDGdaALbx2/WolZmMBOVxbr9aYkoYAZtgcSLFUoUnPELVXs5wGd.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Fight for Your Freedom mural I was referring to, not a good photo but it has the necessary info</figcaption><p></p>
+</figure>
+</div>
+<p>Along the way, I saw some more murals on Central.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/VNVR9HsnCnk4/gGKVGdvp2rMfsgWBcJYuUFRWjKEkbruJvz34Hrw2.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Mural at northeast corner of Central and 76th Place, I think by the same artist as a mural on 1st St near Mariachi Plaza and at the La Canasta restaurant on Whittier Blvd</figcaption><p></p>
+</figure>
+</div>
+<p>Then I made a detour west on 54th St to see the murals at Dr.&nbsp;Maya Angelou Community High School and another mural that I saw on the Mural Conservancy. Thank you, Mural Conservancy of LA (MCLA), for your great work! I looked at the MCLA website to find murals enroute, and this is one of them, the Wesley United Methodist Church mural at 52nd St and Main, <a href="https://www.themcla.org/murals/beacon-hope">Beacon of Hope</a>. Unfortunately, when I got there, the lower half of the mural was whitewashed, probably because of graffiti. The full mural can be seen on the MCLA website; that’s a precious photo now as the mural is partially lost. Which is why I really should stop to take photos of murals that I like wherever I go, of course when it’s safe to stop, because of the precarious situation murals are in, so if I don’t take a photo now it might no longer be there in my next trip to this region.</p>
+<p>I just finished reading the <a href="https://muralesrebeldes.org/">Murales Rebeldes</a> book, about Chicano murals in LA and Orange Counties, often with rebellious contents, being censored and erased. Most murals featured in the book are no longer extant. Now this mural joined the rank. According to the book, Chicano murals subvert the commodified notion of indivual authorship of art as the murals are often collectively painted by students and community members. Murals document history of local communities of color that may not be otherwise written, and boldly claims public space, not to glorify the powerful as often done by public art, but to inspire rebellion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/BShoSiFP4RBS/YemtrlSpiru1DVLrWQDI59WqCv8wjOC637st2YfZ.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Beacon of Hope, partially whitewashed</figcaption><p></p>
+</figure>
+</div>
+<p>There’s a mural around 53rd St and Main:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/tF9im9IMA8nM/emSMALDFEfryrsKlbzfow2ymXZDf6M5tSCC5ZUue.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Mural at northeast corner of 53rd St and Main</figcaption><p></p>
+</figure>
+</div>
+<p>Then I wonder, is it common for kids here to drop out of school? According to <a href="https://maps.latimes.com/neighborhoods/neighborhood/south-park/">Mapping LA</a>, only 3.4% of people in this neighborhood has a four year college degree, low in the county, and the largest group has less than high school education, high in the county. Is it because of the younger population here or higher rates of dropping out or both? Maybe both, because the data does show younger age, and this mural suggests that dropping out is a problem. If this is true, then the message of the Maya Angelou High School mural really brings me hope. I grew up in schools with messaging of patriotism and obedience, not universal love and justice. I wish that I get these murals in my high school.</p>
+<p>Having been in school for so long – mostly private school – and still in school now, I have never thought about anywhere where dropping out is common. Then this is one of the strange new worlds with respect to myself, and I don’t have to travel far to get there. Ah, I often don’t look backwards. There’s another mural at this intersection that I found on February 18, so I won’t include that here.</p>
+<p>Then I headed to the Maya Angelou high school. There are actually numerous murals, but I focused on the most prominent one. Here’s a <a href="https://obeygiant.com/maya-angelou-rise-above-mural-at-dr-maya-angelou-community-high-school/">statement by the artist</a> and a much better photo of the mural than mine. I arrived too late for the right sun angle so the mural was in the shade, but I just documented my trip as is. Nor did I have access to a higher viewpoint. From the photo on the artist statement, there used to be murals on the side of the building as well, which are now gone.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/f4s2JmsK7egy/2DTHiwGdYB7qvMH10ajwQtvjaPNbC6YxUaG566Xy.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Maya Angelou Rise Above mural</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/cG6JzN2z3yYK/2Hl5oOYkhLuD0Vd3Ud5czGEW6N26OwALXqTt1Svh.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Zooming into the Maya Angelou quote</figcaption><p></p>
+</figure>
+</div>
+<p>Then I returned to Central and continued north, seeing more murals along the way. I stopped by Jesus Bike Shop at 49th St, and a mural at 42nd St.&nbsp;That’s a very different kind of bike shop from Incycle which caters to MAMILs. Jesus Bike Shop is really cramped with cruiser and commuter style bikes and rims they use, while Incycle is very spacious and mostly sells high end racing bikes and clothing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/OATQt59CTLd4/duMHsLXNjy1WHpezlkoojcI3cvP677LW4vNa1oye.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Jesus Bike Shop storefront</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/sEFOZOawslJ7/LDwQJ9R1oaPieZnvSPQGlBZD2z72jTHoRRFosPB2.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Mural on storefront; I vaguely remember that there were more murals flanking the store last December. If I remember right, then they have been destroyed and I terribly regret for stopping for a photo.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/6WMoVan6Eid8/QAv6k5MWBFgS4r15rh90DRWytCqJ8tCoIvy3xwBS.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Inside the store</figcaption><p></p>
+</figure>
+</div>
+<p>Another cool mural on 42nd St and Central, La Cultura Cura, which according to Google Translate, means culture heals. It shows the Black Panther, and struggle from the jail most likely signifying the high incarceration rate of Black men. It also depicts a Black hand holding a White hand. Is it in contest of strength, or in friendship to seek healing in the racial divide, or both?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/OBNlRUuyZonE/tR5HsnPEJfGeFlEJk6Tt7PxEAzv6c3Zgo1rweFik.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">La Cultura Cura mural</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/U3DkipSbyOZd/0GC0oY2zYs2cAiBitJYagUkh8MpvkJvgnbEma87N.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">I find the reflection on the car pretty cool. One of the reasons why cars suck is that they take up so much unnecessary space, space that could have been used for affordable housing and community farms, but this time I turned a bug into a feature.</figcaption><p></p>
+</figure>
+</div>
+<p>Further north on Central, Cyberpunk DTLA drew close. Cyberpunk indeed, of the high-tech, low life. There’re the skyscrapers housing offices of powerful corporations and new luxury hotels and apartments. Yet I have seen people sleeping on the streets right beneath the skyscrapers. Skid Row is within walking distance away. This part of Central isn’t that far, so the skyscrapers loom above this sketchy neighborhood, like in the <a href="https://scandroid.bandcamp.com/track/neo-tokyo-dance-with-the-dead-remix">Neo-Tokyo song</a>.</p>
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/shepoPdNKT2U/fKDxAjfE1UZL5q6fNd2KLlrnmjnpsQ2Dm7gVPCum.jpg" class="img-fluid"></p>
+<p>The Neo-Tokyo song says “dreams of a life inside while we escape just to survive”. Though to be honest, I don’t even want to be inside, I mean the institutions signified by the lofty places in the skyscrapers, because I don’t want to become the monster we despise so much and sought to destroy. Our goal is to eliminate the monster, not to become it. Architecture and urban planning are informed by ideology. According to the book <a href="https://www.jstor.org/stable/j.ctt9qfdf1">Lifted: A Cultural History of the Elevator</a>, the skyscraper is informed by hierarchy, so the physically higher places are higher in hierarchy, opposite to the hierarchical vertical structures prior to the advent of elevators. Burning question: what to do with the existing skyscrapers, and for that matter, freeways, built with hierarchy and segregation in mind, when we achieve an egalitarian and classless society with direct democracy in harmony with nature?</p>
+</section>
+<section id="eastside" class="level1">
+<h1>Eastside</h1>
+<p>I took the new 6th St bridge to go to Boyle Heights, to check out the Otomisan Restaurant, a legacy Japanese restaurant, which signifies layers of history of the diverse Boyle Heights, where ethnic minorities who couldn’t live elsewhere lived, though it’s now mostly Latino. The layers of history I see in geographical space makes me wonder, in histological space, if RNA velocity uses unspliced mRNAs to give a glimpse into the future, then what can we use to get a glimpse into the past? There’s lineage tracing, but would something endogenous to the cell tell something about its past?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/CrmTtxtGCfWc/YwJeMy7kSQjU6pEbQDkzX8pvhBjU96qXOv3XQDx3.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Otomisan Restaurant, unfortunately it was closed when I got there.</figcaption><p></p>
+</figure>
+</div>
+<p>I have been to Eastside many times. To boldly go somewhere I have never gone before: East LA College (ELAC). Because of the continuity in vibe, often I have no idea when I cross neighborhood and city boundaries. I always thought that ELAC is in in unincorporated region of East LA, but it turns out that it’s actually in Monterey Park.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/CDOA3xNp8AXN/Us2mxSU3Kp5Xct4jrKEEZjFHRXsmlaC2erO7oAPF.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">ELAC</figcaption><p></p>
+</figure>
+</div>
+<p>The reason why I visited is again Murales Rebeldes, which features a great mural by Roberto Chavez, <a href="https://muralesrebeldes.org/enroll-in-chicano-studies-roberto-chavezs-1970s-mural-at-east-los-angeles-college/">The Path to Knowledge and the False University</a>, that adorned the facade of the Rosco C. Ingalls Auditorium from 1974 to 1979 when it was whitewashed, disapproved by the administration, as the mural blended in cubist and surrealist styles, not always using typical Chicano styles and icons, and not imposing a single interpretation. Another mural depicting an uncontroversial history of Chicano murals is in the lobby of the auditorium, which I got a glimpse of.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/bXLvvSstcr9E/bTgeRK7a0JVejAoi0RDRT3rRjIqyfBpIT2YxRSTQ.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Rosco Auditorium where the mural still sits behind white paint</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/3MJx6f7Te0TX/5enfeEII4n6gKUD55phbGVdIChZTeMn7V78n1WwQ.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The mural inside the lobby, with style more typical of Chicano murals; I couldn’t get inside so this is the best I did to take a peek.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/GeEdwBVNjw48/3c73Rba2oRL2Or2ho22thA9QH692qGCZqcFpbbzP.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Sculpture at ELAC</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="monterey-park" class="level1">
+<h1>Monterey Park</h1>
+<p>Then I climbed the Monterey Park hills back to the San Gabriel Valley (SGV). Geography shapes the demography and culture, as the hills (here) and rivers pose transportation challenges. The vibe changes very rapidly as the hill began, from Chicano to Chinese. Somewhat discrete spatial regions are real. Meanwhile, other spatial features, such as weather, change more continuously. To delineate spatial regions, it’s really important to clarify the question asked to find these regions, and which features or variables are relevant and which are not. You see why my favorite weather is when the sky is clearing up but still partially cloudy after rain. When descending north, into the SGV, I got a great view, which was enhanced by the clouds.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/HROdIA9FrTcw/AZpPoKxYXEEMSoNDGf1sx2tMX7HeAdM2U4Hr1TGU.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Looking north from Huntington Ave, a little south of Barnes Memorial Park, Monterey Park</figcaption><p></p>
+</figure>
+</div>
+<p>The LA County Public Works building in Alhambra is a fine Corporate Modernist landmark from 1971, more info <a href="https://www.laconservancy.org/locations/sears-roebuck-and-company-pacific-coast-territory-administrative-offices">here</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/JbPT4hKRzzQ7/nAmEmr422ozYjabKOVPtPnGtjL9e5b0vReNDyBfr.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Looking northwest from that same hill. That teal glass cube is now the LA County Public Works building in Alhambra.</figcaption><p></p>
+</figure>
+</div>
+<p>On January 21, I dressed in all black for the Streets Are For Everyone die in, and passed through Monterey Park on the way back. I was already home by 10 pm, and then there was the mass shooting at Star Dance. It was Chinese New Year’s Eve. Did I bring bad luck to the neighborhood because I should really dress in red while black is associated with death and is unlucky for this occasion? Maybe not. I don’t really believe in luck, so any reference to it is figurative. I stopped by Star Dance on Garfield and Garvey. The site was still full of flowers, with a table with incense, in the Buddhist tradition. There were cards and pens to write notes. I wrote in Arabic and English, “we are of God and to Him we return.” I have good intentions, though in the back of my mind I wonder if some Islamophobe would misinterpret it. I also wonder if my act of taking photos would get misinterpreted, as photography is often not allowed in mausoleums. But if I make beautiful and artistic photos, then why not? Because it’s beautiful, I don’t find it disrespectful.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/dVonfq6pHb8E/rlJwIAWfoIYkXleqfkyYoyF1ovs2HkXwOKJRw6qw.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Star Dance, full of flowers</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/EMDgd25Jud9A/fG8iHGpyVpPYvGyAn3dUbWTkLJIRiqjRkLY19vXY.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Table with incense to bless the dead</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="alhambra" class="level1">
+<h1>Alhambra</h1>
+<p>I have been to Alhambra many times, yet somehow I had never been to the Civic Center and the heart of Downtown. I passed by the City Hall. The other dance studio, Lai Lai, where the shooter was disarmed by witnesses, was across the street from the City Hall. Many city halls have cool architecture (LA City, Pasadena, Downey, Compton, Glendale, Inglewood, and etc.), but I wasn’t impressed by the one in Alhambra (or the one in San Marino, Montebello, Covina, Claremont, and etc.). In terms of architecture (not governance), my favorite city hall thus far is the one of Pasadena. But I like downtown Alhambra, again, the intimate artisan vibe with lively modern businesses occupying historical buildings, those with up to 3 stories and Spanish revival, Art Deco, and vernacular styles so characteristic of LA (looks like mostly vernacular in this photo).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/z56A6Hpt9r15/7EAZeA0foKJvYnHI6bp37pCDqEl8qH6tLpm1TxzC.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Quick red light shot. OK, I got a better one when a pedestrian walking, but because autofocus doesn’t work that well in lower light, it’s out of focus. Downtown Alhambra, 1st St and Main St</figcaption><p></p>
+</figure>
+</div>
+<p>Last time I passed by a <a href="https://marinaomi.com/">Mari Naomi</a> Stop Anti-Asian Hate mural on Alhambra Rd around Electric Ave. This time I made sure to stop for a better look. It’s the same content as the one at Garvey Park, Rosemead, but smaller and rearranged.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/RMRCba6j4PMG/QwOfLw0TnrMaPvB4R6ZVoG8CeTuW0vPhnsf6G0Zw.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Mari Naomi mural in Alhambra</figcaption><p></p>
+</figure>
+</div>
+<p>Because I stopped for photos quite often, dusk was drawing near, and the clouds were glowing in the golden hour. I went on a concrete barrier separating out the right lane at Huntington Dr and Garfield Ave. I think one of the advantages of biking or walking is that it’s easy to stop for photos because we don’t take up much space when stopped. Also, being open in the air and traveling slower make us observe our surroundings better.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/drEsZzmoQDic/Qrquai9WzLvlKzhgr0rVGlAfFuYo6D3P3NBPipLV.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Looking east, towards the mountains, at Huntington Dr and Camden Ave</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/rcnzF0S1Q1Lb/12zwGX9ieQiWiyWp1peG1BCKgV59VcaFm1mmZans.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Looking west, at the palm tree silhouettes, note the airplane</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/f19E1wlhymUE/76ozX3dVMgrgshj0BMCNRNN0eT0YIKAKz1DgKDvb.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Some 1970s brutalist building</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="back-to-pasadena" class="level1">
+<h1>Back to Pasadena</h1>
+<p>Last place where I have never gone before: a part of Raymond Hill, where the Raymond Hotel used to be, which gave this hill and the road the name. The hotel caught fire from ember in 1895 and was rebuilt. Later it was eclipsed by the Huntington Hotel and the Great Depression spelled its doom. Historical photos of the first and second Raymond Hotel can be seen <a href="https://waterandpower.org/museum/Early_Views_of_Pasadena_(Page_1).html#Raymond_Hotel">here</a>. An apartment building on the hill bears a mural depicting the second Raymond Hotel.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/FDDuHrfjXlKF/AlZ0tEuDNjyk8AEzcc86zlPwHajcft1DPaK61ZYI.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Raymon Hotel mural on Raymond Hill</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/7qui8Qs1f7fo/II1ZoEDysrCzcwLRYcjN7Vws3bhSEgZ2mJxjSeNL.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">View from Raymond Hill, looking south. Again, see the LA County Public Works building in Alhambra</figcaption><p></p>
+</figure>
+</div>
+<p>As the sun was setting, my trip was coming to a close. And thank you, Wayne Thom! I took inspiration from his <a href="https://www.latimes.com/entertainment-arts/story/2021-02-16/wayne-thom-photographer-late-modern-1970s-architecture">CNA Tower photo</a> with the building reflecting the cloud while the background is clear. Now the Art Center building on Raymond Ave was reflecting some clouds and the twilight.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/2ktmuRTnMp9F/ESUjThHEFUkZ1WvN1R7nYpc6lLjs8lXZDpclSwOL.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Art Center at Raymond and Glenarms</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="epilogue" class="level1">
+<h1>Epilogue</h1>
+<p>Finally, is it true that “hate has caused a lot of problems in the world, but has not solved one yet”? I haven’t read this sentence in its original context, so here’s just my speculation. I suppose, yes and no. Yes, because in our culture, what we call “hate” often has a power dynamic, of a dominant group oppressing a less dominant one, and is often associated with discrimination based on certain characteristics. Oppression, inherently unjust, only causes problems and doesn’t solve any. At a smaller scale, hate also often originates from egotistical envy and arrogance. No, because how about hating injustice and the system and institutions that perpetuate injustice? Certain things are justifiably hated, but nor is it pure hate, because we hate injustice because we love justice. In contrast, the kind of sinful hate may seem to be motivated by some kind of love, such as nationalism and tribalism, but that’s neither true love nor love of truth, but parochial and egotistical envy.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="lambdamoses/thevoyagesComments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
