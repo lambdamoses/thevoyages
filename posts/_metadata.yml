@@ -7,6 +7,9 @@ freeze: true
 # Enable banner style title blocks
 title-block-banner: true
 
+toc: true
+toc-depth: 2
+
 comments:
   utterances:
     repo:  lambdamoses/thevoyagesComments

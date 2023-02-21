@@ -9,7 +9,9 @@ categories: [cycling]
 paste("South", c("Central", "Bay"))
 ```
 
-Captain's Log, stardate 100732.45, or Earth date February 18, 2023. Did you know that LAX has an [official song](https://www.lawa.org/history/lax-history/lax-official-song)? And there are two versions of lyrics. Cool and ethical are different concepts. I find many things cool but unethical, such as pretty much everything aerospace designed by and for the military industrial complex. Also, while I can't help but find jetliners cool and I enjoy flying, especially the thrill of acceleration when taking off and the view from above, I try not to fly because it's bad for the environment. So LA International Airport, where the big jet engines roar, says the first version of the LAX song. Cool, I like that song. But meanwhile, the roar of your engines belongs to the trash can of history. 
+Captain's Log, stardate 100732.45, or Earth date February 18, 2023. 
+
+Did you know that LAX has an [official song](https://www.lawa.org/history/lax-history/lax-official-song)? And there are two versions of lyrics. Cool and ethical are different concepts. I find many things cool but unethical, such as pretty much everything aerospace designed by and for the military industrial complex. Also, while I can't help but find jetliners cool and I enjoy flying, especially the thrill of acceleration when taking off and the view from above, I try not to fly because it's bad for the environment. So LA International Airport, where the big jet engines roar, says the first version of the LAX song. Cool, I like that song. But meanwhile, the roar of your engines belongs to the trash can of history. 
 
 There's no tl;dr, because there's a lot to see over 90 miles.
 
