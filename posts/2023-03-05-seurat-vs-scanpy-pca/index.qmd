@@ -1,0 +1,159 @@
+---
+title: "Do Seurat and Scanpy PCA give consistent results?"
+author: "Lambda Moses"
+date: "2023-03-05"
+categories: [R, spatial-omics]
+---
+
+From updating the Museum of Spatial Transcriptomics database, I found that Seurat is by far the most popular package to analyze spatial transcriptomics data by those who generated the data and some R developers built upon the Seurat object when developing new spatial transcriptomicsdata analysis methods, while Scanpy and anndata are commonly built upon by developers who write new methods to analyze spatial transcriptomics data in Python and is used by some who generated data. 
+
+There has long been the R vs. Python debate in data science, though many, including myself, would say both R and Python. However, many people do have preferences for a variety of reasons. I mostly prefer R in part because I like the expressiveness, functional programming, strong tradition in statistics, and community of R, but I prefer Python for image analysis. I'm not here to add fuel to the flame war. I respect your choice of language due to pros and cons of the languages and different backgrounds. Rather, I'm elaborating on the observation that the choice of language can greatly affect biological conclusions, because Seurat and Scanpy have different defaults and internals most users may be unaware of, so by using the default settings of the _de facto_ standard single cell and spatial -omics package in our language of choice, we inadvertently end up with different conclusions, which is bad news for reproducibility. For example, Seurat and Scanpy give quite different log fold changes for marker genes:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The results of different methods applied to the same scRNA-seq data differ substantially. <br><br>This is true even for fold changes, as shown below for Seurat and Scanpy.<br><br>The differences between selected transcript &quot;markers&quot; are even larger: <a href="https://t.co/pH4Rh3wQZv">https://t.co/pH4Rh3wQZv</a> via <a href="https://twitter.com/davisjmcc?ref_src=twsrc%5Etfw">@davisjmcc</a> <a href="https://t.co/dcSkeDOhBf">pic.twitter.com/dcSkeDOhBf</a></p>&mdash; Prof. Nikolai Slavov (@slavov_n) <a href="https://twitter.com/slavov_n/status/1582347828818456576?ref_src=twsrc%5Etfw">October 18, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Here for the R package Voyager, we try to avoid this. Our collaborators in Iceland are working on a Python implementation of Voyager, and are writing "compatibility tests" to make sure that the R and Python implementations of Voyager give consistent results for core functionalities, such as those in the most introductory vignettes of R Voyager that don't go beyond Moran's I in spatial analysis. It turns out that with default settings and the same data normalization and same list of highly variable genes, R and Python gave different PCA results, because of a cryptic difference that R divides by `n-1` (unbiased estimate when mean is unknown) while Scipy divides by `n` (maximum likelihood estimate) when computing variance. For better reproducibility, these hidden defaults should be made transparent. This made us wonder if -- using default settings -- whether Seurat and Scanpy give consistent PCA results.
+
+```{r}
+library(Seurat)
+library(Matrix)
+library(ggplot2)
+library(reticulate)
+reticulate::use_python("/home/lambda/miniconda3/bin/python")
+```
+
+```{python}
+import scanpy as sc
+import skmisc
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+# Download data
+
+Here we download the data from the 10X website. 
+
+This is the spatial information:
+```{r}
+if (!file.exists("visium_ob_spatial.tar.gz"))
+    download.file("https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_Mouse_Olfactory_Bulb/Visium_Mouse_Olfactory_Bulb_spatial.tar.gz", 
+                  destfile = "visium_ob_spatial.tar.gz")
+```
+
+Decompress the downloaded content:
+```{r}
+if (!dir.exists("outs")) {
+    dir.create("outs")
+    system("tar -xvf visium_ob_spatial.tar.gz -C outs")
+}
+```
+
+This is the filtered gene count matrix in HDF5:
+```{r}
+if (!file.exists("outs/filtered_feature_bc_matrix.h5"))
+    download.file("https://cf.10xgenomics.com/samples/spatial-exp/1.3.0/Visium_Mouse_Olfactory_Bulb/Visium_Mouse_Olfactory_Bulb_filtered_feature_bc_matrix.h5", 
+                  destfile = "outs/filtered_feature_bc_matrix.h5")
+```
+
+```{r}
+(seu <- Load10X_Spatial("outs"))
+```
+
+```{r}
+SpatialFeaturePlot(seu, features = "nCount_Spatial") +
+    theme(legend.position = "right")
+```
+
+```{python}
+adata = sc.read_visium("outs")
+adata.var_names_make_unique()
+adata
+```
+
+```{python}
+sc.pl.highest_expr_genes(adata, n_top=20, show = True)
+```
+
+# Data normalization and highly variable genes
+
+The data is already filtered. Here we normalize the data, with good old log normalization, which in Seurat default is:
+
+$$
+\mathrm{log}\left(\frac{x\times 10000}{x_{tot}} + 1 \right),
+$$
+
+where $x$ denotes expression of one gene in one cell, and $x_{tot}$ denotes total UMI counts in the cell of interest.
+
+```{r}
+seu <- NormalizeData(seu)
+```
+
+```{python}
+sc.pp.normalize_total(adata, target_sum=1e4)
+sc.pp.log1p(adata)
+```
+
+Check if the normalized data is consistent between Seurat and Scanpy
+
+```{r}
+mat_py <- py$adata$X
+mat_py <- as(t(mat_py), "CsparseMatrix")
+mat_r <- GetAssayData(seu, "data")
+mat_r <- unname(mat_r)
+all.equal(mat_py@x, mat_r@x)
+```
+
+```{r}
+diffs <- abs(mat_py@x - mat_r@x)
+summary(diffs)
+```
+
+```{r}
+sqrt(.Machine$double.eps)
+```
+
+While there are some different larger than epsilon, the differences are very small. Next we find highly variable genes and use the Seurat ones for simplicity.
+
+```{r}
+seu <- FindVariableFeatures(seu)
+```
+
+```{r}
+top10 <- head(VariableFeatures(seu), 10)
+LabelPoints(VariableFeaturePlot(seu), points = top10, repel = TRUE)
+```
+
+```{r}
+hvg_r <- VariableFeatures(seu)
+is_hvg_r <- rownames(seu) %in% hvg_r
+```
+
+```{python}
+adata.var = adata.var.assign(highly_variable = r.is_hvg_r)
+```
+
+# PCA
+```{r}
+seu <- ScaleData(seu)
+```
+
+```{r}
+seu <- RunPCA(seu, npcs = 20, verbose = FALSE)
+```
+
+```{r}
+ElbowPlot(seu)
+```
+
+```{r}
+VizDimLoadings(seu, dims = 1:2, reduction = "pca")
+```
+
+```{python}
+sc.pp.scale(adata)
+sc.pp.pca(adata, n_comps = 20)
+```
+
+```{python}
+sc.pl.pca_variance_ratio(adata)
+```
+
