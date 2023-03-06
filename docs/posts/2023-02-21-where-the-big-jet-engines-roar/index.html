@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -55,7 +60,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -68,7 +73,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -129,26 +134,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">These R the Voyages</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">Lambda Moses</a>
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Lambda Moses</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lambdamoses"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://fosstodon.org/@lambdamoses"><i class="bi bi-mastodon" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -183,6 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <p class="date">February 21, 2023</p>
       </div>
     </div>
+    
       
     </div>
     
@@ -191,10 +200,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#arts-district" id="toc-arts-district" class="nav-link active" data-scroll-target="#arts-district">Arts District</a></li>
   <li><a href="#the-industrial-city-of-vernon" id="toc-the-industrial-city-of-vernon" class="nav-link" data-scroll-target="#the-industrial-city-of-vernon">The industrial city of Vernon</a></li>
   <li><a href="#south-central" id="toc-south-central" class="nav-link" data-scroll-target="#south-central">South Central</a></li>
@@ -445,7 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">Touchdown. What an apposite road name! Though as a nerd, I don’t care about football whatsoever. I don’t even care that much about competitive cycling. Again, LAX.</figcaption><p></p>
 </figure>
 </div>
-<p>Love. Really? I don’t think gentrification is an expression of love. Yesterday, I listened to this online interview on <a href="https://www.youtube.com/watch?v=rdoh1lijdOM">love in the Islamic tradition</a>. In short, in the pre-colonial era, love was central to Islam and what we now call Sufism was mainstream Islam. That Islam is an arid legalistic orthopraxy is a colonial construct, and our colonial overlords want Wahhabism, which fits that description, to become orthodox, so as a result, many Muslims today say Sufism is haram. Colonialism, White Man’s Duty, claims to spread love, liberty, and justice, but does anything but. The hypocrisy led many people today to lose faith in those ideals. So in Khaled About El Fadl’s law school class at UCLA, 99% of students these days no longer believe that justice is possible. I feel like this sign saying “love” looks like commodifying and hence making a mockery of love. Otherwise don’t displace the poor. In late capitalism, what isn’t a commodity?</p>
+<p>Love. Really? I don’t think gentrification is an expression of love. Yesterday, I listened to this online interview on <a href="https://www.youtube.com/watch?v=rdoh1lijdOM">love in the Islamic tradition</a>. In short, in the pre-colonial era, love was central to Islam and what we now call Sufism was mainstream Islam. That Islam is an arid legalistic orthopraxy is a colonial construct, and our colonial overlords want Wahhabism, which fits that description, to become orthodox, so as a result, many Muslims today say Sufism is haram. Colonialism, White Man’s Duty, claims to spread love, liberty, and justice, but does anything but. The hypocrisy led many people today to lose faith in those ideals. So in Khaled About El Fadl’s law school class at UCLA, 99% of students these days no longer believe that justice is possible. I feel like this sign saying “love” looks like commodifying and hence making a mockery of love. I mean by commodify when we pretend that love is represented by items that can be bought and sold. Otherwise don’t displace the poor. In late capitalism, what isn’t a commodity?</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/8FplkjEEWlDs/ZpDO2D3ZZ64jNgjZY7VJhNBYhxjp8Q3pZ415RgHk.jpg" class="img-fluid figure-img"></p>
@@ -631,7 +640,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 <p>There are some interesting places on Aviation Blvd that I couldn’t safely stop for photos: The Metro K line is coming to LAX. All Metro train stations have public art, and I like the Islamic looking tesselation at the yet opened <a href="https://kline.metro.net/about-aviation-century/">Aviation/Century Station</a>. I also passed by a place with many vintage airplanes, probably no longer flying. I couldn’t find info about that place. Finally, right before I got to Imperial Hwy, there was that gravel pit like place.</p>
-<p>Now the narrative is no longer chronological, as I didn’t visit all the aerospace places at once. I’ll put all the aerospace things here. Next stop: Hawthorne Municipal Airport. Maybe instead of protesting car culture, I should protest here, against private jets, as the obscenely rich have vastly larger carbon footprints, as Extinction Rebellion has done in the Netherlands.</p>
+<p>Now the narrative is no longer chronological, as I didn’t visit all the aerospace places at once. I’ll put all the aerospace things here. Next stop: Hawthorne Municipal Airport. Maybe instead of protesting car culture, I should protest here, against private jets, as the obscenely rich have vastly larger carbon footprints, as <a href="https://www.theguardian.com/world/2022/nov/10/climate-activists-target-private-jet-airports-and-demand-ban-at-cop27">Extinction Rebellion</a> has done in Europe. One of the protest signs says “tax frequent flyers”, though I think there’s a caveat, in that I personally know many frequent flyers who fly a lot simply because they have family living far away and flying is the easiest way to see them. What to do in that case? For me, regular video chat does the trick, but I don’t know how well it works for others. Furthermore, some of my colleagues have resumed flying to conferences as covid has waned.</p>
+<p>The academic career path also looks like trying to prevent us from setting up roots early in our career, since academic positions can be very competitive and labs with a specific research interest can be very scattered throughout the world (or at least North America and Western Europe). Postdocs are meant to be short and adjuncts have poor job security so we may be forced to move a lot. Meanwhile, conferences and research centers, at least in the biomedical field, feel pretty much the same wherever I go, as if shielding us from thought provoking local cultures. No, I don’t mean different foods and holiday decorations, largely irrelevant to research itself and hence don’t really contribute diversity. I mean different ways of thinking shaped by different cultures. I’m sure that most academics attending conferences in LA from out of town don’t know about the cool and rich Eastside culture; even I didn’t know after living in LA for years until I deliberately sought it out although Eastside isn’t physically far from Pasadena (but it is physically far from Westside). I didn’t even know about the redlined region in northwest Pasadena north of the 210 freeway until I got my commuter bike Enterprise and began to revive the little trip (the voyages before I got USS Voyager), FINALLY venturing north of the 210 freeway – which used to set my northern limit of activities – after living in Pasadena for years. It’s not just that academia forms its own elitist niche, but also segregation in urban planning in part facilitated by freeways.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/yhSVoRxt8Ff4/6WgGj4cN2x666AJSuZN69vPWhsp01mxFPpIpJQxR.jpg" class="img-fluid figure-img"></p>
@@ -888,7 +898,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -916,31 +943,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

@@ -18,8 +18,11 @@ library(Matrix)
 library(tidyverse)
 library(reticulate)
 use_virtualenv("r-reticulate")
-py_config()
 theme_set(theme_bw())
+```
+
+```{r}
+py_config()
 ```
 
 ```{python}

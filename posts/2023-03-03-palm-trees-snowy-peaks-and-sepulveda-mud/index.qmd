@@ -18,6 +18,8 @@ stringr::str_replace("SGV", "G", "F")
 
 The San Fernando Valley (SFV), which had its own mission and a distinctive dialect of the [Tataviam](https://www.arcgis.com/apps/MapJournal/index.html?appid=3e3805bd4991426982f261fbe3f5f694) people, mutually intelligible with the Tongva language elsewhere in LA. Though apparently not everyone agrees that Pasadena is in the San Gabriel Valley (SGV), probably because the [Raymond Dyke](https://www.arroyoseco.org/groundwater.htm) fault separates Pasadena (actually also Sierra Madre and Aradia north of Huntington Dr) from the rest of the SGV, forming the hills in San Marino and between Pasadena and South Pasadena. [Mapping LA](https://maps.latimes.com/neighborhoods/region/verdugos/) considers Pasadena part of the Verdugos rather than SGV. Since "SFV" is reminiscent of the acronym of my R package `SpatialFeatureExperiment` (SFE), I thought about giving this blog the name `SpatialGenomicValley` (SGV), but the current name was more popular among those I asked.
 
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="8629020715"></div><script src="https://strava-embeds.com/embed.js"></script>
+
 # On the way
 ## From Pasadena to Burbank
 
@@ -187,32 +189,6 @@ Number four, I made the merger mistake again and didn't realize until I looked a
 # LA River bike path from Canoga Park to Sepulveda Basin
 
 # Sepulveda Basin
-
-```{r}
-library(reticulate)
-use_virtualenv("r-reticulate")
-```
-
-```{r}
-reticulate::py_install(c("pandas", "matplotlib"))
-```
-
-```{python}
-import pandas as pd
-```
-
-```{python}
-import pandas as pd
-import matplotlib.pyplot as plt
-df=pd.DataFrame([[1, 2], [3, 4], [4, 3], [2, 3]])
-fig = plt.figure(figsize=(14,8))
-for i in df.columns:
-    ax=plt.subplot(2,1,i+1) 
-    df[[i]].plot(ax=ax)
-    print(i)
-
-plt.show()
-```
 
 ## Muddy flooded bike path
 
