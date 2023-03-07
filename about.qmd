@@ -8,11 +8,13 @@ about:
       text: Mastodon
       href: https://fosstodon.org/@lambdamoses
     - icon: github
-      text: Github
+      text: GitHub
       href: https://github.com/lambdamoses
     - icon: strava
       text: Strava
       href: https://www.strava.com/athletes/90483887
+    - text: PixelFed
+      href: https://pixelfed.social/i/web/profile/529845376367415532
 ---
 
 ::: {.column-page}

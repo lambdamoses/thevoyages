@@ -194,6 +194,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">March 6, 2023</p>
+      </div>
+    </div>
       
     </div>
     
@@ -212,6 +218,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#variance-explained" id="toc-variance-explained" class="nav-link" data-scroll-target="#variance-explained">Variance explained</a></li>
   <li><a href="#embeddings" id="toc-embeddings" class="nav-link" data-scroll-target="#embeddings">Embeddings</a></li>
+  <li><a href="#loadings" id="toc-loadings" class="nav-link" data-scroll-target="#loadings">Loadings</a></li>
+  </ul></li>
+  <li><a href="#pca-no-clipping" id="toc-pca-no-clipping" class="nav-link" data-scroll-target="#pca-no-clipping">PCA, no clipping</a>
+  <ul class="collapse">
+  <li><a href="#embeddings-1" id="toc-embeddings-1" class="nav-link" data-scroll-target="#embeddings-1">Embeddings</a></li>
   <li><a href="#gene-loadings" id="toc-gene-loadings" class="nav-link" data-scroll-target="#gene-loadings">Gene loadings</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -224,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>Seurat is the standard package to analyze single cell and spatial -omics data in R, and Scanpy is the standard in Python. There has long been the R vs.&nbsp;Python debate in data science, though many, including myself, would say both R and Python though I use them for different data analysis tasks. However, many people do prefer one language to the other for a variety of reasons. I’m not here to add fuel to the flame war. Rather, I’m elaborating on the observation that the choice of language can greatly affect biological conclusions, because Seurat and Scanpy have different defaults and internals most users may be unaware of, by using the default settings of the <em>de facto</em> standard single cell and spatial -omics package in our language of choice, we inadvertently end up with different conclusions, which is bad news for reproducibility. For example, Seurat and Scanpy give quite different log fold changes for marker genes:</p>
+<p>Seurat is the standard package to analyze single cell and spatial -omics data in R, and Scanpy is the standard in Python. There has long been the R vs.&nbsp;Python debate in data science, though many, including myself, would say both R and Python though I use them for different data analysis tasks. However, many people do prefer one language to the other for a variety of reasons. I’m not here to add fuel to the flame war. Rather, I’m elaborating on the observation that the choice of language can greatly affect biological conclusions, because Seurat and Scanpy have different defaults and internals most users may be unaware of, so by using the default settings of the <em>de facto</em> standard single cell and spatial -omics package in our language of choice, we inadvertently end up with different conclusions, which is bad news for reproducibility. For example, Seurat and Scanpy give quite different log fold changes for marker genes:</p>
 <blockquote class="twitter-tweet blockquote">
 <p lang="en" dir="ltr">
 The results of different methods applied to the same scRNA-seq data differ substantially. <br><br>This is true even for fold changes, as shown below for Seurat and Scanpy.<br><br>The differences between selected transcript "markers" are even larger: <a href="https://t.co/pH4Rh3wQZv">https://t.co/pH4Rh3wQZv</a> via <a href="https://twitter.com/davisjmcc?ref_src=twsrc%5Etfw"><span class="citation" data-cites="davisjmcc">@davisjmcc</span></a> <a href="https://t.co/dcSkeDOhBf">pic.twitter.com/dcSkeDOhBf</a>
@@ -296,7 +307,7 @@ Active assay: Spatial (32285 features, 0 variable features)
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SpatialFeaturePlot</span>(seu, <span class="at">features =</span> <span class="st">"nCount_Spatial"</span>) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" alt="Total UMI counts of Visium spots are higher in the interiors of the olfactory bulbs than the periphery" width="672"></p>
 </div>
 </div>
 <p>Here we also read the data into Scanpy:</p>
@@ -370,7 +381,7 @@ Active assay: Spatial (32285 features, 0 variable features)
 <pre><code>Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" alt="Scatter plot with average gene expression on the x axis and standardized variance on the y axis, with 2000 genes with the highest standardized variance highlighted and 10 genes with the highest standardized variance labeled. Many of the top 10 encode hemoglobins." width="672"></p>
 </div>
 </div>
 <p>While this is an olfactory bulb dataset, many top highly variable genes encode hemoglogins.</p>
@@ -406,161 +417,243 @@ Active assay: Spatial (32285 features, 0 variable features)
 </div>
 <p>Here we plot the variance explained by each PC by Seurat and Scanpy in the same plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pcs_ve <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Seurat =</span> var_explained,</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Scanpy =</span> var_explained_py,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">PC =</span> <span class="fu">seq_len</span>(<span class="dv">20</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Seurat<span class="sc">:</span>Scanpy, <span class="at">names_to =</span> <span class="st">"package"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pcs_ve, <span class="fu">aes</span>(PC, value, <span class="at">color =</span> package, <span class="at">shape =</span> package)) <span class="sc">+</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Seurat =</span> <span class="st">"#198CE7"</span>, <span class="at">Scanpy =</span> <span class="st">"#3572A5"</span>)) <span class="sc">+</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion of variance explained"</span>, </span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"PC variance explained, default settings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plot_var_explained <span class="ot">&lt;-</span> <span class="cf">function</span>(ve_r, ve_py, <span class="at">npcs =</span> <span class="dv">20</span>, <span class="at">title =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    pcs_ve <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Seurat =</span> ve_r,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Scanpy =</span> ve_py,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">PC =</span> <span class="fu">seq_len</span>(npcs)) <span class="sc">|&gt;</span> </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Seurat<span class="sc">:</span>Scanpy, <span class="at">names_to =</span> <span class="st">"package"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(pcs_ve, <span class="fu">aes</span>(PC, value, <span class="at">color =</span> package, <span class="at">shape =</span> package)) <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Seurat =</span> <span class="st">"#198CE7"</span>, <span class="at">Scanpy =</span> <span class="st">"#3572A5"</span>)) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion of variance explained"</span>, </span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">title =</span> title)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_var_explained</span>(var_explained, var_explained_py,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">title =</span> <span class="st">"PC variance explained, default settings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" alt="PC elbow plot for Seurat and Scanpy PCA results. In Seurat, the first 2 PCs explain significantly more variance than their Scanpy counterparts, while the differences are smaller for the subsequent PCs. For both Seurat and Scanpy, variance explained drastically drops from PC1 to PC3 and levels off after PC6." width="672"></p>
 </div>
 </div>
-<p>Whereas Scanpy does divide by <code>n-1</code> when calculating the variance when scaling the data (see <a href="https://github.com/scverse/scanpy/blob/master/scanpy/preprocessing/_utils.py#L6">source code</a>), the variance explained by the PCs don’t match. I did not regress out any variable when scaling data with Seurat. One thing that might make a difference is the <code>scale.max</code> argument in <code>Seurat::ScaleData()</code>, which defaults to 10, while Scanpy’s equivalent argument, <code>max_value</code>, in <code>sc.pp.scale()</code>, defaults to <code>None</code>, meaning don’t clip. Seurat by default clips the scaled data at 10 to “reduce the effects of features that are only expressed in a very small number of cells”. However, I couldn’t find a source that explains why 10 was chosen as the default. Here I re-scale Seurat data without clipping.</p>
+<p>Whereas Scanpy does divide by <code>n-1</code> when calculating the variance when scaling the data (see <a href="https://github.com/scverse/scanpy/blob/master/scanpy/preprocessing/_utils.py#L6">source code</a>), the variance explained by the PCs don’t match. I did not regress out any variable when scaling data with Seurat. I will later find out what causes this discrepancy, but for now, let’s also look at the discrepancies in spot embeddings and gene loadings.</p>
+</section>
+<section id="embeddings" class="level2">
+<h2 class="anchored" data-anchor-id="embeddings">Embeddings</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>seu2 <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(seu, <span class="at">scale.max =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Centering and scaling data matrix</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>seu2 <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(seu2, <span class="at">npcs =</span> <span class="dv">20</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>var_explained2 <span class="ot">&lt;-</span> <span class="fu">Stdev</span>(seu2, <span class="at">reduction =</span> <span class="st">"pca"</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">Misc</span>(<span class="fu">Reductions</span>(seu2, <span class="st">"pca"</span>))[[<span class="st">"total.variance"</span>]]</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>pcs_ve2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Seurat =</span> var_explained2,</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Scanpy =</span> var_explained_py,</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">PC =</span> <span class="fu">seq_len</span>(<span class="dv">20</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Seurat<span class="sc">:</span>Scanpy, <span class="at">names_to =</span> <span class="st">"package"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pcs_ve2, <span class="fu">aes</span>(PC, value, <span class="at">color =</span> package, <span class="at">shape =</span> package)) <span class="sc">+</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Seurat =</span> <span class="st">"#198CE7"</span>, <span class="at">Scanpy =</span> <span class="st">"#3572A5"</span>)) <span class="sc">+</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion of variance explained"</span>, </span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"PC variance explained, no clipping"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PCAPlot</span>(seu) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Now they seem to match when plotted. See if the also numerically match:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(var_explained2, <span class="fu">as.vector</span>(var_explained_py))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Mean relative difference: 3.453444e-07"</code></pre>
-</div>
-</div>
-<p>For the most part they do match. Hence the clipping caused the difference, and users should be aware of the <code>scale.max</code> argument in <code>Seurat::ScaleData()</code> and the <code>max_value</code> argument in <code>sc.pp.scale()</code> and decide what value to use.</p>
-</section>
-<section id="embeddings" class="level2">
-<h2 class="anchored" data-anchor-id="embeddings">Embeddings</h2>
-<p>Next we compare the spot projections in PCA space, with the second Seurat object without clipping.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">PCAPlot</span>(seu2) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sc.pl.pca(adata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sc.pl.pca(adata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/Users/lambda/.virtualenvs/r-reticulate/lib/python3.10/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via 'c'. Parameters 'cmap', 'norm' will be ignored
   cax = scatter(</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The overall patterns are the same. Scanpy’s PC2 is flipped, but that’s OK, because an eigenvector scaled by a scalar is still an eigenvector with the same eigenvalue. Since it’s not easy to plot all 20 PCs, we compare the PCA embeddings numerically:</p>
+<p>The overall patterns are the same. Scanpy’s PC2 is flipped, but that’s OK, because an eigenvector scaled by a scalar is still an eigenvector with the same eigenvalue.</p>
+<p>Here I flip Scanpy’s PC2 and plot the embeddings in the first 2 PCs from Seurat and Scanpy together:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>pca_embeddings <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">Embeddings</span>(seu2, <span class="at">reduction =</span> <span class="st">"pca"</span>))</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>pca_embeddings_py <span class="ot">&lt;-</span> py<span class="sc">$</span>adata<span class="sc">$</span>obsm[<span class="st">"X_pca"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pca_embeddings <span class="ot">&lt;-</span> <span class="fu">Embeddings</span>(seu, <span class="at">reduction =</span> <span class="st">"pca"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>pca_embeddings_py <span class="ot">&lt;-</span> py<span class="sc">$</span>adata<span class="sc">$</span>obsm[<span class="st">"X_pca"</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pca_embeddings_py) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pca_embeddings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plot_pca_compare <span class="ot">&lt;-</span> <span class="cf">function</span>(embeddings_r, embeddings_py, <span class="at">pcs =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">title =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># See if needs to be flipped</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> pcs) {</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">max</span>(embeddings_r[,i] <span class="sc">-</span> embeddings_py[,i]), </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">max</span>(embeddings_r[,i] <span class="sc">+</span> embeddings_py[,i]))</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">which.min</span>(v) <span class="sc">==</span> 2L) <span class="co"># do flip</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>            embeddings_py[,i] <span class="ot">&lt;-</span> <span class="sc">-</span>embeddings_py[,i]</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    df_seu <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(embeddings_r[,pcs]) <span class="sc">|&gt;</span> </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">package =</span> <span class="st">"Seurat"</span>,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">ID =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(embeddings_r)))</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    df_adata <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(embeddings_py[,pcs]) <span class="sc">|&gt;</span> </span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">package =</span> <span class="st">"Scanpy"</span>,</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">ID =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(embeddings_r)))</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(df_seu)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">names</span>(df_adata)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    df_seu<span class="sc">$</span>package <span class="ot">&lt;-</span> <span class="st">"Seurat"</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    df_adata<span class="sc">$</span>package <span class="ot">&lt;-</span> <span class="st">"Scanpy"</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_seu, df_adata)</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    df2 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> package, <span class="at">values_from =</span> <span class="fu">c</span>(x, y))</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(x, y, <span class="at">color =</span> package, <span class="at">shape =</span> package), <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_segment</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> x_Seurat, <span class="at">y =</span> y_Seurat,</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">xend =</span> x_Scanpy, <span class="at">yend =</span> y_Scanpy)) <span class="sc">+</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Seurat =</span> <span class="st">"#198CE7"</span>, <span class="at">Scanpy =</span> <span class="st">"#3572A5"</span>)) <span class="sc">+</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">paste0</span>(<span class="st">"PC"</span>, pcs[<span class="dv">1</span>]), <span class="at">y =</span> <span class="fu">paste0</span>(<span class="st">"PC"</span>, pcs[<span class="dv">2</span>]),</span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>             <span class="at">title =</span> title) <span class="sc">+</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="dv">1</span>)))</span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_pca_compare</span>(pca_embeddings, pca_embeddings_py,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"PCA embeddings, Seurat vs. Scanpy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" alt="Described in the text below" width="672"></p>
+</div>
+</div>
+<p>Here while the spot embeddings in the first 2 PCs largely agree, some discrepancies are visible. The black segments in the plot connect corresponding points from Seurat and Scanpy embeddings. If the discrepancy is sizable, then the segment will be visible, which is sometimes the case, especially for spots with high PC1 values in this plot. Also see PCs 3-4:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_pca_compare</span>(pca_embeddings, pca_embeddings_py, <span class="at">pcs =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"PCA embeddings, Seurat vs. Scanpy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The discrepancies are larger in PCs 3-4, with the segment visible almost everywhere and longer among points with higher absolute values on PC4. Since more than 4 PCs are typically used for clustering, and the clusters are then used for differential expression, such discrepancies might manifest in different biological conclusions.</p>
+<p>Since it’s not easy to plot all 20 PCs as scatter plots, we compare the PCA embeddings numerically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plot_r_py_pc_diffs <span class="ot">&lt;-</span> <span class="cf">function</span>(mat_r, mat_py, <span class="at">npcs =</span> <span class="dv">20</span>, <span class="at">title =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    diffs <span class="ot">&lt;-</span> <span class="fu">numeric</span>(npcs)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(npcs)) {</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        pc_r <span class="ot">&lt;-</span> mat_r[,i]</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        pc_py <span class="ot">&lt;-</span> mat_py[,i]</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        diffs[i] <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">mean</span>(<span class="fu">abs</span>(pc_r <span class="sc">-</span> pc_py)), <span class="fu">mean</span>(<span class="fu">abs</span>(pc_r <span class="sc">+</span> pc_py))) <span class="co"># flipped</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">difference =</span> diffs,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">PC =</span> <span class="fu">seq_len</span>(npcs)) <span class="sc">|&gt;</span> </span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC, difference)) <span class="sc">+</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">sqrt</span>(.Machine<span class="sc">$</span>double.eps), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">annotation_logticks</span>(<span class="at">sides =</span> <span class="st">"l"</span>) <span class="sc">+</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">y =</span> <span class="st">"Mean absolute difference"</span>)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Because the PCs can be flipped, we compare the PCs one by one:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>diffs_embeddings <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">20</span>)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">20</span>)) {</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    pc_r <span class="ot">&lt;-</span> pca_embeddings[,i]</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    pc_py <span class="ot">&lt;-</span> pca_embeddings_py[,i]</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    diffs_embeddings[i] <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">mean</span>(<span class="fu">abs</span>(pc_r <span class="sc">-</span> pc_py)), </span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">mean</span>(<span class="fu">abs</span>(pc_r <span class="sc">+</span> pc_py))) <span class="co"># flipped</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_r_py_pc_diffs</span>(pca_embeddings, pca_embeddings_py, </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">title =</span> <span class="st">"Differences in embeddings, Seurat vs. Scanpy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The differences are large, and get larger with PCs that explain less variance, far beyond epsilon explainable by machine precision (dashed horizontal line), which is around <code>1.5e-8</code>. The mean absolute difference across spots rises from about 0.01 for PC1 to 1 and higher after PC9.</p>
+</section>
+<section id="loadings" class="level2">
+<h2 class="anchored" data-anchor-id="loadings">Loadings</h2>
+<p>Next we compare gene loadings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VizDimLoadings</span>(seu, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">nfeatures =</span> <span class="dv">20</span>, <span class="at">balanced =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">difference =</span> diffs_embeddings,</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">PC =</span> <span class="fu">seq_len</span>(<span class="dv">20</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC, difference)) <span class="sc">+</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">sqrt</span>(.Machine<span class="sc">$</span>double.eps), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_logticks</span>(<span class="at">sides =</span> <span class="st">"l"</span>) <span class="sc">+</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Differences in embeddings in Seurat vs. Scanpy"</span>,</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Mean absolute difference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sc.pl.pca_loadings(adata, components <span class="op">=</span> <span class="st">"1,2"</span>, n_points <span class="op">=</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="1344"></p>
 </div>
 </div>
-<p>Accounting for the flips, the differences are generally small, but get larger for the PCs that explain less variance. The dashed line is <code>sqrt(.Machine$double.eps)</code>, so while the magnitude of the difference may not seem great, it’s greater than can be accounted for by machine precision. Seurat uses implicitly restarted Lanczos bidiagonalization algorithm (<a href="https://cran.r-project.org/web/packages/irlba/">IRLBA</a>) for PCA, which performs approximate singular value decomposition and is much faster and memory efficient than base R <code>prcomp()</code>, while Scanpy by default uses <a href="https://rcc.fsu.edu/software/arpack">ARPACK</a>, which also uses the implicitly restarted Lanczos method for symmetric matrices.</p>
+<p>The plots are too visually different to compare visually. Here we compare the gene loadings numerically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pca_loadings <span class="ot">&lt;-</span> <span class="fu">Loadings</span>(seu, <span class="at">reduction =</span> <span class="st">"pca"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure the gene orders match</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>gene_ind <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rownames</span>(pca_loadings), <span class="fu">rownames</span>(seu))</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>pca_loadings_py <span class="ot">&lt;-</span> py<span class="sc">$</span>adata<span class="sc">$</span>varm[<span class="st">"PCs"</span>][gene_ind,]</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>pca_loadings <span class="ot">&lt;-</span> <span class="fu">unname</span>(pca_loadings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_r_py_pc_diffs</span>(pca_loadings, pca_loadings_py, </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">title =</span> <span class="st">"Differences in loadings, Seurat vs. Scanpy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Again, the differences are orders of magnitude greater than epsilon, rising from about <code>2e-4</code> at PC1 to over 0.01 after PC9.</p>
+</section>
+</section>
+<section id="pca-no-clipping" class="level1">
+<h1>PCA, no clipping</h1>
+<p>One thing that might have caused the difference is the <code>scale.max</code> argument in <code>Seurat::ScaleData()</code>, which defaults to 10, while Scanpy’s equivalent argument, <code>max_value</code>, in <code>sc.pp.scale()</code>, defaults to <code>None</code>, meaning don’t clip. Seurat by default clips the scaled data at 10 to “reduce the effects of features that are only expressed in a very small number of cells”. However, I couldn’t find a source that explains why 10 was chosen as the default. Here I re-scale Seurat data without clipping.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>seu2 <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(seu, <span class="at">scale.max =</span> <span class="cn">Inf</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>seu2 <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(seu2, <span class="at">npcs =</span> <span class="dv">20</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>var_explained2 <span class="ot">&lt;-</span> <span class="fu">Stdev</span>(seu2, <span class="at">reduction =</span> <span class="st">"pca"</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">Misc</span>(<span class="fu">Reductions</span>(seu2, <span class="st">"pca"</span>))[[<span class="st">"total.variance"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_var_explained</span>(var_explained2, var_explained_py,</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">title =</span> <span class="st">"PC variance explained, no clipping"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now they seem to match when plotted. See if they also numerically match:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(var_explained2, <span class="fu">as.vector</span>(var_explained_py))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Mean relative difference: 3.453444e-07"</code></pre>
+</div>
+</div>
+<p>For the most part they do match. Hence the clipping caused the difference, and users should be aware of the <code>scale.max</code> argument in <code>Seurat::ScaleData()</code> and the <code>max_value</code> argument in <code>sc.pp.scale()</code> and decide what value to use.</p>
+<section id="embeddings-1" class="level2">
+<h2 class="anchored" data-anchor-id="embeddings-1">Embeddings</h2>
+<p>Next we compare the spot projections in PCA space, with the second Seurat object without clipping.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pca_embeddings2 <span class="ot">&lt;-</span> <span class="fu">Embeddings</span>(seu2, <span class="at">reduction =</span> <span class="st">"pca"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_pca_compare</span>(pca_embeddings2, pca_embeddings_py,</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"PCA embeddings, Seurat vs. Scanpy, no clipping"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here the segments connecting corresponding spots from Seurat and Scanpy are all invisible, indicating that the embeddings are very similar in the first 2 PCs. Also see PC3 and PC4:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_pca_compare</span>(pca_embeddings2, pca_embeddings_py, <span class="at">pcs =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"PCA embeddings, Seurat vs. Scanpy, no clipping"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The segments are still invisible in PCs 3-4, indicate high similarity. Now we compare the embeddings of all 20 PCs computed numerically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_r_py_pc_diffs</span>(pca_embeddings2, pca_embeddings_py, </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">title =</span> <span class="st">"Differences in embeddings, Seurat vs. Scanpy, no clipping"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Accounting for the flips, the differences are generally small, but get larger for the PCs that explain less variance, rising from around <code>5e-6</code> at PC1 to less than <code>1e03</code> at PC20. The dashed line is <code>sqrt(.Machine$double.eps)</code>, around <code>1.5e-8</code>, so while the magnitude of the difference may not seem great, it’s greater than can be accounted for by machine precision although much smaller than when the Seurat scaled data is clipped. Seurat uses implicitly restarted Lanczos bidiagonalization algorithm (<a href="https://cran.r-project.org/web/packages/irlba/">IRLBA</a>) for PCA, which performs approximate singular value decomposition (SVD) and is much faster and memory efficient than base R <code>prcomp()</code>, while Scanpy by default uses <a href="https://rcc.fsu.edu/software/arpack">ARPACK</a>, which also uses the implicitly restarted Lanczos method for symmetric matrices. That this method computes approximate SVD might be responsible for the discrepancy.</p>
 </section>
 <section id="gene-loadings" class="level2">
 <h2 class="anchored" data-anchor-id="gene-loadings">Gene loadings</h2>
 <p>How about gene loadings?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VizDimLoadings</span>(seu2, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">nfeatures =</span> <span class="dv">20</span>, <span class="at">balanced =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>sc.pl.pca_loadings(adata, components <span class="op">=</span> <span class="st">"1,2"</span>, n_points <span class="op">=</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="1344"></p>
-</div>
-</div>
-<p>The plots are too visually different to compare visually. Here we compare the gene loadings numerically:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pca_loadings <span class="ot">&lt;-</span> <span class="fu">Loadings</span>(seu2, <span class="at">reduction =</span> <span class="st">"pca"</span>)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure the gene orders match</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>gene_ind <span class="ot">&lt;-</span> <span class="fu">match</span>(<span class="fu">rownames</span>(pca_loadings), <span class="fu">rownames</span>(seu2))</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>pca_loadings_py <span class="ot">&lt;-</span> py<span class="sc">$</span>adata<span class="sc">$</span>varm[<span class="st">"PCs"</span>][gene_ind,]</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>pca_loadings <span class="ot">&lt;-</span> <span class="fu">unname</span>(pca_loadings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>pca_loadings2 <span class="ot">&lt;-</span> <span class="fu">Loadings</span>(seu2, <span class="at">reduction =</span> <span class="st">"pca"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Again, because of the flipping, we compare the loadings for each PC one by one, taking into account the flipping.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>diffs_loadings <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">20</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">20</span>)) {</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    pc_r <span class="ot">&lt;-</span> pca_loadings[,i]</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    pc_py <span class="ot">&lt;-</span> pca_loadings_py[,i]</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    diffs_loadings[i] <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">mean</span>(<span class="fu">abs</span>(pc_r <span class="sc">-</span> pc_py)), </span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">mean</span>(<span class="fu">abs</span>(pc_r <span class="sc">+</span> pc_py))) <span class="co"># flipped</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">difference =</span> diffs_loadings,</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">PC =</span> <span class="fu">seq_len</span>(<span class="dv">20</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(PC, difference)) <span class="sc">+</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">sqrt</span>(.Machine<span class="sc">$</span>double.eps), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_logticks</span>(<span class="at">sides =</span> <span class="st">"l"</span>) <span class="sc">+</span></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Differences in loadings in Seurat vs. Scanpy"</span>,</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Mean absolute difference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_r_py_pc_diffs</span>(pca_loadings2, pca_loadings_py, </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">title =</span> <span class="st">"Differences in loadings, Seurat vs. Scanpy, no clipping"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Just like for the embeddings, the differences are generally not large, but get larger for the PCs that explain less variance. The dashed line is <code>sqrt(.Machine$double.eps)</code>. Only the first 3 PCs have loadings with less than epsilon in mean absolute difference between Seurat and Scanpy.</p>
+<p>Just like for the embeddings, the differences are generally not large, but get larger for the PCs that explain less variance, rising from about <code>6e-9</code> at PC1 to around <code>1e-5</code> at PC20. The dashed line is <code>sqrt(.Machine$double.eps)</code>, which is around <code>1.5d-8</code>. Only the first 3 PCs have loadings with less than epsilon in mean absolute difference between Seurat and Scanpy.</p>
 </section>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
-<p>In summary, the main “gotcha” is the <code>scale.max</code> argument in <code>Seurat::ScaleData()</code> that by default clips scaled values to 10, while Scanpy by default does not clip scaled data. Otherwise, the PCA results in Seurat and Scanpy are largely consistent, though mostly not within epsilon. Hopefully the kind of <code>1e-5</code> differences will not affect downstream biological inferences. However, I did not use the Scanpy default method to find highly variable genes here. In practice, the differences in highly variable genes may make a much larger difference downstream.</p>
+<p>In summary, the main “gotcha” is the <code>scale.max</code> argument in <code>Seurat::ScaleData()</code> that by default clips scaled values to 10, while Scanpy by default does not clip scaled data. This difference in defaults leads to sizable differences in PCA results, which are more pronounced in PCs that explain less variance. Otherwise, the PCA results in Seurat and Scanpy are largely consistent, though mostly not within epsilon. Hopefully the kind of <code>1e-5</code> differences will not affect downstream biological inferences. However, I did not use the Scanpy default method to find highly variable genes here. In practice, the differences in highly variable genes may make a much larger difference downstream.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.2.2 (2022-10-31)
 Platform: x86_64-apple-darwin17.0 (64-bit)
@@ -620,6 +713,52 @@ loaded via a namespace (and not attached):
 [103] rmarkdown_2.20         grid_4.2.2             data.table_1.14.8     
 [106] digest_0.6.31          xtable_1.8-4           httpuv_1.6.9          
 [109] munsell_0.5.0          viridisLite_0.4.1     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show Python package versions</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/49199019</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pkg_resources</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> types</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_imports():</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, val <span class="kw">in</span> <span class="bu">globals</span>().items():</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">isinstance</span>(val, types.ModuleType):</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Split ensures you get root package, </span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>            <span class="co"># not just imported function</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>            name <span class="op">=</span> val.<span class="va">__name__</span>.split(<span class="st">"."</span>)[<span class="dv">0</span>]</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="bu">isinstance</span>(val, <span class="bu">type</span>):</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>            name <span class="op">=</span> val.__module__.split(<span class="st">"."</span>)[<span class="dv">0</span>]</span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Some packages are weird and have different</span></span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># imported names vs. system/pip names. Unfortunately,</span></span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># there is no systematic way to get pip names from</span></span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># a package's imported name. You'll have to add</span></span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># exceptions to this list manually!</span></span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>        poorly_named_packages <span class="op">=</span> {</span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"PIL"</span>: <span class="st">"Pillow"</span>,</span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"sklearn"</span>: <span class="st">"scikit-learn"</span></span>
+<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> name <span class="kw">in</span> poorly_named_packages.keys():</span>
+<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a>            name <span class="op">=</span> poorly_named_packages[name]</span>
+<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> name</span>
+<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a>imports <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(get_imports()))</span>
+<span id="cb61-29"><a href="#cb61-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-30"><a href="#cb61-30" aria-hidden="true" tabindex="-1"></a><span class="co"># The only way I found to get the version of the root package</span></span>
+<span id="cb61-31"><a href="#cb61-31" aria-hidden="true" tabindex="-1"></a><span class="co"># from only the name of the package is to cross-check the names </span></span>
+<span id="cb61-32"><a href="#cb61-32" aria-hidden="true" tabindex="-1"></a><span class="co"># of installed packages vs. imported packages</span></span>
+<span id="cb61-33"><a href="#cb61-33" aria-hidden="true" tabindex="-1"></a>requirements <span class="op">=</span> []</span>
+<span id="cb61-34"><a href="#cb61-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> pkg_resources.working_set:</span>
+<span id="cb61-35"><a href="#cb61-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> m.project_name <span class="kw">in</span> imports <span class="kw">and</span> m.project_name<span class="op">!=</span><span class="st">"pip"</span>:</span>
+<span id="cb61-36"><a href="#cb61-36" aria-hidden="true" tabindex="-1"></a>        requirements.append((m.project_name, m.version))</span>
+<span id="cb61-37"><a href="#cb61-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-38"><a href="#cb61-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> requirements:</span>
+<span id="cb61-39"><a href="#cb61-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st">==</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="op">*</span>r))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>matplotlib==3.7.1
+pandas==1.5.3
+scanpy==1.9.3</code></pre>
 </div>
 </div>
 

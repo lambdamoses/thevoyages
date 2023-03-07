@@ -2,10 +2,11 @@
 title: "Do Seurat and Scanpy give consistent PCA results?"
 author: "Lambda Moses"
 date: "2023-03-05"
+date-modified: "2023-03-06"
 categories: [R, spatial-omics]
 ---
 
-Seurat is the standard package to analyze single cell and spatial -omics data in R, and Scanpy is the standard in Python. There has long been the R vs. Python debate in data science, though many, including myself, would say both R and Python though I use them for different data analysis tasks. However, many people do prefer one language to the other for a variety of reasons. I'm not here to add fuel to the flame war. Rather, I'm elaborating on the observation that the choice of language can greatly affect biological conclusions, because Seurat and Scanpy have different defaults and internals most users may be unaware of, by using the default settings of the _de facto_ standard single cell and spatial -omics package in our language of choice, we inadvertently end up with different conclusions, which is bad news for reproducibility. For example, Seurat and Scanpy give quite different log fold changes for marker genes:
+Seurat is the standard package to analyze single cell and spatial -omics data in R, and Scanpy is the standard in Python. There has long been the R vs. Python debate in data science, though many, including myself, would say both R and Python though I use them for different data analysis tasks. However, many people do prefer one language to the other for a variety of reasons. I'm not here to add fuel to the flame war. Rather, I'm elaborating on the observation that the choice of language can greatly affect biological conclusions, because Seurat and Scanpy have different defaults and internals most users may be unaware of, so by using the default settings of the _de facto_ standard single cell and spatial -omics package in our language of choice, we inadvertently end up with different conclusions, which is bad news for reproducibility. For example, Seurat and Scanpy give quite different log fold changes for marker genes:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">The results of different methods applied to the same scRNA-seq data differ substantially. <br><br>This is true even for fold changes, as shown below for Seurat and Scanpy.<br><br>The differences between selected transcript &quot;markers&quot; are even larger: <a href="https://t.co/pH4Rh3wQZv">https://t.co/pH4Rh3wQZv</a> via <a href="https://twitter.com/davisjmcc?ref_src=twsrc%5Etfw">@davisjmcc</a> <a href="https://t.co/dcSkeDOhBf">pic.twitter.com/dcSkeDOhBf</a></p>&mdash; Prof. Nikolai Slavov (@slavov_n) <a href="https://twitter.com/slavov_n/status/1582347828818456576?ref_src=twsrc%5Etfw">October 18, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -64,6 +65,7 @@ Read the data into Seurat:
 
 Take a glimpse into the dataset:
 ```{r}
+#| fig-alt: Total UMI counts of Visium spots are higher in the interiors of the olfactory bulbs than the periphery
 SpatialFeaturePlot(seu, features = "nCount_Spatial") +
     theme(legend.position = "right")
 ```
@@ -120,6 +122,7 @@ seu <- FindVariableFeatures(seu, verbose = FALSE)
 ```
 
 ```{r}
+#| fig-alt: Scatter plot with average gene expression on the x axis and standardized variance on the y axis, with 2000 genes with the highest standardized variance highlighted and 10 genes with the highest standardized variance labeled. Many of the top 10 encode hemoglobins.
 top10 <- head(VariableFeatures(seu), 10)
 LabelPoints(VariableFeaturePlot(seu), points = top10, repel = TRUE)
 ```
@@ -162,41 +165,172 @@ var_explained_py <- py$adata$uns["pca"]["variance_ratio"][[1]]
 
 Here we plot the variance explained by each PC by Seurat and Scanpy in the same plot:
 ```{r}
-pcs_ve <- tibble(Seurat = var_explained,
-                 Scanpy = var_explained_py,
-                 PC = seq_len(20)) |> 
-    pivot_longer(cols = Seurat:Scanpy, names_to = "package", values_to = "value")
-ggplot(pcs_ve, aes(PC, value, color = package, shape = package)) +
-    geom_point() +
-    scale_color_manual(values = c(Seurat = "#198CE7", Scanpy = "#3572A5")) +
-    scale_x_continuous(breaks = scales::breaks_width(2)) +
-    labs(y = "Proportion of variance explained", 
-         title = "PC variance explained, default settings")
+plot_var_explained <- function(ve_r, ve_py, npcs = 20, title = NULL) {
+    pcs_ve <- tibble(Seurat = ve_r,
+                 Scanpy = ve_py,
+                 PC = seq_len(npcs)) |> 
+        pivot_longer(cols = Seurat:Scanpy, names_to = "package", values_to = "value")
+    ggplot(pcs_ve, aes(PC, value, color = package, shape = package)) +
+        geom_point() +
+        scale_color_manual(values = c(Seurat = "#198CE7", Scanpy = "#3572A5")) +
+        scale_x_continuous(breaks = scales::breaks_width(2)) +
+        labs(y = "Proportion of variance explained", 
+             title = title)
+}
 ```
 
-Whereas Scanpy does divide by `n-1` when calculating the variance when scaling the data (see [source code](https://github.com/scverse/scanpy/blob/master/scanpy/preprocessing/_utils.py#L6)), the variance explained by the PCs don't match. I did not regress out any variable when scaling data with Seurat. One thing that might make a difference is the `scale.max` argument in `Seurat::ScaleData()`, which defaults to 10, while Scanpy's equivalent argument, `max_value`, in `sc.pp.scale()`, defaults to `None`, meaning don't clip. Seurat by default clips the scaled data at 10 to "reduce the effects of features that are only expressed in a very small number of cells". However, I couldn't find a source that explains why 10 was chosen as the default. Here I re-scale Seurat data without clipping.
+```{r}
+#| fig-alt: PC elbow plot for Seurat and Scanpy PCA results. In Seurat, the first 2 PCs explain significantly more variance than their Scanpy counterparts, while the differences are smaller for the subsequent PCs. For both Seurat and Scanpy, variance explained drastically drops from PC1 to PC3 and levels off after PC6.
+plot_var_explained(var_explained, var_explained_py,
+                   title = "PC variance explained, default settings")
+```
+
+Whereas Scanpy does divide by `n-1` when calculating the variance when scaling the data (see [source code](https://github.com/scverse/scanpy/blob/master/scanpy/preprocessing/_utils.py#L6)), the variance explained by the PCs don't match. I did not regress out any variable when scaling data with Seurat. I will later find out what causes this discrepancy, but for now, let's also look at the discrepancies in spot embeddings and gene loadings.
+
+## Embeddings
 
 ```{r}
-seu2 <- ScaleData(seu, scale.max = Inf)
+PCAPlot(seu) + theme(legend.position = "none")
+```
+
+```{python}
+sc.pl.pca(adata)
+```
+
+The overall patterns are the same. Scanpy's PC2 is flipped, but that's OK, because an eigenvector scaled by a scalar is still an eigenvector with the same eigenvalue. 
+
+Here I flip Scanpy's PC2 and plot the embeddings in the first 2 PCs from Seurat and Scanpy together:
+
+```{r}
+pca_embeddings <- Embeddings(seu, reduction = "pca")
+pca_embeddings_py <- py$adata$obsm["X_pca"]
+colnames(pca_embeddings_py) <- colnames(pca_embeddings)
+```
+
+```{r}
+plot_pca_compare <- function(embeddings_r, embeddings_py, pcs = 1:2, 
+                             title = NULL) {
+    # See if needs to be flipped
+    for (i in pcs) {
+        v <- c(max(embeddings_r[,i] - embeddings_py[,i]), 
+               max(embeddings_r[,i] + embeddings_py[,i]))
+        if (which.min(v) == 2L) # do flip
+            embeddings_py[,i] <- -embeddings_py[,i]
+    }
+    df_seu <- as_tibble(embeddings_r[,pcs]) |> 
+        mutate(package = "Seurat",
+               ID = seq_len(nrow(embeddings_r)))
+    df_adata <- as_tibble(embeddings_py[,pcs]) |> 
+        mutate(package = "Scanpy",
+               ID = seq_len(nrow(embeddings_r)))
+    names(df_seu)[1:2] <- names(df_adata)[1:2] <- c("x", "y")
+    df_seu$package <- "Seurat"
+    df_adata$package <- "Scanpy"
+    df <- rbind(df_seu, df_adata)
+    df2 <- df |> 
+        pivot_wider(names_from = package, values_from = c(x, y))
+    ggplot(df) +
+        geom_point(aes(x, y, color = package, shape = package), alpha = 0.4) +
+        geom_segment(data = df2, aes(x = x_Seurat, y = y_Seurat,
+                                     xend = x_Scanpy, yend = y_Scanpy)) +
+        scale_color_manual(values = c(Seurat = "#198CE7", Scanpy = "#3572A5")) +
+        labs(x = paste0("PC", pcs[1]), y = paste0("PC", pcs[2]),
+             title = title) +
+        guides(color = guide_legend(override.aes = list(alpha = 1)))
+}
+```
+
+```{r}
+#| fig-alt: Described in the text below
+plot_pca_compare(pca_embeddings, pca_embeddings_py,
+                 title = "PCA embeddings, Seurat vs. Scanpy")
+```
+
+Here while the spot embeddings in the first 2 PCs largely agree, some discrepancies are visible. The black segments in the plot connect corresponding points from Seurat and Scanpy embeddings. If the discrepancy is sizable, then the segment will be visible, which is sometimes the case, especially for spots with high PC1 values in this plot. Also see PCs 3-4:
+
+```{r}
+plot_pca_compare(pca_embeddings, pca_embeddings_py, pcs = 3:4,
+                 title = "PCA embeddings, Seurat vs. Scanpy")
+```
+
+The discrepancies are larger in PCs 3-4, with the segment visible almost everywhere and longer among points with higher absolute values on PC4. Since more than 4 PCs are typically used for clustering, and the clusters are then used for differential expression, such discrepancies might manifest in different biological conclusions. 
+
+Since it's not easy to plot all 20 PCs as scatter plots, we compare the PCA embeddings numerically:
+
+```{r}
+plot_r_py_pc_diffs <- function(mat_r, mat_py, npcs = 20, title = NULL) {
+    diffs <- numeric(npcs)
+    for (i in seq_len(npcs)) {
+        pc_r <- mat_r[,i]
+        pc_py <- mat_py[,i]
+        diffs[i] <- min(mean(abs(pc_r - pc_py)), mean(abs(pc_r + pc_py))) # flipped
+    }
+    tibble(difference = diffs,
+           PC = seq_len(npcs)) |> 
+        ggplot(aes(PC, difference)) +
+        geom_line() +
+        geom_hline(yintercept = sqrt(.Machine$double.eps), linetype = 2) +
+        scale_y_log10() +
+        scale_x_continuous(breaks = scales::breaks_width(2)) +
+        annotation_logticks(sides = "l") +
+        labs(title = title, y = "Mean absolute difference")
+}
+```
+
+Because the PCs can be flipped, we compare the PCs one by one:
+```{r}
+plot_r_py_pc_diffs(pca_embeddings, pca_embeddings_py, 
+                   title = "Differences in embeddings, Seurat vs. Scanpy")
+```
+
+The differences are large, and get larger with PCs that explain less variance, far beyond epsilon explainable by machine precision (dashed horizontal line), which is around `1.5e-8`. The mean absolute difference across spots rises from about 0.01 for PC1 to 1 and higher after PC9.
+
+## Loadings
+Next we compare gene loadings.
+```{r}
+VizDimLoadings(seu, dims = 1:2, nfeatures = 20, balanced = TRUE)
+```
+
+```{python}
+sc.pl.pca_loadings(adata, components = "1,2", n_points = 20)
+```
+
+The plots are too visually different to compare visually. Here we compare the gene loadings numerically:
+```{r}
+pca_loadings <- Loadings(seu, reduction = "pca")
+# Make sure the gene orders match
+gene_ind <- match(rownames(pca_loadings), rownames(seu))
+pca_loadings_py <- py$adata$varm["PCs"][gene_ind,]
+pca_loadings <- unname(pca_loadings)
+```
+
+```{r}
+plot_r_py_pc_diffs(pca_loadings, pca_loadings_py, 
+                   title = "Differences in loadings, Seurat vs. Scanpy")
+```
+
+Again, the differences are orders of magnitude greater than epsilon, rising from about `2e-4` at PC1 to over 0.01 after PC9.
+
+# PCA, no clipping
+
+One thing that might have caused the difference is the `scale.max` argument in `Seurat::ScaleData()`, which defaults to 10, while Scanpy's equivalent argument, `max_value`, in `sc.pp.scale()`, defaults to `None`, meaning don't clip. Seurat by default clips the scaled data at 10 to "reduce the effects of features that are only expressed in a very small number of cells". However, I couldn't find a source that explains why 10 was chosen as the default. Here I re-scale Seurat data without clipping.
+
+```{r}
+seu2 <- ScaleData(seu, scale.max = Inf, verbose = FALSE)
 seu2 <- RunPCA(seu2, npcs = 20, verbose = FALSE)
 ```
 
 ```{r}
 var_explained2 <- Stdev(seu2, reduction = "pca")^2/
                       Misc(Reductions(seu2, "pca"))[["total.variance"]]
-pcs_ve2 <- tibble(Seurat = var_explained2,
-                 Scanpy = var_explained_py,
-                 PC = seq_len(20)) |> 
-    pivot_longer(cols = Seurat:Scanpy, names_to = "package", values_to = "value")
-ggplot(pcs_ve2, aes(PC, value, color = package, shape = package)) +
-    geom_point() +
-    scale_color_manual(values = c(Seurat = "#198CE7", Scanpy = "#3572A5")) +
-    scale_x_continuous(breaks = scales::breaks_width(2)) +
-    labs(y = "Proportion of variance explained", 
-         title = "PC variance explained, no clipping")
 ```
 
-Now they seem to match when plotted. See if the also numerically match:
+```{r}
+plot_var_explained(var_explained2, var_explained_py,
+                   title = "PC variance explained, no clipping")
+```
+
+Now they seem to match when plotted. See if they also numerically match:
 ```{r}
 all.equal(var_explained2, as.vector(var_explained_py))
 ```
@@ -207,96 +341,91 @@ For the most part they do match. Hence the clipping caused the difference, and u
 Next we compare the spot projections in PCA space, with the second Seurat object without clipping.
 
 ```{r}
-PCAPlot(seu2) + theme(legend.position = "none")
-```
-
-```{python}
-sc.pl.pca(adata)
-```
-
-The overall patterns are the same. Scanpy's PC2 is flipped, but that's OK, because an eigenvector scaled by a scalar is still an eigenvector with the same eigenvalue. Since it's not easy to plot all 20 PCs, we compare the PCA embeddings numerically:
-
-```{r}
-pca_embeddings <- unname(Embeddings(seu2, reduction = "pca"))
-pca_embeddings_py <- py$adata$obsm["X_pca"]
-```
-
-Because the PCs can be flipped, we compare the PCs one by one:
-
-```{r}
-diffs_embeddings <- numeric(20)
-for (i in seq_len(20)) {
-    pc_r <- pca_embeddings[,i]
-    pc_py <- pca_embeddings_py[,i]
-    diffs_embeddings[i] <- min(mean(abs(pc_r - pc_py)), 
-                               mean(abs(pc_r + pc_py))) # flipped
-}
+pca_embeddings2 <- Embeddings(seu2, reduction = "pca")
 ```
 
 ```{r}
-tibble(difference = diffs_embeddings,
-       PC = seq_len(20)) |> 
-    ggplot(aes(PC, difference)) +
-    geom_line() +
-    geom_hline(yintercept = sqrt(.Machine$double.eps), linetype = 2) +
-    scale_y_log10() +
-    scale_x_continuous(breaks = scales::breaks_width(2)) +
-    annotation_logticks(sides = "l") +
-    labs(title = "Differences in embeddings in Seurat vs. Scanpy",
-         y = "Mean absolute difference")
+plot_pca_compare(pca_embeddings2, pca_embeddings_py,
+                 title = "PCA embeddings, Seurat vs. Scanpy, no clipping")
 ```
 
-Accounting for the flips, the differences are generally small, but get larger for the PCs that explain less variance. The dashed line is `sqrt(.Machine$double.eps)`, so while the magnitude of the difference may not seem great, it's greater than can be accounted for by machine precision. Seurat uses implicitly restarted Lanczos bidiagonalization algorithm ([IRLBA](https://cran.r-project.org/web/packages/irlba/)) for PCA, which performs approximate singular value decomposition and is much faster and memory efficient than base R `prcomp()`, while Scanpy by default uses [ARPACK](https://rcc.fsu.edu/software/arpack), which also uses the implicitly restarted Lanczos method for symmetric matrices. 
+Here the segments connecting corresponding spots from Seurat and Scanpy are all invisible, indicating that the embeddings are very similar in the first 2 PCs. Also see PC3 and PC4:
+```{r}
+plot_pca_compare(pca_embeddings2, pca_embeddings_py, pcs = 3:4,
+                 title = "PCA embeddings, Seurat vs. Scanpy, no clipping")
+```
+
+The segments are still invisible in PCs 3-4, indicate high similarity. Now we compare the embeddings of all 20 PCs computed numerically:
+
+```{r}
+plot_r_py_pc_diffs(pca_embeddings2, pca_embeddings_py, 
+                   title = "Differences in embeddings, Seurat vs. Scanpy, no clipping")
+```
+
+Accounting for the flips, the differences are generally small, but get larger for the PCs that explain less variance, rising from around `5e-6` at PC1 to less than `1e03` at PC20. The dashed line is `sqrt(.Machine$double.eps)`, around `1.5e-8`, so while the magnitude of the difference may not seem great, it's greater than can be accounted for by machine precision although much smaller than when the Seurat scaled data is clipped. Seurat uses implicitly restarted Lanczos bidiagonalization algorithm ([IRLBA](https://cran.r-project.org/web/packages/irlba/)) for PCA, which performs approximate singular value decomposition (SVD) and is much faster and memory efficient than base R `prcomp()`, while Scanpy by default uses [ARPACK](https://rcc.fsu.edu/software/arpack), which also uses the implicitly restarted Lanczos method for symmetric matrices. That this method computes approximate SVD might be responsible for the discrepancy.
 
 ## Gene loadings
 How about gene loadings?
-```{r}
-VizDimLoadings(seu2, dims = 1:2, nfeatures = 20, balanced = TRUE)
-```
 
-```{python}
-sc.pl.pca_loadings(adata, components = "1,2", n_points = 20)
-```
-
-The plots are too visually different to compare visually. Here we compare the gene loadings numerically:
 ```{r}
-pca_loadings <- Loadings(seu2, reduction = "pca")
-# Make sure the gene orders match
-gene_ind <- match(rownames(pca_loadings), rownames(seu2))
-pca_loadings_py <- py$adata$varm["PCs"][gene_ind,]
-pca_loadings <- unname(pca_loadings)
+pca_loadings2 <- Loadings(seu2, reduction = "pca")
 ```
 
 Again, because of the flipping, we compare the loadings for each PC one by one, taking into account the flipping.
 ```{r}
-diffs_loadings <- numeric(20)
-for (i in seq_len(20)) {
-    pc_r <- pca_loadings[,i]
-    pc_py <- pca_loadings_py[,i]
-    diffs_loadings[i] <- min(mean(abs(pc_r - pc_py)), 
-                             mean(abs(pc_r + pc_py))) # flipped
-}
+plot_r_py_pc_diffs(pca_loadings2, pca_loadings_py, 
+                   title = "Differences in loadings, Seurat vs. Scanpy, no clipping")
 ```
 
-```{r}
-tibble(difference = diffs_loadings,
-       PC = seq_len(20)) |> 
-    ggplot(aes(PC, difference)) +
-    geom_line() +
-    geom_hline(yintercept = sqrt(.Machine$double.eps), linetype = 2) +
-    scale_y_log10() +
-    scale_x_continuous(breaks = scales::breaks_width(2)) +
-    annotation_logticks(sides = "l") +
-    labs(title = "Differences in loadings in Seurat vs. Scanpy",
-         y = "Mean absolute difference")
-```
 
-Just like for the embeddings, the differences are generally not large, but get larger for the PCs that explain less variance. The dashed line is `sqrt(.Machine$double.eps)`. Only the first 3 PCs have loadings with less than epsilon in mean absolute difference between Seurat and Scanpy.
+Just like for the embeddings, the differences are generally not large, but get larger for the PCs that explain less variance, rising from about `6e-9` at PC1 to around `1e-5` at PC20. The dashed line is `sqrt(.Machine$double.eps)`, which is around `1.5d-8`. Only the first 3 PCs have loadings with less than epsilon in mean absolute difference between Seurat and Scanpy.
 
 # Conclusion
-In summary, the main "gotcha" is the `scale.max` argument in `Seurat::ScaleData()` that by default clips scaled values to 10, while Scanpy by default does not clip scaled data. Otherwise, the PCA results in Seurat and Scanpy are largely consistent, though mostly not within epsilon. Hopefully the kind of `1e-5` differences will not affect downstream biological inferences. However, I did not use the Scanpy default method to find highly variable genes here. In practice, the differences in highly variable genes may make a much larger difference downstream.
+In summary, the main "gotcha" is the `scale.max` argument in `Seurat::ScaleData()` that by default clips scaled values to 10, while Scanpy by default does not clip scaled data. This difference in defaults leads to sizable differences in PCA results, which are more pronounced in PCs that explain less variance. Otherwise, the PCA results in Seurat and Scanpy are largely consistent, though mostly not within epsilon. Hopefully the kind of `1e-5` differences will not affect downstream biological inferences. However, I did not use the Scanpy default method to find highly variable genes here. In practice, the differences in highly variable genes may make a much larger difference downstream.
 
 ```{r}
 sessionInfo()
+```
+
+```{python}
+# Show Python package versions
+# https://stackoverflow.com/a/49199019
+import pkg_resources
+import types
+def get_imports():
+    for name, val in globals().items():
+        if isinstance(val, types.ModuleType):
+            # Split ensures you get root package, 
+            # not just imported function
+            name = val.__name__.split(".")[0]
+
+        elif isinstance(val, type):
+            name = val.__module__.split(".")[0]
+            
+        # Some packages are weird and have different
+        # imported names vs. system/pip names. Unfortunately,
+        # there is no systematic way to get pip names from
+        # a package's imported name. You'll have to add
+        # exceptions to this list manually!
+        poorly_named_packages = {
+            "PIL": "Pillow",
+            "sklearn": "scikit-learn"
+        }
+        if name in poorly_named_packages.keys():
+            name = poorly_named_packages[name]
+            
+        yield name
+imports = list(set(get_imports()))
+
+# The only way I found to get the version of the root package
+# from only the name of the package is to cross-check the names 
+# of installed packages vs. imported packages
+requirements = []
+for m in pkg_resources.working_set:
+    if m.project_name in imports and m.project_name!="pip":
+        requirements.append((m.project_name, m.version))
+
+for r in requirements:
+    print("{}=={}".format(*r))
 ```
 
