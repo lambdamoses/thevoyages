@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -112,18 +112,17 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">Lambda Moses</span></a>
+    <a class="nav-link" href="./about.html">Lambda Moses</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lambdamoses"><i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+ </a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://fosstodon.org/@lambdamoses"><i class="bi bi-mastodon" role="img">
 </i> 
- <span class="menu-text"></span></a>
+ </a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -143,7 +142,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="quarto-title-meta">
 
       
-    
       
     </div>
     
@@ -153,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cycling">cycling <span class="quarto-category-count">(4)</span></div><div class="category" data-category="spatial-omics">spatial-omics <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="cycling">cycling <span class="quarto-category-count">(4)</span></div><div class="category" data-category="spatial-omics">spatial-omics <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -166,7 +164,49 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="R,spatial-omics" data-listing-date-sort="1679036400000" data-listing-file-modified-sort="1679180202498" data-listing-reading-time-sort="30.04">
+<div class="quarto-post image-right" data-index="0" data-categories="R,spatial-omics" data-listing-date-sort="1679727600000" data-listing-file-modified-sort="1679819510489" data-listing-reading-time-sort="16.285">
+<div class="thumbnail">
+<a href="./posts/2023-03-25-multispati-part-2/index.html">
+<div class="thumbnail-image">
+
+</div>
+</a><p><a href="./posts/2023-03-25-multispati-part-2/index.html"></a></p>
+</div>
+<div class="body">
+<a href="./posts/2023-03-25-multispati-part-2/index.html">
+<h3 class="no-anchor listing-title">
+A faster implementation of MULTISPATI PCA
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('spatial-omics'); return false;">
+spatial-omics
+</div>
+</div>
+<a href="./posts/2023-03-25-multispati-part-2/index.html">
+<div class="listing-description">
+Last time, I used the implementation of MULTISPATI PCA in <code>adespatial</code> on the mouse skeletal muscle Visium dataset. The dataset is small by scRNA-seq standards, with only 900 something spots. It too about half a minute to run MULTISPATI PCA, to obtain 30 PCs with the most positive eigenvalues and 30 with the most negative eigenvalues. It might not sound too bad, but it only took less than one second to run non-spatial PCA with the IRLBA algorithm to obtain 30 PCs.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2023-03-25-multispati-part-2/index.html">
+<div class="listing-date">
+Mar 25, 2023
+</div>
+<div class="listing-author">
+Lambda Moses
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="R,spatial-omics" data-listing-date-sort="1679036400000" data-listing-file-modified-sort="1679778333675" data-listing-reading-time-sort="30.04">
 <div class="thumbnail">
 <p><a href="./posts/2023-03-17-multispati-part-1/index.html"> <img src="https://raw.githubusercontent.com/pachterlab/voyager/documentation/vignettes/tissue_lowres_5a.jpeg" class="thumnail-image"> </a></p>
 </div>
@@ -189,7 +229,7 @@ spatial-omics
 </div>
 <a href="./posts/2023-03-17-multispati-part-1/index.html">
 <div class="listing-description">
-Due to the large number of genes quantified in single cell and spatial transcriptomics, dimension reduction is part of the standard workflow to analyze such data, to…
+Due to the large number of genes quantified in single cell and spatial transcriptomics, dimension reduction is part of the standard workflow to analyze such data, to visualize, to help interpreting the data, to distill relevant information and reduce noise, to facilitate downstream analyses such as clustering and pseudotime, to project different samples into a shared latent space for data integration, and so on.
 </div>
 </a>
 </div>
@@ -204,7 +244,7 @@ Lambda Moses
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="R,spatial-omics" data-listing-date-sort="1678003200000" data-listing-file-modified-sort="1678152679011" data-listing-reading-time-sort="16.06">
+<div class="quarto-post image-right" data-index="2" data-categories="R,spatial-omics" data-listing-date-sort="1678003200000" data-listing-file-modified-sort="1679181688142" data-listing-reading-time-sort="16.06">
 <div class="thumbnail">
 <a href="./posts/2023-03-05-seurat-vs-scanpy-pca/index.html">
 <div class="thumbnail-image">
@@ -231,7 +271,7 @@ spatial-omics
 </div>
 <a href="./posts/2023-03-05-seurat-vs-scanpy-pca/index.html">
 <div class="listing-description">
-Seurat is the standard package to analyze single cell and spatial -omics data in R, and Scanpy is the standard in Python. There has long been the R vs.&nbsp;Python debate in data…<em></em>
+Seurat is the standard package to analyze single cell and spatial -omics data in R, and Scanpy is the standard in Python. There has long been the R vs.&nbsp;Python debate in data science, though many, including myself, would say both R and Python though I use them for different data analysis tasks. However, many people do prefer one language to the other for a variety of reasons. I’m not here to add fuel to the flame war. Rather, I’m elaborating on the observation that the choice of language can greatly affect biological conclusions, because Seurat and Scanpy have different defaults and internals most users may be unaware of, so by using the default settings of the <em>de facto</em> standard single cell and spatial -omics package in our language of choice, we inadvertently end up with different conclusions, which is bad news for reproducibility. For example, Seurat and Scanpy give quite different log fold changes for marker genes:
 </div>
 </a>
 </div>
@@ -246,7 +286,7 @@ Lambda Moses
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="cycling" data-listing-date-sort="1677398400000" data-listing-file-modified-sort="1678844142383" data-listing-reading-time-sort="26.595">
+<div class="quarto-post image-right" data-index="3" data-categories="cycling" data-listing-date-sort="1677398400000" data-listing-file-modified-sort="1679181688142" data-listing-reading-time-sort="26.595">
 <div class="thumbnail">
 <p><a href="./posts/2023-03-14-palm-trees-snowy-peaks-and-sepulveda-mud/index.html"> <img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/E72ayLvv7Jeq/kW9Ti5Ayw1cbkftVOumnnCHDJ3mQYIxlMqpe2AJN.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -281,7 +321,7 @@ Lambda Moses
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="cycling" data-listing-date-sort="1676966400000" data-listing-file-modified-sort="1678066788148" data-listing-reading-time-sort="32.53">
+<div class="quarto-post image-right" data-index="4" data-categories="cycling" data-listing-date-sort="1676966400000" data-listing-file-modified-sort="1679181688142" data-listing-reading-time-sort="32.53">
 <div class="thumbnail">
 <p><a href="./posts/2023-02-21-where-the-big-jet-engines-roar/index.html"> <img src="https://media.pixelfed.social/public/m/_v2/529845376367415532/0fca8ea69-e1c06b/q6Je91RZFlS3/Byy511tPwfvjbUNxk7iyg1DbPcO2A7M0n7ELwJb1.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -316,7 +356,7 @@ Lambda Moses
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="cycling" data-listing-date-sort="1676880000000" data-listing-file-modified-sort="1676885339255" data-listing-reading-time-sort="30.87">
+<div class="quarto-post image-right" data-index="5" data-categories="cycling" data-listing-date-sort="1676880000000" data-listing-file-modified-sort="1677983640422" data-listing-reading-time-sort="30.87">
 <div class="thumbnail">
 <p><a href="./posts/2023-02-20-east-side-riders/index.html"> <img src="./posts/2023-02-20-east-side-riders/esr-2023-02-11.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -351,7 +391,7 @@ Lambda Moses
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="cycling" data-listing-date-sort="1676361600000" data-listing-file-modified-sort="1676440096225" data-listing-reading-time-sort="6.51">
+<div class="quarto-post image-right" data-index="6" data-categories="cycling" data-listing-date-sort="1676361600000" data-listing-file-modified-sort="1677983640419" data-listing-reading-time-sort="6.51">
 <div class="thumbnail">
 <p><a href="./posts/2023-02-14-watercolor-sky/index.html"> <img src="https://dgtzuqphqg23d.cloudfront.net/Y_6fLz9gzBbrN3YE4TAR_ihFkTHsYLCqC1CGDvMDSuA-2048x1536.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -432,24 +472,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -485,42 +508,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>

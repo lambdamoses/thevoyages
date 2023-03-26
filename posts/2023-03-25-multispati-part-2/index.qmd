@@ -7,9 +7,9 @@ categories: [R, spatial-omics]
 
 [Last time](https://lambdamoses.github.io/thevoyages/posts/2023-03-17-multispati-part-1), I used the implementation of MULTISPATI PCA in `adespatial` on the mouse skeletal muscle Visium dataset. The dataset is small by scRNA-seq standards, with only 900 something spots. It too about half a minute to run MULTISPATI PCA, to obtain 30 PCs with the most positive eigenvalues and 30 with the most negative eigenvalues. It might not sound too bad, but it only took less than one second to run non-spatial PCA with the IRLBA algorithm to obtain 30 PCs. 
 
-The `adespatial` implementation is slow because it performs full spectrum decomposition twice, with base R's `eigen` function. The first is to perform non-spatial PCA, whose output contains row and column weights that is then used by the `multispati` function. The second time is for the spatially weighted covariance matrix in `multispati`. Although only the top 30 positive and negative eigenvalues and their corresponding eigenvectors are retained in the results, all the 900 something eigenvalues and eigenvector are found, doing a lot of unnecessary work.
+The `adespatial` implementation is slow because it performs full spectrum decomposition twice, with base R's `eigen()` function. The first is to perform non-spatial PCA, whose output contains row and column weights and the original data that are then used by the `multispati()` function. The second time is for the spatially weighted covariance matrix in `multispati()`. Although only the top 30 positive and negative eigenvalues and their corresponding eigenvectors are retained in the results, all the 900 something eigenvalues and eigenvector were computed, doing a lot of unnecessary work.
 
-I would like to perform MULTISPATI PCA on the single cell resolution datasets with over 100,000 cells, so I need a more efficient implementation, which is what I do here. First, I will write up the implementation based on `RSpectra` and make sure that my implementation gives results consistent with `adespatial`. Then I will compare speed and memory usage of `adespatial` and my implementation using subsets of the MERFISH dataset with almost 400,000 cells. Finally, I will perform MULTISPATI PCA on the full MERFISH dataset and explore the results.
+I would like to perform MULTISPATI PCA on single cell resolution datasets with over 100,000 cells, so I need a more efficient implementation, which is what I do here. 
 
 Here we load the packages. Note that the devel version of `SpatialFeatureExperiment` and `Voyager` are used here.
 
@@ -40,15 +40,19 @@ packageVersion("Voyager")
 ```
 
 # Dataset
+The dataset used here is a MERFISH dataset from healthy mouse liver from Vizgen. It is available in the `SFEData` package.
 ```{r}
 (sfe <- VizgenLiverData())
 ```
 
+Plot cell density in histological space: 
 ```{r}
 plotCellBin2D(sfe, bins = 300)
 ```
 
-QC was already performed in the [Voyager MERFISH vignette](https://pachterlab.github.io/voyager/articles/vig6_merfish.html) so I won't go into details here. I remove low quality cells as I did in that vignette.
+The cells are fairly uniformly distributed in space, but some structure with higher cell density, perhaps related to blood vessels, can be discerned.
+
+QC was already performed in the [Voyager MERFISH vignette](https://pachterlab.github.io/voyager/articles/vig6_merfish.html) so I won't go into details here. I remove low quality cells that have too many transcript counts from the blank probes as I did in that vignette.
 ```{r}
 is_blank <- str_detect(rownames(sfe), "^Blank-")
 sfe <- addPerCellQCMetrics(sfe, subset = list(blank = is_blank))
@@ -74,8 +78,16 @@ sfe <- get_neg_ctrl_outliers("subsets_blank_percent", sfe, log = TRUE)
 ```
 
 ```{r}
+# Remove the blanks
+sfe <- sfe[!is_blank,]
+```
+
+Normalize the data:
+```{r}
 sfe <- logNormCounts(sfe)
 ```
+
+Because this dataset only has 385 curated genes, it's unnecessary to find highly variable genes.
 
 # Implementation
 To recap, MULTISPATI diagonalizes a symmetric matrix
@@ -93,21 +105,25 @@ inds <- st_intersects(centroids(sfe), bbox, sparse = FALSE)
 (sfe_sub <- sfe[,inds])
 ```
 
+Plot the cells of this subset:
 ```{r}
 plotGeometry(sfe_sub, "cellSeg")
 ```
 
+Most tessellations of the 2D plane in real data are somewhere between a square (4 rook neighbors) and a hexagonal (6 neighbors) grid. Uncertainties in cell segmentation means that cell segmentation polygon contiguity might have many false negatives so a polygon contiguity graph may miss many actual neighbors. Hence we use the k nearest neighbor method to find a spatial neighborhood graph, with $k = 5$, which appears reasonable from visual inspections. Furthermore, k nearest neighbor is more scalable to larger datasets compared to some other methods such as triangulation following by edge pruning. The devel (Bioconductor 3.17) version of `SpatialFeatureExperiment` can find k nearest neighbors much more efficiently than the release (Bioconductor 3.16) version. Inverse distance weighting is used so neighbors further away have less contribution, and the weighted spatial neighborhood adjacency matrix is row normalized as is customary for MULTISPATI and default in `spdep` so the spatially lagged values are comparable to the original values.
 ```{r}
 colGraph(sfe_sub, "knn") <- findSpatialNeighbors(sfe_sub, method = "knearneigh", 
                                                  k = 5, dist_type = "idw", 
                                                  style = "W")
 ```
 
+Here we plot the spatial neighborhood graph, where transparency of the edges corresponds to edge weight:
 ```{r}
 plotColGraph(sfe_sub, "knn", colGeometryName = "centroids", weights = TRUE) +
     theme_void()
 ```
 
+Wrapping everything needed to get MULTISPATI results from `adespatial` ready to be added to `reducedDims(sfe_sub)` in one function:
 ```{r}
 calc_multispati_ade <- function(sfe, colGraphName, nfposi = 30, nfnega = 30) {
     df <- logcounts(sfe) |> # Don't need highly variable genes here
@@ -127,13 +143,19 @@ calc_multispati_ade <- function(sfe, colGraphName, nfposi = 30, nfnega = 30) {
 }
 ```
 
+Here I use `profvis` to profile the code, to see the time and memory taken by each function called:
 ```{r}
 profvis({ade_res <- calc_multispati_ade(sfe_sub, "knn")})
 ```
 
-This took nearly 50 seconds and 310 MB fo RAM. Be sure to click the `Data` in the results to see which function took the most time. According to the profile, the vast majority of time was spent on `eigen()`, which was called twice and performed the full eigen decomposition, although only a small subset of eigenvectors are retained in the results.
+This usually takes from 50 seconds to about a minute and 200 to 300 something MB of RAM on my lab's server where R does NOT use an optimized BLAS (the results would be slightly different every time I run it). According to the profile, the vast majority of time was spent on `eigen()`, which was called twice and performed the full eigen decomposition, although only a small subset of eigenvectors are retained in the results.
+
+I ran the same code on my laptop which uses the optimized Apple vecLib BLAS. My laptop is a 2017 MacBook Pro with 8 GB of RAM and 2 physical CPU cores. The `adespatial` implementation took 390 ms (`eigen()` used 30 ms) and 257.5 MB of RAM. Using an optimized BLAS drastically speeds up matrix operations. See [this page](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) for instructions on changing to an optimized BLAS in Ubuntu. For Fedora, it's possible to change BLAS without leaving the R session with [`flexiblas`](https://www.enchufa2.es/archives/switch-blas-lapack-without-leaving-your-r-session.html). For Mac, R 4.2 comes with vecLib so you no longer have to locate the vecLib from the system. Here's the [official instruction](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f) for Mac to make R use vecLib. Unfortunately, from my online search as I don't personally use Windows, there is no better option than Microsoft R Open for Windows.
+
+Here is my implementation of MULTISPATI, with everything I can do to improve efficiency I can think of. In the `spdep` package, the `listw2mat()` function converts a `listw` spatial neighborhood graph object into an adjacency matrix, but it's a dense matrix with mostly 0's, so using a sparse matrix will save memory.
 
 ```{r}
+# Convert listw to sparse matrix to save memory
 listw2sparse <- function(listw) {
     i <- rep(seq_along(listw$neighbours), times = card(listw$neighbours))
     j <- unlist(listw$neighbours)
@@ -142,12 +164,14 @@ listw2sparse <- function(listw) {
 }
 ```
 
+Then wrap everything needed to get MULTISPATI results ready to be added to `reducedDims(sfe_sub)` in one function:
 ```{r}
 # nf positive and negative eigenvalues
 calc_multispati_rspectra <- function(sfe, colGraphName, nf = 30) {
-    # Note that dudi.pca divides by n when scaling data
+    # Scaled matrix is no longer sparse
     X <- as.matrix(t(logcounts(sfe)))
     X <- sweep(X, 2, colMeans(X))
+    # Note that dudi.pca divides by n instead of n-1 when scaling data
     n <- nrow(X)
     X <- sweep(X, 2, sqrt(colVars(X)*(n-1)/n), FUN = "/")
     W <- listw2sparse(colGraph(sfe, colGraphName))
@@ -163,11 +187,16 @@ calc_multispati_rspectra <- function(sfe, colGraphName, nf = 30) {
 }
 ```
 
+I noted that `ade4::dudi.pca()`, whose output is used in `multispati()`, divides by `n` when computing the variance when scaling the data. This is the maximum likelihood estimate, while dividing by `n-1` is the unbiased estimate. Shall I use `n` or `n-1`? For the typical size of spatial transcriptomics data, this shouldn't cause very much of a difference
+
+Again, I profile this run:
 ```{r}
 profvis({rsp_res <- calc_multispati_rspectra(sfe_sub, "knn")})
 ```
 
-This took less than 2 seconds and 44 MB of RAM. It is indeed much faster than the `adespatial` implementation, over 20 times faster. Much of the time was spent on matrix multiplication. Now check if the results are the same:
+This usually takes 500 something ms and around 40 MB of RAM, without optimized BLAS. It is indeed much faster than the `adespatial` implementation, over 80 times faster. Much of the time was spent on matrix multiplication. On my laptop with vecLib, this took 90 ms and 42.5 MB of RAM, over 4 times faster than the `adespatial` implementation run with vecLib. Using vecLib does not reduce memory usage.
+
+Now check if the results are the same:
 
 ```{r}
 # Eigenvalues
@@ -175,15 +204,18 @@ all.equal(head(attr(rsp_res, "eig"), 30), head(attr(ade_res, "eig"), 30))
 all.equal(tail(attr(rsp_res, "eig"), 30), tail(attr(ade_res, "eig"), 30))
 ```
 
-```{r}
-attr(rsp_res, "rotation")[1:10, 1:5]
-```
+So the eigenvalues are the same. Plot the eigenvalues:
 
 ```{r}
-as.matrix(attr(ade_res, "rotation")[1:10, 1:5])
+plot(attr(rsp_res, "eig"), ylab = "Eigenvalue")
 ```
 
-Then we compare the eigenvectors, allowing for flipping
+Note that unlike in non-spatial PCA, the eigenvalues here don't correspond to variance explained. Rather, it's the product of variance explained and Moran's I of the eigenvector. The eigenvalue drops sharply from PC1 to PC4, then levels off after PC7. The most negative eigenvalue is about -2 and the absolute value drops sharply in the next most negative eigenvalue. 
+Given the magnitude of the eigenvalue, the most negative eigenvector might be interesting, as the [Voyager MERFISH vignette](https://pachterlab.github.io/voyager/articles/vig6_merfish.html#spatial-autocorrelation-of-qc-metrics) hints at the presence of negative spatial autocorrelation in this dataset _at the cellular level_, as Moran's I for total transcript counts per cell is somewhat negative, at around -0.1, which might not be weak given that the lower bound of Moran's I given the spatial neighborhood graph is usually closer to -0.5 than -1, while the upper bound is usually approximately 1.
+
+Also note that spatial autocorrelation in datasets with single cell resolution should be interpreted differently from that in Visium which does not have single cell resolution, because of different length scales. In a geographical analogy, this is just like comparing houses as opposed to comparing neighborhoods, or comparing cities as opposed to comparing states. 
+
+Then we compare the eigenvectors, allowing for flipping (i.e. multiplied by -1), which is OK, because an eigenvector multiplied by a scalar is still an eigenvector of the same matrix with the same eigenvalue.
 ```{r}
 plot_pc_diffs <- function(mat1, mat2, npcs = 30, tail = FALSE, title = NULL) {
     diffs <- numeric(npcs)
@@ -224,9 +256,9 @@ plot_pc_diffs(attr(rsp_res, "rotation"), attr(ade_res, "rotation"), tail = TRUE,
               title = "Differences in eigenvectors, adespatial vs. RSpectra, negative")
 ```
 
-The differences are well below epsilon for all 30 PCs on both ends of the spectrum, i.e. can be accounted for by machine precision (the dashed line around 1.5e-8).
+The differences are well below epsilon for all 30 PCs on both ends of the spectrum, mostly below 1e-14, i.e. can be accounted for by machine precision (the dashed line around 1.5e-8). The difference somewhat increases for eigenvalues with smaller absolute values, but still well below epsilon.
 
-Compare the cell embeddings, first for positive eigenvalues: In theory, because the eigenvectors are the same (allowing for flipping) and the embeddings are found by the dot product of the gene expression profile of each cell with each PC, the embeddings should be the same. However, I'm plotting the differences here just in cast `adespatial` does something extra behind the scene.
+Compare the cell embeddings, first for positive eigenvalues: In theory, because the eigenvectors are the same (allowing for flipping) and the embeddings are found by the dot product of the gene expression profile of each cell with each PC, the embeddings should be the same. However, I'm plotting the differences here just in case `adespatial` does something extra behind the scene.
 
 ```{r}
 plot_pc_diffs(rsp_res, ade_res,
@@ -238,11 +270,86 @@ plot_pc_diffs(rsp_res, ade_res, tail = TRUE,
               title = "Differences in embeddings, adespatial vs. RSpectra, negative")
 ```
 
-The embeddings are also well below epsilon and the differences have the same patterns as those of eigenvectors, so `adespatial` simply computed the dot product without doing anything else. So in conclusion, my `RSpectra` implementation gives consistent results as the `adespatial` implementation but 20 times faster.
+The embeddings are also well below epsilon and the differences have the same patterns as those of eigenvectors, so `adespatial` simply computed the dot product without doing anything else. So in conclusion, my `RSpectra` implementation gives consistent results as the `adespatial` implementation but 80 times faster without optimized BLAS and 4 times faster with optimized BLAS.
 
-# Benchmark the `adesppatial` and my implementations
+That said, the `adespatial` implementation allows for different column and row weighting for other types of duality diagram multivariate analyses. For now, I'm only concerned with PCA, so my implementation is simplified.
+
+# Benchmark
+
+Since the default is non-optimized BLAS and those using a server most likely can't change the BLAS, I perform the benchmark without optimized BLAS. I use different sized bounding boxes to spatially subset the data and compare the time and memory usage of the two implementations of MULTISPATI, with 30 most positive and 30 most negative eigenvalues. This dataset has 385 genes, which should not make this benchmark irrelevant because in spatial transcriptomics, the datasets with the most cells come from smFISH based methods such as MERFISH, which typically have a few hundred curated genes. Transcriptome wide datasets with hundreds of thousands of cells or spots are less common, but with subcellular NGS based methods such as PIXEL-seq and Stereo-seq, these datasets may be coming. MULTISPATI is a spatial method.
+
+Here I get the sizes of boxes spanning orders of magnitude, to get a wide range of numbers of cells:
 
 ```{r}
-
+(diffs <- 2^seq(7, 13, length.out = 7))
 ```
 
+Here I run the benchmark using the different sized subsets. I'm not checking if the results match here as is default in `bench::mark()`, because I have already checked, and because the eigenvectors can be flipped so the comparison is more involved than `all.equal()`. Both time and memory usage are recorded. 
+```{r}
+benchmark_multispati <- function(sfe, diff) {
+    xmin <- 3000
+    ymin <- 3000
+    bbox <- st_as_sfc(st_bbox(c(xmin = xmin, ymin = ymin, 
+                                xmax = xmin + diff, ymax = ymin + diff)))
+    inds <- st_intersects(centroids(sfe), bbox, sparse = FALSE)
+    sfe_sub <- sfe[,inds]
+    colGraph(sfe_sub, "knn") <- findSpatialNeighbors(sfe_sub, method = "knearneigh",
+                                                     k = 5, dist_type = "idw", 
+                                                     style = "W")
+    df <- bench::mark(adespatial = calc_multispati_ade(sfe_sub, "knn"),
+                      rspectra = calc_multispati_rspectra(sfe_sub, "knn"),
+                      max_iterations = 1, check = FALSE)
+    df$ncells <- ncol(sfe_sub)
+    df
+}
+```
+
+Reformat the results for plotting:
+```{r}
+if (!file.exists("benchmark_res.rds")) {
+    benchmark_res <- map_dfr(diffs, benchmark_multispati, sfe = sfe)
+    benchmark_res <- benchmark_res |> 
+        mutate(expression = as.character(expression),
+               mem_alloc = as.numeric(mem_alloc)/(1024^2))
+    saveRDS(benchmark_res, "benchmark_res.rds")
+} else {
+    benchmark_res <- readRDS("benchmark_res.rds")
+}
+```
+
+```{r}
+# Get colorblind friendly palette
+data("ditto_colors")
+```
+
+Here I plot the time taken vs. the number of cells for both implementations:
+```{r}
+ggplot(benchmark_res, aes(ncells, total_time, color = expression)) +
+    geom_line() +
+    scale_x_log10() +
+    annotation_logticks() +
+    labs(x = "Number of cells", y = "Time", color = "Implementation") +
+    scale_color_manual(values = ditto_colors)
+```
+
+When run non-interactively in this benchmark, both implementations were much faster than the initial profiles above. But `RSpectra` is overall an order of magnitude faster than `adespatial`, though the gap shrinks with increasing number of cells, from over 20 times faster at around 100 cells to about 7 times faster at over 200,000 cells. For 200,000 cells, `adespatial` took 50 seconds when run non-interactively, while `RSpectra` took 7.79 seconds.
+
+Also plot memory usage vs. number of cells:
+```{r}
+ggplot(benchmark_res, aes(ncells, mem_alloc, color = expression)) +
+    geom_line() +
+    scale_x_log10() +
+    scale_y_log10(breaks = scales::breaks_log()) +
+    annotation_logticks() +
+    labs(x = "Number of cells", y = "Memory (MB)", color = "Implementation") +
+    scale_color_manual(values = ditto_colors)
+```
+
+`RSpectra` also uses about 7 times less memory than `adespatial` across different number of cells. For the largest subset, with over 200,000 cells, `adespatial` used 36 GB of RAM, while `RSpectra` used about 5.2 GB, so while the latter can be run on my laptop, the former cannot.
+
+So the `RSpectra` implementation of MULTISPATI looks promising. It will be added to `Voyager` for the Bioconductor 3.17 release. In addition, I should modify the PCA-related plotting functions in `Voyager` to improve user experiences around negative eigenvalues. In the sequel of this post, I'll apply the now more scalable MULTISPATI PCA to the entire dataset with nearly 400,000 cells and try to do some biological interpretations.
+
+# Session info
+```{r}
+sessionInfo()
+```
