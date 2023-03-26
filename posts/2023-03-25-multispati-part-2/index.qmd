@@ -1,0 +1,248 @@
+---
+title: "A faster implementation of MULTISPATI PCA"
+author: "Lambda Moses"
+date: "2023-03-25"
+categories: [R, spatial-omics]
+---
+
+[Last time](https://lambdamoses.github.io/thevoyages/posts/2023-03-17-multispati-part-1), I used the implementation of MULTISPATI PCA in `adespatial` on the mouse skeletal muscle Visium dataset. The dataset is small by scRNA-seq standards, with only 900 something spots. It too about half a minute to run MULTISPATI PCA, to obtain 30 PCs with the most positive eigenvalues and 30 with the most negative eigenvalues. It might not sound too bad, but it only took less than one second to run non-spatial PCA with the IRLBA algorithm to obtain 30 PCs. 
+
+The `adespatial` implementation is slow because it performs full spectrum decomposition twice, with base R's `eigen` function. The first is to perform non-spatial PCA, whose output contains row and column weights that is then used by the `multispati` function. The second time is for the spatially weighted covariance matrix in `multispati`. Although only the top 30 positive and negative eigenvalues and their corresponding eigenvectors are retained in the results, all the 900 something eigenvalues and eigenvector are found, doing a lot of unnecessary work.
+
+I would like to perform MULTISPATI PCA on the single cell resolution datasets with over 100,000 cells, so I need a more efficient implementation, which is what I do here. First, I will write up the implementation based on `RSpectra` and make sure that my implementation gives results consistent with `adespatial`. Then I will compare speed and memory usage of `adespatial` and my implementation using subsets of the MERFISH dataset with almost 400,000 cells. Finally, I will perform MULTISPATI PCA on the full MERFISH dataset and explore the results.
+
+Here we load the packages. Note that the devel version of `SpatialFeatureExperiment` and `Voyager` are used here.
+
+```{r}
+#| message: false
+library(Voyager)
+library(ade4)
+library(adespatial)
+library(SFEData)
+library(RSpectra)
+library(tidyverse)
+library(bench)
+library(sf)
+library(scater)
+library(scran)
+library(profvis)
+library(spdep)
+library(Matrix)
+theme_set(theme_bw())
+```
+
+```{r}
+packageVersion("SpatialFeatureExperiment")
+```
+
+```{r}
+packageVersion("Voyager")
+```
+
+# Dataset
+```{r}
+(sfe <- VizgenLiverData())
+```
+
+```{r}
+plotCellBin2D(sfe, bins = 300)
+```
+
+QC was already performed in the [Voyager MERFISH vignette](https://pachterlab.github.io/voyager/articles/vig6_merfish.html) so I won't go into details here. I remove low quality cells as I did in that vignette.
+```{r}
+is_blank <- str_detect(rownames(sfe), "^Blank-")
+sfe <- addPerCellQCMetrics(sfe, subset = list(blank = is_blank))
+```
+
+```{r}
+get_neg_ctrl_outliers <- function(col, sfe, nmads = 3, log = FALSE) {
+    inds <- colData(sfe)$nCounts > 0 & colData(sfe)[[col]] > 0
+    df <- colData(sfe)[inds,]
+    outlier_inds <- isOutlier(df[[col]], type = "higher", nmads = nmads, log = log)
+    outliers <- rownames(df)[outlier_inds]
+    col2 <- str_remove(col, "^subsets_")
+    col2 <- str_remove(col2, "_percent$")
+    new_colname <- paste("is", col2, "outlier", sep = "_")
+    colData(sfe)[[new_colname]] <- colnames(sfe) %in% outliers
+    sfe
+}
+```
+
+```{r}
+sfe <- get_neg_ctrl_outliers("subsets_blank_percent", sfe, log = TRUE)
+(sfe <- sfe[, !sfe$is_blank_outlier & sfe$nCounts > 0])
+```
+
+```{r}
+sfe <- logNormCounts(sfe)
+```
+
+# Implementation
+To recap, MULTISPATI diagonalizes a symmetric matrix
+
+$$
+H = \frac 1 {2n} X(W^t+W)X^t,
+$$
+
+where $X$ denotes a gene count matrix whose columns are cells or Visium spots and whose rows are genes, with $n$ columns. $W$ is the row normalized $n\times n$ adjacency matrix of the spatial neighborhood graph of the cells or Visium spots, which does not have to be symmetric.
+
+There're over 390,000 cells and I'll use a small subset to test the implementation before a more systematic benchmark.
+```{r}
+bbox <- st_as_sfc(st_bbox(c(xmin = 6500, ymin = 3750, xmax = 7000, ymax = 4250)))
+inds <- st_intersects(centroids(sfe), bbox, sparse = FALSE)
+(sfe_sub <- sfe[,inds])
+```
+
+```{r}
+plotGeometry(sfe_sub, "cellSeg")
+```
+
+```{r}
+colGraph(sfe_sub, "knn") <- findSpatialNeighbors(sfe_sub, method = "knearneigh", 
+                                                 k = 5, dist_type = "idw", 
+                                                 style = "W")
+```
+
+```{r}
+plotColGraph(sfe_sub, "knn", colGeometryName = "centroids", weights = TRUE) +
+    theme_void()
+```
+
+```{r}
+calc_multispati_ade <- function(sfe, colGraphName, nfposi = 30, nfnega = 30) {
+    df <- logcounts(sfe) |> # Don't need highly variable genes here
+        as.matrix() |> t() |> 
+        as.data.frame()
+    pca <- dudi.pca(df, scannf = FALSE, nf = nfposi) # scales data by default
+    multispati_res <- multispati(pca, colGraph(sfe, colGraphName), scannf = FALSE,
+                             nfposi = nfposi, nfnega = nfnega)
+    multispati_mat <- as.matrix(multispati_res$li)
+    rownames(multispati_mat) <- colnames(sfe)
+    loadings <- as.matrix(multispati_res$c1)
+    rownames(loadings) <- rownames(sfe)
+    colnames(loadings) <- str_replace(colnames(loadings), "CS", "PC")
+    attr(multispati_mat, "rotation") <- loadings
+    attr(multispati_mat, "eig") <- multispati_res$eig
+    multispati_mat
+}
+```
+
+```{r}
+profvis({ade_res <- calc_multispati_ade(sfe_sub, "knn")})
+```
+
+This took nearly 50 seconds and 310 MB fo RAM. Be sure to click the `Data` in the results to see which function took the most time. According to the profile, the vast majority of time was spent on `eigen()`, which was called twice and performed the full eigen decomposition, although only a small subset of eigenvectors are retained in the results.
+
+```{r}
+listw2sparse <- function(listw) {
+    i <- rep(seq_along(listw$neighbours), times = card(listw$neighbours))
+    j <- unlist(listw$neighbours)
+    x <- unlist(listw$weights)
+    sparseMatrix(i = i, j = j, x = x)
+}
+```
+
+```{r}
+# nf positive and negative eigenvalues
+calc_multispati_rspectra <- function(sfe, colGraphName, nf = 30) {
+    # Note that dudi.pca divides by n when scaling data
+    X <- as.matrix(t(logcounts(sfe)))
+    X <- sweep(X, 2, colMeans(X))
+    n <- nrow(X)
+    X <- sweep(X, 2, sqrt(colVars(X)*(n-1)/n), FUN = "/")
+    W <- listw2sparse(colGraph(sfe, colGraphName))
+    mid <- W + t(W)
+    covar <- t(X) %*% mid %*% X / (2*nrow(X))
+    res <- eigs_sym(covar, k = nf * 2, which = "BE")
+    loadings <- res$vectors
+    out <- X %*% loadings
+    colnames(out) <- paste0("PC", seq_len(ncol(out)))
+    attr(out, "rotation") <- loadings
+    attr(out, "eig") <- res$values
+    out
+}
+```
+
+```{r}
+profvis({rsp_res <- calc_multispati_rspectra(sfe_sub, "knn")})
+```
+
+This took less than 2 seconds and 44 MB of RAM. It is indeed much faster than the `adespatial` implementation, over 20 times faster. Much of the time was spent on matrix multiplication. Now check if the results are the same:
+
+```{r}
+# Eigenvalues
+all.equal(head(attr(rsp_res, "eig"), 30), head(attr(ade_res, "eig"), 30))
+all.equal(tail(attr(rsp_res, "eig"), 30), tail(attr(ade_res, "eig"), 30))
+```
+
+```{r}
+attr(rsp_res, "rotation")[1:10, 1:5]
+```
+
+```{r}
+as.matrix(attr(ade_res, "rotation")[1:10, 1:5])
+```
+
+Then we compare the eigenvectors, allowing for flipping
+```{r}
+plot_pc_diffs <- function(mat1, mat2, npcs = 30, tail = FALSE, title = NULL) {
+    diffs <- numeric(npcs)
+    if (tail) {
+        ind1 <- tail(seq_len(ncol(mat1)), npcs)
+        ind2 <- tail(seq_len(ncol(mat2)), npcs)
+    } else {
+        ind1 <- ind2 <- seq_len(npcs)
+    }
+    for (i in seq_len(npcs)) {
+        pc1 <- mat1[,ind1[i]]
+        pc2 <- mat2[,ind2[i]]
+        diffs[i] <- min(mean(abs(pc1 - pc2)), mean(abs(pc1 + pc2))) # flipped
+    }
+    tibble(difference = diffs,
+           PC = seq_len(npcs)) |> 
+        ggplot(aes(PC, difference)) +
+        geom_line() +
+        geom_hline(yintercept = sqrt(.Machine$double.eps), linetype = 2) +
+        scale_y_log10() +
+        scale_x_continuous(breaks = scales::breaks_width(5)) +
+        annotation_logticks(sides = "l") +
+        labs(title = title, y = "Mean absolute difference")
+}
+```
+
+Compare the eigenvectors with positive eigenvalues:
+
+```{r}
+plot_pc_diffs(attr(rsp_res, "rotation"), attr(ade_res, "rotation"),
+              title = "Differences in eigenvectors, adespatial vs. RSpectra, positive")
+```
+
+Compare the eigenvectors with negative eigenvalues:
+
+```{r}
+plot_pc_diffs(attr(rsp_res, "rotation"), attr(ade_res, "rotation"), tail = TRUE,
+              title = "Differences in eigenvectors, adespatial vs. RSpectra, negative")
+```
+
+The differences are well below epsilon for all 30 PCs on both ends of the spectrum, i.e. can be accounted for by machine precision (the dashed line around 1.5e-8).
+
+Compare the cell embeddings, first for positive eigenvalues: In theory, because the eigenvectors are the same (allowing for flipping) and the embeddings are found by the dot product of the gene expression profile of each cell with each PC, the embeddings should be the same. However, I'm plotting the differences here just in cast `adespatial` does something extra behind the scene.
+
+```{r}
+plot_pc_diffs(rsp_res, ade_res,
+              title = "Differences in embeddings, adespatial vs. RSpectra, positive")
+```
+
+```{r}
+plot_pc_diffs(rsp_res, ade_res, tail = TRUE,
+              title = "Differences in embeddings, adespatial vs. RSpectra, negative")
+```
+
+The embeddings are also well below epsilon and the differences have the same patterns as those of eigenvectors, so `adespatial` simply computed the dot product without doing anything else. So in conclusion, my `RSpectra` implementation gives consistent results as the `adespatial` implementation but 20 times faster.
+
+# Benchmark the `adesppatial` and my implementations
+
+```{r}
+
+```
+
