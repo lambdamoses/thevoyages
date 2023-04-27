@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lambda Moses">
+<meta name="dcterms.date" content="2023-03-17">
+
+<title>These R the Voyages - Voyager 1.2.0</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">These R the Voyages</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Lambda Moses</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lambdamoses"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://fosstodon.org/@lambdamoses"><i class="bi bi-mastodon" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Voyager 1.2.0</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">spatial-omics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Lambda Moses </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 17, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#documentation" id="toc-documentation" class="nav-link active" data-scroll-target="#documentation">Documentation</a>
+  <ul class="collapse">
+  <li><a href="#listsfemethods" id="toc-listsfemethods" class="nav-link" data-scroll-target="#listsfemethods"><code>listSFEMethods()</code></a></li>
+  </ul></li>
+  <li><a href="#spatial-methods" id="toc-spatial-methods" class="nav-link" data-scroll-target="#spatial-methods">Spatial methods</a>
+  <ul class="collapse">
+  <li><a href="#multivariate" id="toc-multivariate" class="nav-link" data-scroll-target="#multivariate">Multivariate</a></li>
+  <li><a href="#bivariate" id="toc-bivariate" class="nav-link" data-scroll-target="#bivariate">Bivariate</a></li>
+  <li><a href="#variogram" id="toc-variogram" class="nav-link" data-scroll-target="#variogram">Variogram</a></li>
+  <li><a href="#run-your-own-spatial-methods-with-sfemethod" id="toc-run-your-own-spatial-methods-with-sfemethod" class="nav-link" data-scroll-target="#run-your-own-spatial-methods-with-sfemethod">Run your own spatial methods with <code>SFEMethod</code></a></li>
+  </ul></li>
+  <li><a href="#read-space-ranger-and-vizgen-output" id="toc-read-space-ranger-and-vizgen-output" class="nav-link" data-scroll-target="#read-space-ranger-and-vizgen-output">Read Space Ranger and Vizgen output</a>
+  <ul class="collapse">
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images">Images</a></li>
+  </ul></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a>
+  <ul class="collapse">
+  <li><a href="#plotting-the-image" id="toc-plotting-the-image" class="nav-link" data-scroll-target="#plotting-the-image">Plotting the image</a></li>
+  <li><a href="#dark-theme" id="toc-dark-theme" class="nav-link" data-scroll-target="#dark-theme">Dark theme</a></li>
+  <li><a href="#zoom-into-a-bounding-box" id="toc-zoom-into-a-bounding-box" class="nav-link" data-scroll-target="#zoom-into-a-bounding-box">Zoom into a bounding box</a></li>
+  <li><a href="#deprecate-plotcoldatabin2d" id="toc-deprecate-plotcoldatabin2d" class="nav-link" data-scroll-target="#deprecate-plotcoldatabin2d">Deprecate <code>plotColDataBin2D()</code></a></li>
+  </ul></li>
+  <li><a href="#miscellaneous" id="toc-miscellaneous" class="nav-link" data-scroll-target="#miscellaneous">Miscellaneous</a>
+  <ul class="collapse">
+  <li><a href="#gene-symbols-vs.-ensembl-ids" id="toc-gene-symbols-vs.-ensembl-ids" class="nav-link" data-scroll-target="#gene-symbols-vs.-ensembl-ids">Gene symbols vs.&nbsp;Ensembl IDs</a></li>
+  <li><a href="#multiple-results-from-the-same-method" id="toc-multiple-results-from-the-same-method" class="nav-link" data-scroll-target="#multiple-results-from-the-same-method">Multiple results from the same method</a></li>
+  <li><a href="#faster-distance-based-edge-weights" id="toc-faster-distance-based-edge-weights" class="nav-link" data-scroll-target="#faster-distance-based-edge-weights">Faster distance based edge weights</a></li>
+  <li><a href="#spatial-statistics-on-dimension-reduction" id="toc-spatial-statistics-on-dimension-reduction" class="nav-link" data-scroll-target="#spatial-statistics-on-dimension-reduction">Spatial statistics on dimension reduction</a></li>
+  <li><a href="#sfe-object-versions" id="toc-sfe-object-versions" class="nav-link" data-scroll-target="#sfe-object-versions">SFE object versions</a></li>
+  </ul></li>
+  <li><a href="#bioconductor-3.18" id="toc-bioconductor-3.18" class="nav-link" data-scroll-target="#bioconductor-3.18">Bioconductor 3.18</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session info</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Space, the current frontier. <del>These are the voyages of starship Voyager.</del> This is the second release of R package <code>Voyager</code> with the Bioconductor 3.17 release. I miss starship Voyager<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and its awesome voyages in geographical space, and if it can think it probably also misses me Captain Lambda Janeway. Because I spent my time turning geospatial ideas from starship Voyager into new features in R package <code>Voyager</code>, which I’m announcing here.</p>
+<p>In addition, we are getting more like the USS Voyager crew in Star Trek – we now have a team working on this project after the first release. While I’m still pretty much the only author of the code, the team made awesome contributions to the vignettes and documentation website.</p>
+<p>You can install the new release from Bioconductor, and note that <a href="https://cloud.r-project.org/">R 4.3</a> is required:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">version =</span> <span class="st">"3.17"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dependencies = TRUE to install suggested packages including scater and SFEData</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"Voyager"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will also install <code>SpatialFeatureExperiment</code> (SFE), an S4 class that brings Simple Feature to <code>SpatialExperiment</code> and <code>SingleCellExperiment</code> (SCE). <code>Voyager</code> to SFE is just like <code>scater</code> and <code>scran</code> to SCE and <code>Seurat</code> to <code>SeuratObject</code>, performing exploratory spatial data analysis (ESDA) and data visualization based on the data structure SFE. The <code>SFEData</code> package is for example datasets used extensively in <code>Voyager</code>’s vignettes, code examples, and some unit tests.</p>
+<p>First load the packages used to demonstrate the new features; all of these packages are imported or suggested by <code>Voyager</code> unless noted otherwise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Voyager)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialFeatureExperiment)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SpatialExperiment)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SFEData)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scater)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scran)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bench) <span class="co"># not imported or suggested</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># not all imported or suggested</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The mouse skeletal muscle Visium dataset from <span class="citation" data-cites="McKellar2021-ek">(<a href="#ref-McKellar2021-ek" role="doc-biblioref">McKellar et al. 2021</a>)</span> is used to demonstrate the new features:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(sfe <span class="ot">&lt;-</span> <span class="fu">McKellarMuscleData</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>see ?SFEData and browseVignettes('SFEData') for documentation</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>loading from cache</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SpatialFeatureExperiment 
+dim: 15123 4992 
+metadata(0):
+assays(1): counts
+rownames(15123): ENSMUSG00000025902 ENSMUSG00000096126 ...
+  ENSMUSG00000064368 ENSMUSG00000064370
+rowData names(6): Ensembl symbol ... vars cv2
+colnames(4992): AAACAACGAATAGTTC AAACAAGTATCTCCCA ... TTGTTTGTATTACACG
+  TTGTTTGTGTAAATTC
+colData names(12): barcode col ... prop_mito in_tissue
+reducedDimNames(0):
+mainExpName: NULL
+altExpNames(0):
+spatialCoords names(2) : imageX imageY
+imgData names(1): sample_id
+
+unit: full_res_image_pixels
+Geometries:
+colGeometries: spotPoly (POLYGON) 
+annotGeometries: tissueBoundary (POLYGON), myofiber_full (POLYGON), myofiber_simplified (POLYGON), nuclei (POLYGON), nuclei_centroid (POINT) 
+
+Graphs:
+Vis5A: </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> sfe[,sfe<span class="sc">$</span>in_tissue]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">logNormCounts</span>(sfe)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colGraph</span>(sfe, <span class="st">"visium"</span>) <span class="ot">&lt;-</span> <span class="fu">findVisiumGraph</span>(sfe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="documentation" class="level1">
+<h1>Documentation</h1>
+<p>For the new release, we have expanded and reorganized the <a href="https://pachterlab.github.io/voyager/">documentation website</a>:</p>
+<p>We wrote vignettes for several major spatial -omics technologies (Kayla Jackson). In the first release, there were vignettes for Visium, Slide-seq, CosMX, Xenium, and MERFISH, and in the second version, we added vignettes for seqFISH, CODEX, and applying spatial statistics that use a spatial neighborhood graph to the k nearest neighbor graph in gene expression PCA space in a 10X Chromium non-spatial scRNA-seq peripheral blood mononuclear cells (PBMC) dataset. We also added more introductory vignettes using a mouse olfactory bulb Visium dataset from 10X’s website to guide users working with Space Ranger output.</p>
+<p>Kayla created a landing page for each spatial -omics technology, with a short description of the technology and a table linking to vignettes for this technology. Laura Luebbert created a GitHub Action to automatically convert the R Markdown vignettes into Jupyter notebooks on Google Colab and added some code using her <a href="https://github.com/pachterlab/gget"><code>gget</code></a> package to get gene info in some of the vignettes. The Colab notebooks are also linked in the table on the landing pages.</p>
+<p>I created a landing page for each spatial analysis method, analogous to the technology landing pages, with an intro to the method and a table linking to the sections in vignettes that use the methods.</p>
+<p>While some of the new features of <code>Voyager</code> are demonstrated below, I will also refer to the relevant new vignettes for more details.</p>
+<section id="listsfemethods" class="level2">
+<h2 class="anchored" data-anchor-id="listsfemethods"><code>listSFEMethods()</code></h2>
+<p>In <code>Voyager</code> 1.2.0 we added the <code>listSFEMethods()</code> function to show all spatial methods implemented in <code>Voyager</code>. For instance, to show all univariate global methods, use</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">listSFEMethods</span>(<span class="st">"uni"</span>, <span class="st">"global"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             name                                           description
+1           moran                                             Moran's I
+2           geary                                             Geary's C
+3        moran.mc                    Moran's I with permutation testing
+4        geary.mc                    Geary's C with permutation testing
+5    sp.mantel.mc Mantel-Hubert spatial general cross product statistic
+6      moran.test                                        Moran's I test
+7      geary.test                                        Geary's C test
+8    globalG.test                                         Global G test
+9  sp.correlogram                                           Correlogram
+10      variogram                                  Variogram with model
+11  variogram_map                                         Variogram map</code></pre>
+</div>
+</div>
+<p>When calling a function like <code>calculate*variate()</code> or <code>run*variate()</code>, the <code>type</code> (2nd) argument should match an entry in the <code>name</code> column.</p>
+<p>These are all univariate local methods:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">listSFEMethods</span>(<span class="st">"uni"</span>, <span class="st">"local"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              name                                          description
+1       localmoran                                      Local Moran's I
+2  localmoran_perm                  Local Moran's I permutation testing
+3           localC                                      Local Geary's C
+4      localC_perm                  Local Geary's C permutation testing
+5           localG                                      Getis-Ord Gi(*)
+6      localG_perm             Getis-Ord Gi(*) with permutation testing
+7             LOSH                     Local spatial heteroscedasticity
+8          LOSH.mc Local spatial heteroscedasticity permutation testing
+9          LOSH.cs     Local spatial heteroscedasticity Chi-square test
+10      moran.plot                                   Moran scatter plot</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="spatial-methods" class="level1">
+<h1>Spatial methods</h1>
+<section id="multivariate" class="level2">
+<h2 class="anchored" data-anchor-id="multivariate">Multivariate</h2>
+<p>The first release of <code>Voyager</code> only supported univariate spatial methods. However interesting the results may be, nobody wants to manually check local Moran’s I results for thousands of genes. Furthermore, there are gene programs and co-expression modules, which univariate methods miss. <code>Voyager</code> 1.2.0 added multivariate spatial data analysis methods, including MULTISPATI PCA <span class="citation" data-cites="Dray2008-en">(<a href="#ref-Dray2008-en" role="doc-biblioref">Dray, Saı̈d, and Débias 2008</a>)</span> (a spatially informed version of PCA) and multivariate local Geary’s C <span class="citation" data-cites="Anselin2019-uv">(<a href="#ref-Anselin2019-uv" role="doc-biblioref">Anselin 2019</a>)</span>. These are all the multivariate methods:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">listSFEMethods</span>(<span class="st">"multi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               name                                      description
+1        multispati                                   MULTISPATI PCA
+2      localC_multi                     Multivariate local Geary's C
+3 localC_perm_multi Multivariate local Geary's C permutation testing</code></pre>
+</div>
+</div>
+<p>In the first release, I created a uniform user interface, <code>calculateUnivariate()</code> and <code>runUnivariate()</code> to call a variety of spatial analysis methods. Multivariate methods also have a uniform user interface in <code>calculateMultivariate()</code> to directly return the results, and <code>runMultivariate()</code> to store the results in <code>reducedDims(sfe)</code>, or if applicable, <code>colData(sfe)</code>.</p>
+<p>Here we run MULTISPATI PCA with 20 positive and 20 negative eigenvalues on highly variable genes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(sfe, <span class="at">n =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">runMultivariate</span>(sfe, <span class="st">"multispati"</span>, <span class="at">nfposi =</span> <span class="dv">20</span>, <span class="at">nfnega =</span> <span class="dv">20</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">subset_row =</span> hvgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot the eigenvalues: The <code>ElbowPlot()</code> function has been updated to plot negative eigenvalues which signify negative spatial autocorrelation and to color and facet when a spatial dimension reduction is run on different samples (i.e.&nbsp;tissue sections) separately.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ElbowPlot</span>(sfe, <span class="at">ndims =</span> <span class="dv">20</span>, <span class="at">nfnega =</span> <span class="dv">20</span>, <span class="at">reduction =</span> <span class="st">"multispati"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Plot projections of Visium spot gene expression profiles into each MULTISPATI PC:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spatialReducedDim</span>(sfe, <span class="st">"multispati"</span>, <span class="dv">2</span>, <span class="at">divergent =</span> <span class="cn">TRUE</span>, <span class="at">diverge_center =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>See the <a href="https://pachterlab.github.io/voyager/articles/multispati.html">MULTISPATI vignette</a> for an intro to MULTISPATI PCA and more in depth discussions. <code>Voyager</code> has an implementation of MULTISPATI PCA based on <code>RSpectra</code> that is much faster than the original implementation in <code>adespatial</code>, to meet the demands to analyze larger spatial -omics data. It is efficient enough to be performed on over 390,000 cells in the MERFISH dataset shown in the MULTISPATI vignette. See benchmark <a href="https://lambdamoses.github.io/thevoyages/posts/2023-03-25-multispati-part-2/">here</a>.</p>
+<p>Related to MULTISPATI PCA is <code>moranBounds()</code>, which is a more efficient implementation of <code>adespatial::moran.bounds()</code> to find the upper and lower bounds of Moran’s I given a spatial neighborhood graph. Basically it diagonalizes the double centered adjacency matrix of the graph. However, because the double centered matrix is dense, this can take a lot of memory for larger datasets. Here we find the Moran bounds for this Visium dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(mb <span class="ot">&lt;-</span> <span class="fu">moranBounds</span>(<span class="fu">colGraph</span>(sfe, <span class="st">"visium"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Imin       Imax 
+-0.5762132  1.0021884 </code></pre>
+</div>
+</div>
+<p>Usually the lower bound is closer to -0.5 than -1, and negative Moran’s I should be interpreted accordingly.</p>
+</section>
+<section id="bivariate" class="level2">
+<h2 class="anchored" data-anchor-id="bivariate">Bivariate</h2>
+<p>Bivariate methods are used to explore pairwise relationships among genes while taking spatial autocorrelation into account. These are all the bivariate global methods:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">listSFEMethods</span>(<span class="st">"bi"</span>, <span class="st">"global"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 name                                     description
+1                 lee                       Lee's bivariate statistic
+2              lee.mc Lee's bivariate static with permutation testing
+3            lee.test                                    Lee's L test
+4     cross_variogram                                 Cross variogram
+5 cross_variogram_map                             Cross variogram map</code></pre>
+</div>
+</div>
+<p>These are all the bivariate local methods:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">listSFEMethods</span>(<span class="st">"bi"</span>, <span class="st">"local"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           name                     description
+1      locallee Local Lee's bivariate statistic
+2 localmoran_bv       Local bivariate Moran's I</code></pre>
+</div>
+</div>
+<p>Just like for univariate and multivariate methods, there is a uniform user interface to run various bivariate methods: <code>calculateBivariate()</code> to directly return the results and <code>runBivariate()</code> to store the results in <code>localResults(sfe)</code>. Note that because bivariate global results have many different formats that might not be nicely stored in the SFE object, global bivariate methods can only be called with <code>calculateBivariate()</code>, while <code>runBivariate()</code> is only for bivariate local methods. Here we compute Lee’s L <span class="citation" data-cites="Lee2001-tm">(<a href="#ref-Lee2001-tm" role="doc-biblioref">Lee 2001</a>)</span> which comes from the similaries and diffences between Moran’s I and Pearson correlation to top HVGs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>hvgs <span class="ot">&lt;-</span> <span class="fu">getTopHVGs</span>(sfe, <span class="at">fdr.threshold =</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because bivariate global results can have very different formats (matrix for Lee’s L and lists for many other methods), the results are not stored in the SFE object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">calculateBivariate</span>(sfe, <span class="at">type =</span> <span class="st">"lee"</span>, <span class="at">feature1 =</span> hvgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This gives a spatially informed correlation matrix among the genes, which can be plotted as a heatmap:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pal_rng <span class="ot">&lt;-</span> <span class="fu">getDivergeRange</span>(res)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">scico</span>(<span class="dv">256</span>, <span class="at">begin =</span> pal_rng[<span class="dv">1</span>], <span class="at">end =</span> pal_rng[<span class="dv">2</span>], <span class="at">palette =</span> <span class="st">"vik"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(res, <span class="at">color =</span> pal, <span class="at">show_rownames =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">show_colnames =</span> <span class="cn">FALSE</span>, <span class="at">cellwidth =</span> <span class="dv">1</span>, <span class="at">cellheight =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The implementation of Lee’s L in <code>Voyager</code> is designed for making correlation matrices for a larger number of genes. It’s based on matrix operations and is much faster than the <code>spdep</code> implementation. See the <a href="https://pachterlab.github.io/voyager/articles/bivariate.html">bivariate vignette</a> for more info and other bivariate methods.</p>
+</section>
+<section id="variogram" class="level2">
+<h2 class="anchored" data-anchor-id="variogram">Variogram</h2>
+<p>The variogram is used to model the covariance function in kriging, which uses a Gaussian process model to interpolate between spatial observations in geostatistical data. The variogram can also be an ESDA tool to show length scale of spatial autocorrelation.</p>
+<p>The variogram shows the variance of differences in values across a range of distances. When there is positive spatial autocorrelation, the variogram increases with distance, because spatial autocorrelation reduces variance among nearby locations, until it levels off, showing the distance where spatial autocorrelation no longer has an effect. It can also show spatial autocorrelation in different directions, when there’s anisotropy. The correlogram can also show different length scales of spatial autocorrelation, but it’s not scalable to larger spatial distances.</p>
+<p>Here we demonstrate variogram map on one gene. The variogram map shows the variogram in all directions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">runUnivariate</span>(sfe, <span class="st">"variogram_map"</span>, <span class="at">features =</span> <span class="st">"Ftl1"</span>,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>, <span class="at">width =</span> <span class="dv">500</span>, <span class="at">cutoff =</span> <span class="dv">3000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note the <code>swap_rownames</code> argument. It was introduced in 1.2.0. In the first release, the column in <code>rowData(sfe)</code> for gene symbols when the row names are in fact Ensembl is assumed to be “symbol”, and the <code>show_symbol</code> argument is used to show the more human readable gene symbols while everything behind the scene is Ensembl IDs because the latter is more unambiguous. In 1.2.0, the <code>show_symbol</code> argument is deprecated, and any column can be specified in <code>swap_rownames</code>. This is elaborated on in the Miscellaneous section.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotVariogramMap</span>(sfe, <span class="st">"Ftl1"</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here the data is scaled by default before computing the variogram so the variograms of different genes are comparable. Here we see some anisotropy, that spatial autocorrelation decays more slowly in the east-west direction and more quickly in the northeast-southwest direction. See the <a href="https://pachterlab.github.io/voyager/articles/variogram.html">variogram vignette</a> for more details, and for bivariate cross variograms.</p>
+</section>
+<section id="run-your-own-spatial-methods-with-sfemethod" class="level2">
+<h2 class="anchored" data-anchor-id="run-your-own-spatial-methods-with-sfemethod">Run your own spatial methods with <code>SFEMethod</code></h2>
+<p>The uniform user interface in <code>Voyager</code> is inspired by <code>caret</code> and <code>tidymodels</code> <span class="citation" data-cites="Kuhn2020-fm">(<a href="#ref-Kuhn2020-fm" role="doc-biblioref">Kuhn and Wickham 2020</a>)</span> that provide a uniform user interface to many different machine learning methods from different R packages, the <code>future</code> <span class="citation" data-cites="Bengtsson2021-qp">(<a href="#ref-Bengtsson2021-qp" role="doc-biblioref">Bengtsson 2021</a>)</span>, <code>foreach</code>, and <code>BiocParallel</code> packages for different parallel processing backends, and <code>bluster</code> for different clustering algorithms. This can greatly reduce redundant code and learning curve for the users.</p>
+<p>A bit more of Star Trek Voyager: We are the Borg, lower your shield and surrender your ship. You can now assimilate new spatial analysis methods. The <code>SFEMethod</code> S4 class was introduced so users can make <code>Voyager</code> run their own custom spatial analysis methods. The S4 class collects the function that runs the method, functions that reorganize the results to store in the SFE object, and metadata indicating characteristics of the methods. Build a new <code>SFEMethod</code> object for the custom method, and <code>Voyager</code>’s uniform interface can run the method and organize the results in the SFE object. See the <a href="https://pachterlab.github.io/voyager/articles/sfemethod"><code>SFEMethod</code> vignette</a> for how to construct an <code>SFEMethod</code> object.</p>
+</section>
+</section>
+<section id="read-space-ranger-and-vizgen-output" class="level1">
+<h1>Read Space Ranger and Vizgen output</h1>
+<p>The <code>read10XVisiumSFE()</code> function was introduced in the first release of <code>SpatialFeatureExperiment</code> to read Space Ranger output as an SFE object. Updates in the second release:</p>
+<ol type="1">
+<li>The spatial units in the SFE object can be pixels in full resolution image (default) or microns. The latter is converted from pixels based on spacing between spots which is known to be 100 microns.</li>
+<li>Images are now supported.</li>
+</ol>
+<p>We also added <code>readVizgen()</code> to read standard Vizgen MERFISH output:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dir_use <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="fu">file.path</span>(<span class="st">"extdata"</span>, <span class="st">"vizgen"</span>), </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">package =</span> <span class="st">"SpatialFeatureExperiment"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>sfe_mer <span class="ot">&lt;-</span> <span class="fu">readVizgen</span>(dir_use, <span class="at">z =</span> 0L, <span class="at">image =</span> <span class="st">"PolyT"</span>, <span class="at">use_cellpose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The images are also read. For cell segmentation results, both the HDF5 seen in <a href="https://vizgen.com/data-release-program/">Vizgen’s example datasets</a> and the <code>parquet</code> files from Cellpose. Use the <code>use_cellpose</code> argument to indicate whether the Cellpose results should be read instead of the HDF5. Since each field of view (FOV) has its own HDF5 file for cell segmentation and one MERFISH dataset can have hundreds of FOVs, we recommend running <code>readVizgen()</code> on a server with many CPU cores to read the HDF5 files, but after reading, the SFE object can be used on a laptop.</p>
+<section id="images" class="level2">
+<h2 class="anchored" data-anchor-id="images">Images</h2>
+<p>The images are read as <code>SpatRaster</code> objects from the <a href="https://rspatial.github.io/terra/index.html"><code>terra</code></a> R package, so the images are not loaded into memory unless necessary. When plotting, if the images are very large, they will not be entirely loaded into memory but will be downsampled if a lower resolution is sufficient. When converting a <code>SpatialExperiment</code> object to SFE, the existing images will be converted to <code>SpatRaster</code>.</p>
+<p>This mouse skeletal muscle dataset was not originally in standard Space Ranger output format. Also, because the first release didn’t support images, the example datasets don’t have images. But the images can be read in later:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">addImg</span>(sfe, <span class="at">file =</span> <span class="st">"tissue_lowres_5a.jpeg"</span>, <span class="at">sample_id =</span> <span class="st">"Vis5A"</span>, </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">image_id =</span> <span class="st">"lowres"</span>, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">scale_fct =</span> <span class="dv">1024</span><span class="sc">/</span><span class="dv">22208</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">mirrorImg</span>(sfe, <span class="at">sample_id =</span> <span class="st">"Vis5A"</span>, <span class="at">image_id =</span> <span class="st">"lowres"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We also implemented functions to transform the images, like <code>mirrorImg</code>, to flip the image because the origin is the top left in images but bottom left in the geometries in Cartesian coordinates.</p>
+<p>The image is cropped when the SFE object is subsetted or cropped.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">plot</span>(<span class="fu">imgRaster</span>(<span class="fu">getImg</span>(sfe)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Initially we have the full image. Then the subsetting operation will crop it to the extent of the geometries:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> sfe[,<span class="fu">colnames</span>(sfe)]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">plot</span>(<span class="fu">imgRaster</span>(<span class="fu">getImg</span>(sfe)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="visualization" class="level1">
+<h1>Visualization</h1>
+<p>There are many updates to the plotting functions in <code>Voyager</code>. This sections introduces updates outside plotting functions for results of spatial methods newly incorporated into <code>Voyager</code>, some of which were already mentioned above.</p>
+<p>First, this applies to all functions that plot geometries, except <code>plotCellBin2D()</code> and length units might be useful, that <code>theme_void()</code> is the default, because the length units such as pixels in full resolution image are often arbitrary and irrelevant to visualization of values in space. However, if you do want to show the units, such as when choosing a bounding box to zoom into, add a theme that show the axes such as <code>theme_bw()</code> to the plot from functions such as <code>plotSpatialFeature()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpatialFeature</span>(sfe, <span class="st">"nCounts"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="plotting-the-image" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-the-image">Plotting the image</h2>
+<p>If the SFE object has images, they can be plotted behind geometries in all functions that plot geometries, so histology can be seen. However, note that doing so can change color perception of the palette that colors the geometries. For example, we can plot the image when plotting gene expression just like in <code>Seurat</code>, although I personally don’t like using a divergent palette as in <code>Seurat</code> while the variable plotted does not have a meaningful divergence. The argument <code>image_id</code> must be specified to plot an image.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpatialFeature</span>(sfe, <span class="fu">c</span>(<span class="st">"Myh2"</span>, <span class="st">"Ftl1"</span>), <span class="at">image_id =</span> <span class="st">"lowres"</span>, <span class="at">maxcell =</span> <span class="fl">5e4</span>,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The <code>maxcell</code> argument is the maximum of pixels to plot in the image; if the image has more pixels than this then it will be downsampled to speed up plotting. A lower number is recommended when plotting many genes in multiple panels because a lower resolution is sufficient for the small size of the panels.</p>
+<p>Plot the image with dimension reduction:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spatialReducedDim</span>(sfe, <span class="st">"multispati"</span>, <span class="at">ncomponents =</span> <span class="dv">2</span>, <span class="at">image_id =</span> <span class="st">"lowres"</span>,</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">maxcell =</span> <span class="fl">5e4</span>, <span class="at">divergent =</span> <span class="cn">TRUE</span>, <span class="at">diverge_center =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="plotgeometry" class="level3">
+<h3 class="anchored" data-anchor-id="plotgeometry"><code>plotGeometry()</code></h3>
+<p>Or just plot the geometries without coloring. The <code>plotGeometry()</code> function was introduced to cut boiler plate and to make it easier to plot geometries from multiple samples in different facets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotGeometry</span>(sfe, <span class="st">"spotPoly"</span>, <span class="at">image_id =</span> <span class="st">"lowres"</span>) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotGeometry</span>(sfe, <span class="st">"spotPoly"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dark-theme" class="level2">
+<h2 class="anchored" data-anchor-id="dark-theme">Dark theme</h2>
+<p>We introduced the dark theme to make plots more visually appealing when the background is a fluorescent image, but it can be used without an image as well. In the light theme, as used above, higher values have darker color, as if staining. In divergent palettes, the diverge center has a light color to emphasize values away from the center. In the dark theme, higher values have lighter color as if glowing, and in divergent palettes, the diverge center has a dark color to emphasize values away from the center.</p>
+<p>Here we plot a gene from the MERFISH dataset, with light theme:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpatialFeature</span>(sfe_mer, <span class="st">"Aldh3a2"</span>, <span class="at">colGeometryName =</span> <span class="st">"cellSeg"</span>,</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">image_id =</span> <span class="st">"PolyT"</span>, <span class="at">exprs_values =</span> <span class="st">"counts"</span>, </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="co"># though the cells are covered up</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The darker color for higher value gets harder to see with the dark image background. Here’s the dark theme:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotSpatialFeature</span>(sfe_mer, <span class="st">"Aldh3a2"</span>, <span class="at">colGeometryName =</span> <span class="st">"cellSeg"</span>,</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">image_id =</span> <span class="st">"PolyT"</span>, <span class="at">exprs_values =</span> <span class="st">"counts"</span>, </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">dark =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The higher values have lighter color so get more emphasized.</p>
+<p>From the first release, <code>Voyager</code> can plot a feature associated with a column (cell or Visium spot) geometry and a feature associated with an annotation (e.g.&nbsp;myofibers) geometry simultaneously, with different palettes. While the individual palettes are designed to be colorblind friendly, it’s much more difficult to make the combination of two palettes colorblind friendly, but I tried pick palettes to distinct colors so they are less likely to get mixed up. The light theme has 2 default linear palettes, one for the column geometries and one for annotation geometries and 2 divergent palettes. The dark theme also has 2 default linear palettes and 2 divergent palettes, chosen from the <a href="https://github.com/thomasp85/scico"><code>scico</code></a> package. In divergent palettes, warm colors denote values higher than the center, and cool colors denote values lower than the center. Here we use the two palettes on light and dark theme:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotSpatialFeature</span>(sfe, <span class="st">"Myh2"</span>, <span class="at">colGeometryName =</span> <span class="st">"spotPoly"</span>, </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">annotGeometryName =</span> <span class="st">"myofiber_simplified"</span>, </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">annot_aes =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">"area"</span>), </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">aes_use =</span> <span class="st">"color"</span>, <span class="co"># plot empty circles to not to cover</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plotSpatialFeature</span>(sfe, <span class="st">"Myh2"</span>, <span class="at">colGeometryName =</span> <span class="st">"spotPoly"</span>, </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">annotGeometryName =</span> <span class="st">"myofiber_simplified"</span>, </span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">annot_aes =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">"area"</span>), <span class="at">aes_use =</span> <span class="st">"color"</span>,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">dark =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Also to show the divergent palettes; the myofiber areas don’t have meaninful divergence, but a divergent palette is used just to show both divergent palettes. Whether to use divergent palette needs to be set separately for <code>colGeometry</code> and <code>annotGeometry</code>, because as in this case, one can have meaningful divergence while the other does not.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>area_median <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">annotGeometry</span>(sfe, <span class="st">"myofiber_simplified"</span>)<span class="sc">$</span>area)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">spatialReducedDim</span>(sfe, <span class="st">"multispati"</span>, <span class="at">components =</span> <span class="dv">2</span>, </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">colGeometryName =</span> <span class="st">"spotPoly"</span>,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annotGeometryName =</span> <span class="st">"myofiber_simplified"</span>, </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annot_aes =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">"area"</span>), <span class="at">aes_use =</span> <span class="st">"color"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">divergent =</span> <span class="cn">TRUE</span>, <span class="at">diverge_center =</span> <span class="dv">0</span>,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annot_divergent =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annot_diverge_center =</span> area_median)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">spatialReducedDim</span>(sfe, <span class="st">"multispati"</span>, <span class="at">components =</span> <span class="dv">2</span>, </span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">colGeometryName =</span> <span class="st">"spotPoly"</span>,</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annotGeometryName =</span> <span class="st">"myofiber_simplified"</span>, </span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annot_aes =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">"area"</span>), <span class="at">aes_use =</span> <span class="st">"color"</span>,</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>,</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">divergent =</span> <span class="cn">TRUE</span>, <span class="at">diverge_center =</span> <span class="dv">0</span>,</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annot_divergent =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annot_diverge_center =</span> area_median,</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">dark =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Again, just like when plotting the image behind the geometries, plotting with two color palettes can distort color perception of either palette and can result into colors from different palettes that are hard to tell apart, so use with caution.</p>
+</section>
+<section id="zoom-into-a-bounding-box" class="level2">
+<h2 class="anchored" data-anchor-id="zoom-into-a-bounding-box">Zoom into a bounding box</h2>
+<p>Some spatial -omics dataset cover large areas of tissue. Moreover, there are different length scales of spatial dependence. Plotting the entire tissue will make the smaller scale spatial patterns more difficult to see. So we introduced the <code>bbox</code> argument in all functions that plot the geometry, to zoom into a small area.</p>
+<p>First specify a bounding box, which should be a named numeric vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>bbox_use <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin =</span> <span class="dv">6000</span>, <span class="at">xmax =</span> <span class="dv">8000</span>, <span class="at">ymin =</span> <span class="dv">10000</span>, <span class="at">ymax =</span> <span class="dv">12000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then plot as usual:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spatialReducedDim</span>(sfe, <span class="st">"multispati"</span>, <span class="at">ncomponents =</span> <span class="dv">2</span>, <span class="at">image_id =</span> <span class="st">"lowres"</span>,</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">divergent =</span> <span class="cn">TRUE</span>, <span class="at">diverge_center =</span> <span class="dv">0</span>, <span class="at">bbox =</span> bbox_use)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</section>
+<section id="deprecate-plotcoldatabin2d" class="level2">
+<h2 class="anchored" data-anchor-id="deprecate-plotcoldatabin2d">Deprecate <code>plotColDataBin2D()</code></h2>
+<p>The first release has functions <code>plotColDataBin2D()</code> and <code>plotRowDataBin2D()</code> to avoid overplotting when there are so many cells or genes that the numerous points in the scatter plot form solid black blocks whose density can’t be discerned.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotColDataBin2D</span>(sfe, <span class="at">x =</span> <span class="st">"nCounts"</span>, <span class="at">y =</span> <span class="st">"nGenes"</span>, <span class="at">bins =</span> <span class="dv">50</span>, <span class="at">hex =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: plotCol/RowDataBin2D() was deprecated in Voyager 1.2.0.
+ℹ Please use scater::plotCol/RowData() instead.
+ℹ Set `bins` argument to enable binning.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>These functions are deprecated in <code>Voyager</code> 1.2.0, because they are now part of <code>scater</code> in Bioconductor 3.17:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotColData</span>(sfe, <span class="at">x =</span> <span class="st">"nCounts"</span>, <span class="at">y =</span> <span class="st">"nGenes"</span>, <span class="at">bins =</span> <span class="dv">50</span>, <span class="at">hex =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Change palette</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>, <span class="at">direction =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for fill is already present.
+Adding another scale for fill, which will replace the existing scale.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>When <code>bins = NULL</code>, which is the default, the points are plotted. I find <code>scater</code> a more appropriate place for these functions because they apply to <code>SingleCellExperiment</code> in general and are irrelevant to plotting in histological space. It should not be necessary for users who analyze non-spatial scRNA-seq data to install <code>Voyager</code> just for this function.</p>
+</section>
+</section>
+<section id="miscellaneous" class="level1">
+<h1>Miscellaneous</h1>
+<p>These are the various nitty gritty technical updates in version 1.2.0:</p>
+<section id="gene-symbols-vs.-ensembl-ids" class="level2">
+<h2 class="anchored" data-anchor-id="gene-symbols-vs.-ensembl-ids">Gene symbols vs.&nbsp;Ensembl IDs</h2>
+<p>Sometimes different Ensembl IDs match the same gene symbol. It’s better to perform the analysis on Ensembl IDs because they more unambiguously refer to a certain genomic region than gene symbols. Furthermore, gene symbols often have alises. However, it would be nice to show the more human readable gene symbols on plots.</p>
+<p>In version 1.2.0, we introduced the <code>swap_rownames</code> argument, to be consistent with <code>scater</code>’s plotting functions, whenever one may wish to use gene symbols to query data while the underlying data has Ensembl IDs. This includes <code>localResult()</code> getters in SFE, <code>calculateUnivariate()</code>, <code>runUnivariate()</code>, <code>calculateBivariate()</code>, <code>runBivariate()</code>, all plotting functions that can plot gene information, and plotting functions of spatial analysis results of gene expression. This is already used in the sections above.</p>
+<p>In the previous release, whether to show gene symbol was indicated by the <code>show_symbol</code> argument and the column in <code>rowData(sfe)</code> for gene symbols is assumed to be named “symbol”. Now <code>show_symbol</code> is deprecated, as <code>swap_rownames</code> allows any name of the symbol column and makes it explicit when gene symbols are plotted while the data uses Ensembl IDs. A warning is issued when a gene symbol matches multiple Ensembl IDs.</p>
+<p>In addition, <code>calculateUnivariate()</code> and <code>calculateBivariate()</code> can return gene symbols in the results with <code>swap_rownames</code> specified even if the input <code>features</code> argument is Ensembl IDs.</p>
+</section>
+<section id="multiple-results-from-the-same-method" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-results-from-the-same-method">Multiple results from the same method</h2>
+<p>In the previous release, the standard name of the method (<code>name</code> column in <code>listSFEMethods()</code> output) is used to store results. However, sometimes one may wish to run the same method on the same genes but with different parameters and compare the results. Doing so will overwrite the existing results with different parameters.</p>
+<p>In this release, we allow users to specify the name under which to store the results, with the <code>name</code> argument in <code>runUnivariate()</code> and <code>runBivariate()</code> so results from the same method but different parameters can coexist in the same SFE object. The standard name is used by default.</p>
+<p>In addition, the parameters are stored and checked the next time the same method is run. There’s the argument <code>overwrite</code>, to indicate whether to overwrite existing results when the new results were generated from different parameters. If <code>overwrite = FALSE</code>, then <code>runUnivariate()</code> or <code>runBivariate()</code> will throw an error when there’s existing results under the same name but with different parameters. Note that <code>overwrite</code> was introduced in a bug fix after 1.2.0. There already is <code>Voyager</code> 1.2.2 as I discovered some bugs last night after the creation of the <code>RELEASE_3_17</code> branch on Bioconductor.</p>
+<p>Here is an example of using different names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getis-Ord Gi*</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">runUnivariate</span>(sfe, <span class="st">"localG"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"Myh1"</span>, <span class="st">"Ftl1"</span>), </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">include_self =</span> <span class="cn">TRUE</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getis-Ord Gi, no star</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Will throw error</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">runUnivariate</span>(sfe, <span class="st">"localG"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"Myh1"</span>, <span class="st">"Ftl1"</span>), </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">include_self =</span> <span class="cn">FALSE</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Works</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">runUnivariate</span>(sfe, <span class="st">"localG"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"Myh1"</span>, <span class="st">"Ftl1"</span>), </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">include_self =</span> <span class="cn">FALSE</span>, <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">name =</span> <span class="st">"Gi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plotLocalResult</span>(sfe, <span class="st">"localG"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"Myh1"</span>, <span class="st">"Ftl1"</span>),</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colGeometryName =</span> <span class="st">"spotPoly"</span>,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">image_id =</span> <span class="st">"lowres"</span>, <span class="at">maxcell =</span> <span class="fl">5e4</span>,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>, <span class="at">divergent =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">diverge_center =</span> <span class="dv">0</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plotLocalResult</span>(sfe, <span class="st">"Gi"</span>, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"Myh1"</span>, <span class="st">"Ftl1"</span>),</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colGeometryName =</span> <span class="st">"spotPoly"</span>,</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">image_id =</span> <span class="st">"lowres"</span>, <span class="at">maxcell =</span> <span class="fl">5e4</span>,</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">swap_rownames =</span> <span class="st">"symbol"</span>, <span class="at">divergent =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">diverge_center =</span> <span class="dv">0</span>)</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">/</span> p2 <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Top row, A and B: Getis-Ord Gi*, bottom row, C and D: Getis-Ord Gi, the results are similar</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="faster-distance-based-edge-weights" class="level2">
+<h2 class="anchored" data-anchor-id="faster-distance-based-edge-weights">Faster distance based edge weights</h2>
+<p>Newer versions of <code>spdep</code> support distance based edge weights, such as inverse distance weighting. However, <code>spdep</code>’s distance based edge weights is very inefficient, because <code>spdep</code> does not keep the distance among neighbors returned by <code>dbscan</code> (which is very efficient) when computing k nearest or distance based neighbors, so when computing the edge weights, <code>spdep</code> has to call <code>st_distance()</code> to re-compute the distances, which can be very time consuming.</p>
+<p>In <code>SpatialFeatureExperiment</code> 1.2.0, we use <code>BiocNeighbors</code> to find k nearnest and distance based neighbors, which has a uniform user interface for multiple neighbor finding algorithms such as Annoy, Hnsw, and etc. We also keep the distances returned by <code>BiocNeighbors</code> to calculate distance based edge weights. All the distance weighting methods in <code>spdep</code> are supported.</p>
+<p>Here is a benchmark:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">bioc =</span> {</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>            g <span class="ot">&lt;-</span> <span class="fu">findSpatialNeighbors</span>(</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>                sfe, <span class="at">type =</span> <span class="st">"myofiber_simplified"</span>, </span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">MARGIN =</span> 3L,</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">"knearneigh"</span>, <span class="at">dist_type =</span> <span class="st">"idw"</span>,</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">style =</span> <span class="st">"W"</span>, <span class="at">nn_method =</span> <span class="st">"bioc"</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">spdep =</span> {</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>            g2 <span class="ot">&lt;-</span> <span class="fu">findSpatialNeighbors</span>(</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>                sfe, <span class="at">type =</span> <span class="st">"myofiber_simplified"</span>, </span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">MARGIN =</span> 3L,</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">method =</span> <span class="st">"knearneigh"</span>, <span class="at">dist_type =</span> <span class="st">"idw"</span>,</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">style =</span> <span class="st">"W"</span>, <span class="at">nn_method =</span> <span class="st">"spdep"</span></span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Attributes like call from spdep don't matter</span></span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">check =</span> <span class="cf">function</span>(x,y) <span class="fu">all.equal</span>(x,y, <span class="at">check.attributes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Some expressions had a GC in every iteration; so filtering is
+disabled.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  expression      min   median `itr/sec` mem_alloc `gc/sec`
+  &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
+1 bioc       124.62ms 137.94ms     7.23         NA     0   
+2 spdep         2.25s    2.25s     0.444        NA     1.33</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotation_logticks</span>(<span class="at">sides =</span> <span class="st">"b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The impementation in SFE is an order of magnitude faster than the one in <code>spdep</code>. Also, while the <code>spdep</code> implementation performed garbage collection (gc), the SFE method did not.</p>
+</section>
+<section id="spatial-statistics-on-dimension-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-statistics-on-dimension-reduction">Spatial statistics on dimension reduction</h2>
+<p>When comparing non-spatial PCA to MULTISPATI PCA, I would like to compute Moran’s I on the cell embeddings in each PC. This led to <code>reducedDimUnivariate()</code> and <code>reducedDimMoransI()</code> is a convenience wrapper just like <code>runMoransI()</code> for gene expression. In <code>Voyager</code>, there is already <code>colDataUnivariate()</code>, <code>colGeometryUnivariate()</code>, and <code>annotGeometryUnivariate()</code> to compute univariate statistics for data outside gene expression. The results can be accessed with <code>reducedDimFeatureData()</code>, which is analogous to <code>colFeatureData()</code> for spatial results for <code>colData(sfe)</code>, which is a <code>DataFrame</code> each column of which is one kind of results and each row is a feature. Here I compute Moran’s I for MULTISPATI PC’s:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">reducedDimMoransI</span>(sfe, <span class="at">dimred =</span> <span class="st">"multispati"</span>, <span class="at">components =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>df_hlines <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, mb),</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">lty =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we plot Moran’s I for each MULTISPATI PC computed. PCs 1-20 have positive eigenvalues, and 21-40 have negative eigenvalues; there should be 900 something PCs from full spectrum decomposition, but only the 20 most positive and negative components were computed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">moran =</span> <span class="fu">reducedDimFeatureData</span>(sfe, <span class="st">"multispati"</span>)<span class="sc">$</span>moran_Vis5A,</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">index =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>, </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">sign =</span> <span class="fu">case_when</span>(</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>           index <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">~</span> <span class="st">"n"</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>           index <span class="sc">&lt;=</span> <span class="dv">20</span> <span class="sc">~</span> <span class="st">"p"</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>       )) <span class="sc">|&gt;</span> </span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(index, moran, <span class="at">group =</span> sign)) <span class="sc">+</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> y, <span class="at">linetype =</span> lty), <span class="at">data =</span> df_hlines,</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The dashed line shows the bounds of Moran’s I given the spatial neighborhood graph.</p>
+<p>When it comes to dimension reduction, if a univariate method is applied to the components and there is a plotting function for the results, the results for each component will be plotted in a sequential palette:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>sfe <span class="ot">&lt;-</span> <span class="fu">reducedDimUnivariate</span>(sfe, <span class="st">"sp.correlogram"</span>, <span class="at">dimred =</span> <span class="st">"multispati"</span>,</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">components =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">order =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCorrelogram</span>(sfe, <span class="at">features =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">reducedDimName =</span> <span class="st">"multispati"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="sfe-object-versions" class="level2">
+<h2 class="anchored" data-anchor-id="sfe-object-versions">SFE object versions</h2>
+<p>The SCE object has gone through multiple versions, and has a <code>updateObject()</code> method to update older versions of SCE objects. As SFE is still quite new, I anticipate that it will change in the future. For example, I’m thinking about reimplementing the <code>spatialGraphs</code> with <a href="https://sfdep.josiahparry.com/"><code>sfdep</code></a> so the edge list can be decoupled from edge weights, because for larger datasets, it can be time consuming to find the edges, such as from triangulation followed by pruning, so it would be nice to not to recompute the edges if one wants to change a weighting scheme. Furthermore, I would also like to use <code>udunits</code> for the spatial length units so we can convert units. These will lead to new versions of the SFE object.</p>
+<p>For now, I haven’t made these changes yet, except that the object version is stored in the object; if the version is absent, then it will be the current version of SFE package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SFEVersion</span>(sfe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '1.2.1'</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="bioconductor-3.18" class="level1">
+<h1>Bioconductor 3.18</h1>
+<p>There are a few features I would like that I did not get to implement before the release date of Bioconductor 3.17. Besides the two I mentioned above, these are some of the features:</p>
+<p>First, the geometries and spatial analysis results can take up a lot of memory. While SCE, which SFE inherits from, supports on disk operations with <code>DelayedArray</code>, which is why if you read a 10X dataset in <code>h5</code> format everything is so slow, the geometries and spatial analysis results are in memory. I would like to look into <a href="https://sedona.apache.org/latest-snapshot/"><code>sedona</code></a> to make it possible to store and operate on the geometries on disk, and <a href="https://bioconductor.org/packages/release/bioc/html/DelayedDataFrame.html"><code>DelayedDataFrame</code></a> for the spatial analysis results.</p>
+<p>Second, Genentech has developed the <code>alabaster</code> framework to serialize objects in language agnostic ways. There is already an <a href="https://github.com/ArtifactDB/alabaster.spatial"><code>alabaster</code> package for <code>SpatialExperiment</code></a>. I may write one for SFE, which will make interactions with Python, C++, and other languages easier.</p>
+<p>Third, work with a large number of samples (tissue sections); not the software infrastructure, but think about how methods in <code>Voyager</code> can be applied to a large number of samples or improved to find interesting phenomena for further investigation, by trying an analysis with many samples.</p>
+<p>Fourth, standard scRNA-seq EDA focuses on cells, which is why PCA results in SCE centers on cell embeddings rather than gene loadings. But I know some multivariate spatial methods that focus on features, such as multi-scale pattern analysis (MSPA) <span class="citation" data-cites="Jombart2009-tb">(<a href="#ref-Jombart2009-tb" role="doc-biblioref">Jombart, Dray, and Dufour 2009</a>)</span> and geographically weighted PCA (GWPCA) <span class="citation" data-cites="Harris2015-sr">(<a href="#ref-Harris2015-sr" role="doc-biblioref">Harris et al. 2015</a>)</span>, where the results don’t involve cell embeddings but can give interesting insights about genes. If the results are to be stored in the SFE data, then I need to write a gene or <code>rowData()</code> analog of SCE’s <code>reducedDims</code>.</p>
+<p>Fifth, these are less ambitious: In November 2022, at the first release of <code>Voyager</code>, 10X Xenium was in beta. Now Xenium has been released and has a standard output format, so I should write <code>readXenium()</code> to read the output.</p>
+<p>Also, at present, the bivariate methods compute the statistic on all pairwise combinations of features from <code>feature1</code> and <code>feature2</code> or all pairwise combinations of rows of a matrix. However, this leads to a lot of redundant calculation for bivariate methods that are symmetric, i.e.&nbsp;<code>f(x,y) = f(y,x)</code>. I can add a field in the <code>SFEMethod</code> object for bivariate methods to indicate whether it’s symmetric, and if so only compute <code>f(x,y)</code> and not <code>f(y,x)</code>.</p>
+<p>Finally, I mentioned units; I can plot a scale bar when plotting geometries, just like in <a href="https://paleolimbot.github.io/ggspatial/"><code>ggspatial</code></a>.</p>
+</section>
+<section id="session-info" class="level1">
+<h1>Session info</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.0 (2023-04-21)
+Platform: x86_64-apple-darwin22.4.0 (64-bit)
+Running under: macOS Ventura 13.3.1
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Los_Angeles
+tzcode source: internal
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] lubridate_1.9.2                forcats_1.0.0                 
+ [3] stringr_1.5.0                  dplyr_1.1.2                   
+ [5] purrr_1.0.1                    readr_2.1.4                   
+ [7] tidyr_1.3.0                    tibble_3.2.1                  
+ [9] tidyverse_2.0.0                bench_1.1.2                   
+[11] patchwork_1.1.2                terra_1.7-29                  
+[13] pheatmap_1.0.12                scico_1.3.1                   
+[15] scran_1.28.0                   scater_1.28.0                 
+[17] ggplot2_3.4.2                  scuttle_1.10.0                
+[19] SFEData_1.1.5                  SpatialExperiment_1.10.0      
+[21] SingleCellExperiment_1.22.0    SummarizedExperiment_1.30.0   
+[23] Biobase_2.60.0                 GenomicRanges_1.52.0          
+[25] GenomeInfoDb_1.36.0            IRanges_2.34.0                
+[27] S4Vectors_0.38.0               BiocGenerics_0.46.0           
+[29] MatrixGenerics_1.12.0          matrixStats_0.63.0            
+[31] SpatialFeatureExperiment_1.2.1 Voyager_1.2.2                 
+
+loaded via a namespace (and not attached):
+  [1] later_1.3.0                   bitops_1.0-7                 
+  [3] filelock_1.0.2                R.oo_1.25.0                  
+  [5] xts_0.13.1                    lifecycle_1.0.3              
+  [7] sf_1.0-12                     edgeR_3.42.0                 
+  [9] vroom_1.6.1                   lattice_0.21-8               
+ [11] magrittr_2.0.3                limma_3.56.0                 
+ [13] rmarkdown_2.21                yaml_2.3.7                   
+ [15] metapod_1.8.0                 httpuv_1.6.9                 
+ [17] sp_1.6-0                      cowplot_1.1.1                
+ [19] DBI_1.1.3                     RColorBrewer_1.1-3           
+ [21] zlibbioc_1.46.0               R.utils_2.12.2               
+ [23] RCurl_1.98-1.12               rappdirs_0.3.3               
+ [25] GenomeInfoDbData_1.2.10       ggrepel_0.9.3                
+ [27] irlba_2.3.5.1                 units_0.8-1                  
+ [29] RSpectra_0.16-1               dqrng_0.3.0                  
+ [31] DelayedMatrixStats_1.22.0     codetools_0.2-19             
+ [33] DropletUtils_1.20.0           DelayedArray_0.25.0          
+ [35] gstat_2.1-1                   tidyselect_1.2.0             
+ [37] farver_2.1.1                  ScaledMatrix_1.7.1           
+ [39] viridis_0.6.2                 BiocFileCache_2.8.0          
+ [41] jsonlite_1.8.4                BiocNeighbors_1.18.0         
+ [43] e1071_1.7-13                  ellipsis_0.3.2               
+ [45] dbscan_1.1-11                 tools_4.3.0                  
+ [47] ggnewscale_0.4.8              Rcpp_1.0.10                  
+ [49] glue_1.6.2                    gridExtra_2.3                
+ [51] xfun_0.39                     HDF5Array_1.28.0             
+ [53] withr_2.5.0                   BiocManager_1.30.20          
+ [55] fastmap_1.1.1                 boot_1.3-28.1                
+ [57] rhdf5filters_1.12.0           bluster_1.10.0               
+ [59] fansi_1.0.4                   spData_2.2.2                 
+ [61] digest_0.6.31                 rsvd_1.0.5                   
+ [63] timechange_0.2.0              R6_2.5.1                     
+ [65] mime_0.12                     colorspace_2.1-0             
+ [67] wk_0.7.2                      RSQLite_2.3.1                
+ [69] R.methodsS3_1.8.2             hexbin_1.28.3                
+ [71] intervals_0.15.3              utf8_1.2.3                   
+ [73] generics_0.1.3                FNN_1.1.3.2                  
+ [75] class_7.3-21                  httr_1.4.5                   
+ [77] htmlwidgets_1.6.2             spdep_1.2-8                  
+ [79] pkgconfig_2.0.3               gtable_0.3.3                 
+ [81] blob_1.2.4                    XVector_0.40.0               
+ [83] htmltools_0.5.5               scales_1.2.1                 
+ [85] png_0.1-8                     knitr_1.42                   
+ [87] rstudioapi_0.14               tzdb_0.3.0                   
+ [89] rjson_0.2.21                  spacetime_1.3-0              
+ [91] curl_5.0.0                    zoo_1.8-12                   
+ [93] proxy_0.4-27                  cachem_1.0.7                 
+ [95] rhdf5_2.44.0                  BiocVersion_3.17.1           
+ [97] KernSmooth_2.23-20            parallel_4.3.0               
+ [99] vipor_0.4.5                   AnnotationDbi_1.62.0         
+[101] s2_1.1.2                      pillar_1.9.0                 
+[103] grid_4.3.0                    vctrs_0.6.2                  
+[105] promises_1.2.0.1              BiocSingular_1.16.0          
+[107] dbplyr_2.3.2                  beachmat_2.16.0              
+[109] xtable_1.8-4                  cluster_2.1.4                
+[111] beeswarm_0.4.0                evaluate_0.20                
+[113] magick_2.7.4                  cli_3.6.1                    
+[115] locfit_1.5-9.7                compiler_4.3.0               
+[117] rlang_1.1.0                   crayon_1.5.2                 
+[119] labeling_0.4.2                classInt_0.4-9               
+[121] ggbeeswarm_0.7.1              stringi_1.7.12               
+[123] viridisLite_0.4.1             deldir_1.0-6                 
+[125] BiocParallel_1.34.0           munsell_0.5.0                
+[127] Biostrings_2.68.0             Matrix_1.5-4                 
+[129] ExperimentHub_2.8.0           hms_1.1.3                    
+[131] sparseMatrixStats_1.12.0      bit64_4.0.5                  
+[133] Rhdf5lib_1.22.0               KEGGREST_1.40.0              
+[135] statmod_1.5.0                 shiny_1.7.4                  
+[137] interactiveDisplayBase_1.38.0 AnnotationHub_3.8.0          
+[139] igraph_1.4.2                  memoise_2.0.1                
+[141] bit_4.0.5                    </code></pre>
+</div>
+</div>
+</section>
+<section id="references" class="level1">
+
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Anselin2019-uv" class="csl-entry" role="doc-biblioentry">
+Anselin, Luc. 2019. <span>“A Local Indicator of Multivariate Spatial Association: Extending Geary’s c.”</span> <em>Geogr. Anal.</em> 51 (2): 133–50.
+</div>
+<div id="ref-Bengtsson2021-qp" class="csl-entry" role="doc-biblioentry">
+Bengtsson, Henrik. 2021. <span>“A Unifying Framework for Parallel and Distributed Processing in <span>R</span> Using Futures.”</span> <em>R J.</em> 13 (2): 208.
+</div>
+<div id="ref-Dray2008-en" class="csl-entry" role="doc-biblioentry">
+Dray, Stéphane, Sonia Saı̈d, and Françis Débias. 2008. <span>“Spatial Ordination of Vegetation Data Using a Generalization of Wartenberg’s Multivariate Spatial Correlation.”</span> <em>J. Veg. Sci.</em> 19 (1): 45–56.
+</div>
+<div id="ref-Harris2015-sr" class="csl-entry" role="doc-biblioentry">
+Harris, Paul, Annemarie Clarke, Steve Juggins, Chris Brunsdon, and Martin Charlton. 2015. <span>“Enhancements to a Geographically Weighted Principal Component Analysis in the Context of an Application to an Environmental Data Set.”</span> <em>Geogr. Anal.</em> 47 (2): 146–72.
+</div>
+<div id="ref-Jombart2009-tb" class="csl-entry" role="doc-biblioentry">
+Jombart, Thibaut, Stéphane Dray, and Anne-Béatrice Dufour. 2009. <span>“Finding Essential Scales of Spatial Variation in Ecological Data: A Multivariate Approach.”</span> <em>Ecography</em> 32 (1): 161–68.
+</div>
+<div id="ref-Kuhn2020-fm" class="csl-entry" role="doc-biblioentry">
+Kuhn, M, and H Wickham. 2020. <em>Tidymodels: A Collection of Packages for Modeling and Machine Learning Using Tidyverse Principles</em>.
+</div>
+<div id="ref-Lee2001-tm" class="csl-entry" role="doc-biblioentry">
+Lee, Sang-Il. 2001. <span>“Developing a Bivariate Spatial Association Measure: An Integration of Pearson’s r and Moran’s <span>I</span>.”</span> <em>J. Geogr. Syst.</em> 3 (4): 369–85.
+</div>
+<div id="ref-McKellar2021-ek" class="csl-entry" role="doc-biblioentry">
+McKellar, David W, Lauren D Walter, Leo T Song, Madhav Mantri, Michael F Z Wang, Iwijn De Vlaminck, and Benjamin D Cosgrove. 2021. <span>“Large-Scale Integration of Single-Cell Transcriptomic Data Captures Transitional Progenitor States in Mouse Skeletal Muscle Regeneration.”</span> <em>Commun Biol</em> 4 (1): 1280.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Starship Voyager is the bike in the photo on the R package Voyager documentation website, but it’s actually in part named after the R package, whose idea I conceived long before I bought starship Voyager in 2021, and in part named after USS Voyager in Star Trek. Fun fact about that photo: I took it in July 2022 when training for a tour around Mt Rainier National Park after I presented the first version of R package <code>Voyager</code> in Seattle at the 2022 Bioconductor conference, hence the luggage since I needed to practice camping skills. I rode from Pasadena to Wrightwood, via the 39 along North Fork San Gabriel River where this photo was taken, and climbed over 10,000 feet while carrying luggage. One of the hardest rides ever because of the luggage.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="lambdamoses/thevoyagesComments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
