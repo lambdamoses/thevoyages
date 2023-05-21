@@ -1,0 +1,176 @@
+---
+title: "ActiveSGV Puente Hill ride and hike"
+author: "Lambda Moses"
+date: "2023-05-12"
+categories: [cycling]
+---
+
+Captain's Log, stardate 100770.18, or Earth date March 4, 2023. I didn't finish writing this until May because I've been busy writing the [second release of the R package Voyager](https://lambdamoses.github.io/thevoyages/posts/2023-04-26-voyager-1-2-0/) and my thesis. Now that I have turned in my thesis, I can finally finish up the Captain's Logs.
+
+I had a week of bad sleep, in large part due to the cold storm. I regret not using the heater. It sounds crazy, but many LA apartment buildings have heaters, because the buildings are often not very well-insulated and California law requires that a home must be able to sustain 70 degrees Farenheit in the winter. I have never used the heater because it burns gas and I try not to burn fossil fuels. Usually putting on more clothes would help. Except that I didn't keep my feet warm enough. I got chilblains back in winter 2020. Basically the blood vessels in my toes vasoconstricted so hard that they broke themselves, so when my feet warm back up, my toes would get really itchy as blood flowed into the broken vessels. It went away, but would come back in subsequent winters, sometimes waking me up at night. While I would try to go to bed earlier, with Frozen Turkey locking myself out of my laptop, I still struggled to fall asleep, even with melatonin, because of my nocturnal circadian rhythm. When I finally fell asleep, I soon woke up from toe itch. As a result, I ended up with poor sleep.
+
+The chilblains was gone. Yet I had another night of bad sleep. I knew that I had to get up at 6:30 and leave by around 7 am to get to the 8:30 am ride on time, so I tried to go to bed earlier but nevertheless couldn't fall asleep until midnight. Initially I slept well, but sometime before 5 am, the siren and some really fast cars woke me up. I don't know what was happening. It sounded like cops chasing a speeding driver. Or just emergency vehicles going fast for any reason just because the roads were empty. Then I couldn't fall back asleep no matter what. So another zombie day.
+
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="8661111495"></div><script src="https://strava-embeds.com/embed.js"></script>
+
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="8661263052"></div><script src="https://strava-embeds.com/embed.js"></script>
+
+# Get to the hike
+In order to get just a little more sleep, I planned the shortest path to La Puente, reasoning that this early in the morning there must be fewer cars on those busy roads, like Valley Blvd. Wrong. I left a little after 7. By the time I got to Valley Blvd in Rosemead, it was already busy and scary. It was even worse in City of Industry, with very bumpy pavement with lots of potholes and cracks, from all those heavy industrial trucks. When crossing the San Gabriel River on Valley Blvd, I saw a smoke stack coming out of the Puente hills. Was it a fire? The river looked like a lake, after the storms. The worst part is beneath the 605 freeway, in the dark, with cars coming out of the freeway. Because of the cracks, I couldn't get to the right lane, but fortunately the drivers coming out of the freeway into the right lane were nice while I was riding in the second right most lane. 
+
+It didn't take long to get to the Avocado Heights park where we were supposed to meet from City of Industry. I rode fast enough that I was 15 minutes early. It's a rustic equestrian neighborhood with horses and chickens. My portrait lenses were on their way. I walked around to take environmental portraits of the ActiveSGV people in reflective vests, trying to see how much background blur I could get with the largest aperture and zoomed all the way in, and saw that one really cool vintage road bike with lots of stickers. I got cold after stopping, so I kept walking around. The GoSVG brought e-bikes here for rent. They didn't roll until 9 am.
+
+![Chicken near the park](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/dRHBDnmFg5F7/YcFMTy0uWtPwS1OtdgaZUoImoD3BSM42UPO5TYiB.jpg)
+
+![Cool rad road bike with lots of stickers](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/4chjeZ8XvHON/3Dxbd1QBf6BGXY0ayWMSgtZ3rRyUPE1FFdvr32HD.jpg)
+
+Dale was the ride marshal, with such a cool look that I really liked taking photos of him. That road bike with lots of stickers belongs to him, with stickers collected from the past 10 years. We ended up having a good conversation wile riding. It turns out that he write newsletters for ActiveSGV. 
+
+![Dale the ride marshal giving some announcements](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/D2jmRR9oTlKt/Q8L08DlklGLnUO3VWz8nQIriPOoqT8GrdoUbLoYb.jpg){width=60%}
+
+![Ready to roll](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/HS5UeLOEPpFY/3PRf9ti2gZe2yygphD9m2zQ3yyHbTBf3ijxfRAOL.jpg)
+
+# Hike up Nike Hill
+We rode on some scary roads but we had safety in numbers. Soon we arrived at the trailhead. We went into a tunnel beneath the road, fully of mud, probably flooded a few days ago, towards a park where the bike valets would watch our bikes when we hiked, next to a FedEx warehouse. Another group only doing the hike joined us there. 
+
+![Family at the park next to the FedEx facility where we parked our bikes and started to hike. That's a rental e-bike from ActiveSGV's GoSGV program.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/6fWZCS93R9jV/3WhWJ9KBG5W6N2BVmqixzzy6XybSsHTWx8uOKWEz.jpg)
+
+## The climb
+![The hike begins](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/jykkj4UINqFH/ld4ZC8yT7yDs5r9bOWE6FKP61xdYPHXtQfUOSJr6.jpg)
+
+I definitely don't want to hike in road cycling shoes, so I brought my hiking shoes in a large saddle bag meant for tents. We walked up a dirt trail, but eventually got to a paved road. It was steep. I got pretty good at sensing the grade. Much of the climb is at least 10%, and some parts, including the top part, at least 15%. Some of the ActiveSGV folks rode the GoSGV e-bikes. They did well though the riders still walked the bikes at times, but they were not out of breath. I wonder if I can ride all the way to the top without getting out of RAM and CPU; it can't be that much worse than Baldy Village to Ski Lift, Wildwood Canyon, and Baldwin Hills Scenic Overlook, right? I survived those without getting out of RAM and CPU. But not now when I felt like a zombie.
+
+![Looking back at the FedEx facility as we gained altitude](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/B3azeEf5Xtom/hdv3Zz4XXfqNc1xIiyBoRo7Vrm9IR2YIZiCCtYfK.jpg)
+
+![Whittier Narrows dam, and DTLA way in the distance](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/UYAWPm5lMLHD/tvwVue3Rv8uGcUbxpsSOfuly426JHut1xRciyoBX.jpg)
+
+![I was so behind! That's a steep part ahead.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/3y4nv8lvyB0x/fYfbyBysu4xFUTB1aIW8luHL7DDdEwf8lBgrFqr5.jpg)
+
+![So this is where that smoke stack comes from. It's not a fire at all, but a power station converting the landfill methane into electricity.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/2Whz7v6DPUmQ/ZSYhGN9eVSfaTdDczvmJrPq0pZQxkJHDuKjXrnDE.jpg)
+
+![I finally got to that steep part that feels likt 15%. Here some people were climbing with e-bikes, though they eventually also walked.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/BNn8HYmKhivs/GOPM3bcs8L2jtmglQjweQv7mFM4dngreXhynWG0K.jpg)
+
+![Last steep part to the top](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/KZTRm595TbcB/2FrLxIpg5lPQPYb4ilOhoecWEyKh4BMkJXG25a9i.jpg)
+
+## At the top
+Because I stopped for photos, I was among the last to arrive at the top of Nike Hill. There we had Mexican food for lunch. I'm glad that they had a vegan burrito with something like soyrizo, which I got. I also got salsa, tortilla chips, and jamaica. I sat down on the wood chipped ground to eat while soaking in the panoramic view of the SGV to the east. It was cloudy in the morning, but the sun was coming out.
+
+![A couple enjoying the view of the SGV while having lunch; I sat near them.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/DTWWeOdFQ5A5/ORGEvAUrMPwrRMNdagnb41OsyCxdvCEnkVPCPr0d.jpg)
+
+![Whittier Narrows dam and DTLA from afar](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/GXbgQtaF8zoY/uEP1t7VARWncIWX3maTBIFgzFnQxPHMKniZVhGoq.jpg)
+
+![The San Gabriel River, full after the storms](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/yS9S9vC9pJRA/nh0GQxYq4bVl6Gnl5fo84hN0eL6mbID6UF4PgJq0.jpg)
+
+![Nothing very remarkable about this photo in and of itself, but I need to show it because that white patch of buidings is downtown Pasadena where I live, and the hills to the left of the patch is the San Rafael Hills, which is popular among cyclists in the Verdugos and northwest SGV.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/MI4CWFeQgECW/aEg2Ya8oFNIWv3jL5Y9qXDc5sOehxxz4n2r7cT7I.jpg)
+
+![The landfill proper, I suppose, still closed to visitors](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/EXRTPCfY94Vv/pFA5ez25YHEJmkvzoW2LFci2zvd3RI9E7SiyrYIT.jpg)
+
+We got a raffle ticket when getting food, and the raffle was drawn while we were eating. The winners got outdoor gear such as backpacks and trekking poles. While I didn't expect to get anything, I won a picnic blanket. As I wasn't sure how to carry it on Voyager, I thought about giving it away. 
+
+![Announcing the raffle ticket](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/vxBpvR1hiek1/c44LvmMt15KqpM8Eu0A5MWzQbIbMrF8O182mepj8.jpg)
+
+![How I carried the picnic blanket; it looks awkward, but it works.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/eJmD2gfkl8aI/EgyLOmATEZH2urpQCZ6ojUCTgi03kAyJRyT8P9kE.jpg)
+
+## The descent
+Because I arrived at the top late, I didn't get to stay very long before we descended the hill, back to the park where we put our bikes. The folded blanket has a handle loop. Maybe I can put that through one of the saddle bag straps. It didn't work. I ended up putting my handlebar Garmin mount through the loop so the blanket sat on Voyager's handlebar and stem without adding much drag. It worked.
+
+![Looking down that last steep part. Pretty steep, isn't it?](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/nzAkgFWqgPWL/jXNvHzXk6Coag32TzHQ5tWCBgQ2xJa0LgwThxVkJ.jpg)
+
+![Looking back up people ascending the hill, and Whittier Narrows and DTLA in the distance](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/eG6wzzKxhPg7/Wqop2CzFVgTRBUkEJ6cfSbOpgaf2aMV07oNAStsu.jpg)
+
+![As I descended further, the DTLA skyline was partially hidden behind the Monterey Park hills](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/cDGppFYmJjo9/upr4eHbBINIPMHsnqZsPBiSn3zvrwVdUf3O8Hxx7.jpg)
+
+![The Atompunk Rose Hills cemetery chapel. I would like to visit in my next trip to this region.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/wFrfAIqI4KKk/ROSaQCnvFruKj1sDsbo8J5RczzOUfALSXcxPgvh8.jpg)
+
+![Equestrians ascending, when we were almost at the bottom](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/RxIrv0nt2VMU/a01fpqnuBL2Jws0exHjOtAAHg8qd5jFaY3SD4jJd.jpg)
+
+![Looking back at our bikes](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/Mw3CCs53cRyI/C9stftGfj4l3t4enIapSrNd8CXdcFsg2TMuxUsvP.jpg)
+
+In order not to make a left turn out of that park onto a dangerous busy road, we walked down that muddy tunnel to a parking lot across the street, where we made a right turn to ride back to the Avocado Heights park as a group. The group got very stretched out. Dale and I were in the front of the pack and we had to wait at some point. Which is why there were multiple ride marshals to make sure that nobody was dropped.
+
+# Solo adventure afterwards
+## San Jose Creek and San Gabriel River
+We were back at the park. Then what? I originally planned a lot of climbing, to the Turnbull Canyon and Hacienda Heights, but my sleep deprivation caught up with me. I felt like a zombie and didn't feel like climbing. So I headed straight to San Jose Creek, a tributary of the San Gabriel River, where there's a bike path, which was after the climbs in my original plan. Again, there was a homeless encampment at the eastern end. I saw a horde of little birds in the river, covered by shallow water from side to side after the storm, and tried to take a photo. However, when I walked closer to get a better spot, the birds noticed and all flew away, so no photo.
+
+![At the east end of the San Jose Creek bike path](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/HZhBGgcJ2oUl/RYh8EtBGm9PVq6RROTRWqdEXuQ2XkfIpHxMiSHxP.jpg)
+
+![Homeless encampment at the east end of San Jose Creek, which is fully lined with concrete](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/k886pnBRHPO2/6VMxtnCCa3o0xnWAFHecyGCDjmuRx4hzoOKLNHEl.jpg){width=60%}
+
+I have ridden the full length of the San Gabriel River bike path from Azusa to Seal Beach (though not in one single trip), and have ridden as much of the LA River bike paths as possible from Canoga Park to Glendale Narrows to Maywood to Long Beach. I have also seen much of upstream parts in the Angeles National Forest. so I have seen a lot of the two great rivers of LA County. Overall, the San Gabriel River is much less clad in concrete as LA River. Arguably Santa Clara River north of the San Gabriel Mountains is a third great river of LA County. Santa Ana River could be another as it's culturally relevant to the Tongva further to the east, although its watershed is almost all outside LA County. The arbitrary straight borders of LA County don't make cultural and geographical sense.
+
+Due to the great 1938 flood, the LA River was channelized for flood control, which was completed in 1960. Among all of LA River and its tributaries downstream of the foothill dams (e.g. Hansen Dam for Tujunga Wash, Devil's Gate Dam for Arroyo Seco, Pacoima Reservoir for Pacoima Wash) I have visited, it's almost all concrete, except for Sepulveda Basin, Glendale Narrows, Long Beach estuary where LA River empties into the ocean for the main LA River, a little stretch downstream of the Devil's Gate Dam and a little beneath Colorado St Bridge for Arroyo Seco, a little bit of Compton Wash, and the Peck Rd Water Conservation Area and when entering the Whittier Narrows Dam for Rio Hondo.
+
+In contrast, San Gabriel River is not channelized upstream of Rio San Gabriel Park in Downey, already downstream of Whittier Narrows, though it does have concrete banks to prevent it from changing course. As a result, I find the ride down San Gabriel River all the way to Seal Beach more interesting than the ride down Rio Hondo and LA River to Long Beach. I wonder if it's because the Cogswell, San Gabriel, Morris, and Santa Fe Dams already do a good job for flood control upstream so more channelization is unnecessary, or the San Gabriel River watershed was less populated than the LA River watershed, or the San Gabriel River tends not to flood as badly as LA River. Nevertheless, the concrete channels of LA River can attract many birds and get quite interesting. Graffiti also livens up the concrete. I don't know nearly as much about tributaries of the San Gabriel River south of Santa Fe Dam simply because they are too far east for me to visit very often. 
+
+![The part of San Jose Creek where the concrete ended, which looks kind of like Glendale Narrows of LA River.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/0kMQszgEnEnG/afqDBtLrRKPrRDNpAMni2UWGlmJu4DRI1qXctV0d.jpg)
+
+But this part of San Jose Creek was concrete. The concrete bottom soon ended, making the river look so much like the Glendale Narrows. Spatial statistics lesson: the importance of spatially structured covariates. This part of San Jose Creek is not connected to the Glendale Narrows, but they look similar because of the interaction between similar climates, landscapes, and riparian ecosystems. The bike paths add to the similarity. The similar climates and landscapes must interact with being rivers to create the similar looks. This is what creates the spatial autocorrelation in the river appearance. But how would I know had I not known the covariates? Suppose I partition LA into pixels and perform univariate spatial analyses for all variables I can think of. The variables for river ecosystems would show local negative spatial autocorrelation and high local spatial heteroscedasticity because the built communities on the banks of the rivers are very different from the river itself. However, if we compute Moran's I only for the rivers, the results would be very different. 
+
+Moral for histological space: I don't think we can capture all relevant covariates from transcriptomics. Such covariates might be better captured by studying the extracellular matrix, metabolomics, proteomics, and etc. But sometimes we can get covariates from transcriptomics. Perhaps well-established cell type marker genes cab be used as covariates. For example, markers for blood vessels can be thought of as akin to marking which areas are rivers. What if we perform spatial analysis on different cell types separately, especially for the very distinctive ones like blood vessels? Now we have spatial transcriptomics datasets covering large tissue areas, with hundreds of thousands of cells. What are the length scales of spatial autocorrelation for genes, computed separately for very distinctive cell types? How do say blood vessels differ within the vast tissue section? 
+
+It's somewhat like comparing rivers in SoCal. As of writing, I have already returned from the Green Fondo in Santa Barbara County. The Santa Ynez River, at least the parts I visited, was not channelized. Morphologically, and in terms of some of the plant species, it looks a lot like some of the upstream, unchannelized parts of Pacoima Wash, Big Tujunga Wash, Santa Clara River, San Gabriel River a little upstream of the San Gabriel Reservoir, some of modern Arroyo Seco, and some of Arroyo Seco and LA River in historical photos prior to channelization. But surely there are differences among those rivers. For example, the steep grades of the San Gabriel River washing rocks down gave rise to the Irwindale gravel pits, whose rocks were used to build many LA landmarks, and the Prado region of the Santa Ana River has distinctive clay used by Indigenous people for pottery. While I did see the familiar oak groves, California poppies, arroyo lupines, and invasive mustard that I also see in LA during Green Fondo, I saw a lot of small yellow flowers that I did not see in LA. The geomorphology there is also quite different from that of LA south of the San Gabriel River, but it's more reminiscent of Soledad Canyon and Ojai. Now I wish that I were a geologist.
+
+![Looking back from the west end of the San Jose Creek bike path](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/s8tn7N8ehdtY/LHRtZ5H90bSSC39WSUsBAn37mNaDKl87FNvg98je.jpg)
+
+OK, that's it for my digression in thought. There's a dirt trail the other side of San Jose Creek, apparently for equestrians, as I saw horses there. From what I heard from mountain bikers, horses and bikes don't mix very well. After this little stretch of bike path by the San Jose Creek, I braved some traffic and got to the San Gabriel River bike path, where I saw two guys riding time trisl bikes. The river, not channelized, looked like a lake. The unusually high water submerged many of the trees I used to see in the more wetland-like parts when there was less water. I exited the bike path at Valley Blvd, at the railroad bridge full of graffiti, which is a Pacific Electric relic. I saw a cyclist with a child trailer on Valley Blvd from beneath the road; it could have been a great photo, but I missed it.
+
+![This part of the San Gabriel River is not lined with concrete. After the storm it looked like a lake, so weird by LA standards.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/g0IDGjKwrmdc/SqNevjG8rCp8H32st0psHEvUBqYw6cv9GuXSd4M0.jpg)
+
+![Graffiti railroad bridge crossing the San Gabriel River a little north of Valley Blvd](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/zBWMlUzGeMe8/ZvWYmXMWhm50GOQKSdwVvId3GJim6Qi8g1T3Z9pd.jpg)
+
+## El Monte
+I took Valley Blvd to downtown El Monte, to check out some public art at the Metrolink  and Metro Silver Line stations. The public art at the Metrolink station has a [very interesting back story](https://www.kcet.org/shows/departures/tarzan-on-the-rio-hondo-when-hollywood-invaded-the-whittier-narrows). In brief, the Whittier Narrows area has a Hollywood heritage. There were lion farms and jungle movies were shot in this region. The public art commemorates this forgotten heritage. Though I'm sure that PETA is so glad that it's no longer there, since I'm sure that lion farms aren't very humane. 
+
+![Downtown El Monte, entering Main St from Ramona Blvd](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/h76xZ9Ju9Dkq/FDwnroUgrr6LbQEr6KzApwwTbVQnsJDNhlDo5fnW.jpg)
+
+![Public art at El Monte Metrolink Station. ](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/P3BQ2vMxWI2Z/A81CHYMxReEgFuaELU0EKK58cSjJhRrGDrWHRozx.jpg)
+
+Also to revisit the Main St mall, with murals sponsored by the new fast fashion company Shein. Those are good murals, though I'm not a fan of fast fashion in general because it's inherently unsustainable. I proudly wear clothes that are over 10 years old. I bought a second hand Pearl Izumi long sleeve jersey for more casual rides; based on the style of the Pearl Izumi logo and that it was made in the US, I guess it was probably made in the 1980s or 1990s, so it's probably older than I am and must be full of stories I most likely never get to hear. It might not be specifically made for women though it was small enough to fit me. Also consistent with its age, it stinks pretty easily while my 2020s jersies have modern odor resistant tech.
+
+![One of the Shein murals. Note that Main St was not very prosperous as many shops there were closed.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/WVa906ucUx7R/OGNXGryK4J6iW5XXBwG2SRceCLAJ47X8drZMwB25.jpg)
+
+![Public art at El Monte Silver Line station. One more reason why transit rocks!](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/pEiqbnlomJya/we8jD0msx387rXVpYtig5PeU9hC92987ZMPSssDO.jpg)
+
+## Rio Hondo
+It turns out that, unlike on Strava's map, I actually could direct access the Rio Hondo bike path from the Silver Line station. Rio Hondo was covered side to side with water, and that's a lot of water by LA standards. Normally the river was mostly dry so we could walk in it, with water only in the narrow central ditch and maybe a little bit beyond. So I almost forgot that in many other parts of the world, rivers can be so large that they can carry ships.
+
+![On Rio Hondo](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/OIzy4DTIx93S/6ildyM6TdajfEPbyAAR1olPSZ3GcVG2x13Stf7b5.jpg)
+
+![A man riding on the sloped concrete bank of Rio Hondo](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/BZarf6ez4BcW/UhHCPsmAhgjZUjnOTSSIxX5WAT1MfERwjfSMWsyq.jpg)
+
+![As he approached the Arcadia Wash confluence that disruped the sloped bank, he had to dismount and walk into the river.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/nnEl7ndI4sjs/4KgR9vR41hviXC4JBGXXPvu1QDLxLhjOlySlpZov.jpg)
+
+![He continued riding into Arcadia Wash](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/xzEdLOJCsDWj/R12CKOf7ROWJgYAGpoe6J0kGx6gS7QIWyhJRRHeL.jpg)
+
+I saw a man riding a bike on the concrete bank. I rode faster than he did so I could dial in camera settings and take photos of him when he caught up. The sloped concrete bank was interrupted by the Arcadia Wash, so he had to dismount and walk into the river, which wasn't deep. Then he continued riding on the river bed into Arcadia Wash. I wonder how he could get out as the river bank was perpendicular to the ground. 
+
+![The San Gabriel Valley Airport](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/kwr5eiW94I8I/IVrIPjqh145GPGOtIBfmLtETp7PMQGVBwD4CW8Oj.jpg)
+
+![An airplane about to land](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/FdH6Hcl1kl9c/5jbAgy7aG5AicwE10lglITUN4pTclOQiLkk45GWF.jpg)
+
+The mountains were shrouded in cloud, but a little bit of the snowy peaks peeked out. It was unusual to see so much snow, after the cold February storm. An airplane was landing at the San Gabriel Valley Airport. I know that I can see Mt San Antonio from here, but it was hidden behind clouds.
+
+![The submerged bike path](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/I5nbUMVeUcbB/M5Jm5haqCqQAGmCiUDDurrFVfjgHDPcLRH57OSQV.jpg)
+
+![Map of LA River and San Gabriel River at the park](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/AZdLs31yM1j0/S9eIi90qRg7MYfzsY3MMa2gOhWq8jDlcxqrNvIu9.jpg)
+
+![Snowy peak peeking out of the cloud, from the Peck Rd park](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/21SuV33lUrUa/AMqkGI1rpjs8e2m5U3QFeda47N2Gxhh91nWV79Ez.jpg)
+
+Peck Rd Water Conservation Area is a reservoir where the Sawpit Wash and Santa Anita Wash meet and form Rio Hondo. There's a bike path south of the lake, which was flooded. So I rode into the park, just to take a look since it's been a while since I last visited. There was a map of LA and San Gabriel Rivers etched on the ground. I stood in such a way that my shadow pointed to Peck Rd Water Conservation Area.
+
+Because that part of the bike path was flooded, I had to exit the park on Peck Rd, braving the traffic, before I turned left on Live Oak Ave, where I crossed Foss Ave. Yep, join us now and share that software, you'll be free hackers, you'll be free. I mean Free and Open Source Software (FOSS). After that, I went on Longden, standard route returning from the eastern part of the SGV. 
+
+# Highland Park
+Earlier this week (March 1) I went to Highland Park for re_ grocery but didn't bring my real camera due to its weight as I had to carry the grocery up hills back to Pasadena. I got a great view of the green Buena Vista hill in Eagle Rock with 3 palm trees in front of a mountain in the distance covered in snow, but needed a telephoto lens to take a photo of the scene. My iPhone won't do. Hence I went to Highland Park to see if I could see the snowy peak as the sky was clearing up. No, it was shrouded in cloud so the photo didn't work. Then I climbed up Arroyo Blvd, to see if I could get a nice shot of the California poppies beneath Colorado St Bridge in the golden hour. The sun got behind the clouds so no golden glow. Plus it was too windy for macro. But I did try out some viewpoints for a poppy photo. I returned to Highland Park and Desiderio Park beneath Colorado St Bridge on Tuesday March 7 when the sky was clear. Here are the photos:
+
+![Buena Vista hill in Highland Park/Eagle Rock in front of snowy peaks that aren't usually snowy, from Ave 50 and Buchanan St ](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/XfCIPCECfJO8/gLlh7mjhx50R4BkrWywTfkaP3ix5UTb2K7LrJ3r8.jpg)
+
+![Sparkletts seen from York and Eagle Rock Blvd; back story: Highland Park was described as an ocean of ground water in the late 19th century, so there were many drinking water companies, among which Sparklettes and Yosemite are still operating.](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/zaPdH9Kn0cLY/eOOYiPbTZQWw6Bu61wHIMTACjUpAeXqJdPTf3w7h.jpg)
+
+![Sparkletts up close, in the golden hour](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/BHxUBSUHc1kJ/NcVn49GCW7LJDjUvVLwuzYyEoNVyMMn3DkMkpkT0.jpg)
+
+Actually these photos were taken on March 8 because I arrived too late on March 7 for the golden glow, so I tried again on March 8.
+
+![California Poppies at the Desiderios park under the Colorado St Bridge, by the Arroyo Seco](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/g21jRLEvO3ol/sIfC5HOF6GOV7yehIv2sVYRUHLxcG5mvT1wsUYy0.jpg)
+
+![The 9th Circuit courthouse, in historical Vista del Arroyo Hotel](https://media.pixelfed.social/public/m/_v2/529845376367415532/42a8ecf32-5a8865/sUHXdks8u4wJ/nejrb24Ryt57aFagCPswnldMOvIGGyD071xGC2Pb.jpg){width=60%}

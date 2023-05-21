@@ -1,0 +1,117 @@
+---
+title: "South LA is NOT for sale"
+author: "Lambda Moses"
+date: "2023-05-21"
+categories: [cycling]
+---
+
+Captain's log, stardate 100981.08, or Earth date May 20, 2023: it's been a while. Because I haven't been to many voyages in the weeks when I wrote my thesis, I'm kind of out of shape. I have turned in my thesis last week and got it back from the proofreader earlier this week; it doesn't look like I have a lot of work to do to edit it. Nor am I too stressed out about my defense next week because I have already presented the material at Cedars-Sinai this week so I got some practice (yes I biked there), though I need to change the slides for a more general audience who may not be bioinformaticians. So I can begin to gradually ease my way back to gran fondos and touring. Today I went to see the exhibition [South LA is Still Home](https://laist.com/news/housing-homelessness/south-los-angeles-pop-up-art-show-housing-crisis-homelessness) on the housing crisis in LA. It was the last day of the exhibition, and it's worth the trip.
+
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="9109902483"></div><script src="https://strava-embeds.com/embed.js"></script>
+
+This is how I wrote the R package Voyager and my thesis: night shift. As if I write better code after 10 pm. Also because I tend to have trouble falling back asleep after suhoor during Ramadan, the night shift was more practical. As a result, the nocturnal schedule stuck. Why is it so difficult to be a little less nocturnal? I hate my social jet lag! I couldn't help but slept in until 1 pm. Then I began making slides for my defense. I left at around 4 pm, reasoning that the exhibition wouldn't end until 7 pm so I was sure that I could make it. 
+
+Oh, sorry Voyager. I rode my gravel/commuter bike USS Wayfarer this time although there's no gravel, simply because Wayfarer is made of steel so I can carry my heavy duty lock on the frame and I feel more comfortable locking it up outside while I'm not watching, which I need to do while in the exhibition hall. Carrying the lock on Voyager's frame is bad for its carbon fiber. I feel like Voyager really is designed to be used as a toy, for no purpose other than riding for its own sake, although I want a means of transport that takes me to places and riding is not entirely for its own sake. Yet Voyager remains my flagship because it's designed to be efficient and hence fast, taking me to voyages far and wide. 
+
+I also finally put on the photographer hat again. It's been a while since I last carried that camera, simply because editing photos is a lot of work. Plus because I didn't go to voyages, of course I didn't take photos. And I still have several trips' photos sitting on my external hard drive, not yet edited. Nor have I written the Captain's Logs from those trips. This time, however, there's nothing spectacular. I'm simply documenting what I saw and the photos are for documentation purposes only.
+
+I took the Arroyo Seco bike path on the way. There's some new graffiti. There're quite a few scary death metal skull ones that have been there for a few weeks, and a new green block letter one at the south exit of the bike path.
+
+# LA State Historical Park
+On the way, when I passed by the LA State Historical Park near Chinatown, I sensed something unusual. Way more cars than usual were parked on the dirt strip separating Spring St from the park, and I heard some speakers speaking. I also saw some cloth sculptures on the dirt strip. So I decided to go into the park and take a look, as the boring version of what Captain Janeway does in Star Trek. I did end up riding a little gravel after all, though it wasn't in the original plan. It turns out that it's the LA River Public Art Project, with artists exhibiting at the park.
+
+![At the entrance, must be related to Native Americans, from the corn motif common in Chicano murals with Maya theme.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/d3b60tIZSYcg/awHrpbXJO55P30tRkKkNMPRREBH1A6DHMvnm5gBB.jpg){width=60%}
+
+I rode on the dirt path into the park, and saw some colorful art hanging on the trees, with bells ringing in the wind.
+
+![Art hanging on the tree](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/9O62HJhNxYWl/wUB0hvmGc3mlFDEzYFOfvXGJuGKxf4WvxdWYSblO.jpg)
+
+As I went in further, there were more artworks, such as a meditative maze marked by ropes, akin to the maze marked by tiles in some cathedrals, with the artist playing some percussion instrument as if leading the meditation.
+
+![Maze art, I suppose the person in magenta jacket is the artist.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/JexLm5pdPSC2/kr1fsDopBSibYw2c46UdUSEvD50iLnihIGqRw7xS.jpg)
+
+There was a pedestrian bridge through the park. Flowery arches were built on the bridge as part of this event.
+
+![One of the arches on the pedestrian bridge](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/gT9GRtlbHYaG/f0BTlwNVj834u1sGM6rkYESIG95qeOA7x2oDPNwU.jpg)
+
+![The bridge was extended by a belt of red flowers. As the weather gets warmer and dryer, the green of the hills faded into brown, as the invasive mustard and grasses dried out. However, it's been unusually cloudy recently.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/Kv4Ro6yYUoI4/v4jITGiThcKyE5diDTl3OkCCNEtQ1CvqyJpw5H1X.jpg)
+
+I found the speaker as I went deeper into the park. He was talking about something like your car getting scratched and feeling bad about scratching someone else's car and etc. I didn't stay for long to listen to the whole thing, and I didn't want to get to the exhibition too late. Anyway, it must have been quite important, since there were quite a few professional photographers. Though one thing for sure: I don't really get the over-dramatized tone, like what's the point?
+
+![The speakers at the event and one of the photographers](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/PBDcNJBgWWbB/A7bK2tBUcwoiZAOX406ONyUNpd5j8mIx4a9KgI56.jpg)
+
+![Portrait painted on carboard amidst grass and in front of some cactus; the building peeking out behind the cactus is LA Metro HQ.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/gyXDQkytQBeZ/ShiVkNqmqpNa3wq1kT5wUu9W6LisuPHDstRzLWGW.jpg)
+
+![A park is made ~~for~~ by people](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/IsCiDLVviz8l/QwnEG7sMKXRcJf5VsI9vEDzLJOV3Afc2j7eXDBiU.jpg)
+
+I was heading out of the park, and passed by some signs saying A Park is Made ~~For~~ By the People and the Chinese translation, and some signs on the history of this park, before I left. According to [historical map](https://www.oldmapsonline.org/map/usgs/5517713), this park used to be a rail yard, and has been so since at least 1928. While taking the train may be better for the environment than flying, the diesel trains at the yard pollute the surrounding neighborhoods. The abandoned rail yard was later converted into a park. It had been cleaned up since 2001, and opened in 2017. 
+
+Too bad I was in the Westside back then and rarely visited DTLA simply it's a pain in the ass to take transit from Westside to DTLA, so I didn't get to see what this place was like before the park opened. Biking from Westside to DTLA isn't that fun either due to bike unfriendly roads. Yes, I did bike on Wilshire Blvd all the way from Westwood to DTLA. Fun in that I got to see many great landmarks, and not fun because it's not bike friendly. Now I would take a much more convoluted route that is more bike friendly: down Westwood Blvd, then left on Santa Monica Blvd, until the bike lane ends, then Burton Way, basically my standard route to LACMA, then ride north of LACMA on 6th, then get to either 4th or 7th. I had a second hand commuter bike which I retroactively name USS Resonance, but it was stolen in 2016, when I double majored and no longer had the time to ride so it looked abandoned. Then I had not been riding until 2020 when I moved off campus and wasn't pleased with the longer walk to grocery stores so bought my commuter bike USS Enterprise. Which I gave away in April to make room for USS Wayfarer as I want to do off road touring and Enterprise wasn't good enough for Around the Cycle to sell.
+
+Then I rode south down Spring St, heading to South Central. At Spring and 9th, I saw some really interesting public art:
+
+![Mural and bunny sculptures at Spring St and 9th in DTLA](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/5Ne5HEV5PEv9/HnZm3vTk53vAZxBjyzkkIrDSlbIVBCLbREVdBMnH.jpg)
+
+I turned right on 11th, heading to the LA Convention Center, and got into some traffic chaos. It was probably a Lakers basketball game at the Crypto.com arena. Evidence: I saw many people wearing Lakers merch, even a Black man riding a Lakers themed lowrider pedicab on Figueroa. It was an eventful day. When I got to Exposition Park, there was another soccer event.
+
+There are many bike lanes in South Central. Yet somehow it's high injury network, despite the bike lanes. Or maybe the bike lanes improved safety, but they're not good enough given the fast and busy traffic cutting through the neighborhood. Indeed, in my experience, I feel safer riding on quiet side roads without bike lanes that are easier to come across in rich neighborhoods than on a bike lane on a main road with busy car traffic. In part this is because the bike lane is often blocked by cars (especially 7th St in Cyberpunk DTLA and to the west and southern part of Figueroa a little north of USC) and paint isn't good enough a protection. Also, the bike lane is sometimes in the door zone, and bike lanes often have more debris and worse pavement.
+
+# The exhibition
+I rode further south on Hoover south of USC. Typical of South Central vibe, there were many murals on Hoover, part of which had a bike lane. Then I rode on Florence to get to Vermont. Both Florence and Vermont are large main roads, so I was a bit nervous, but it wasn't as bad as I expected. There was little traffic on Florence, and this part of Vermont had a bike lane. But I can imagine how bad it can get when the traffic is busy.
+
+The exhibition was at an unremarkable Community Coalition building next to the really cool Scientology building. I'm not a fan of Scientology, but that building is so cool that it deserves to be added to my Hall of Fame. I mean, I disagree with the ideologies behind many existing entries anyway.
+
+![The Community Coalition building, and the really cool Scientology building next door.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/iMoH4eOwY8Gv/CKhkdNHlOjqmTobvjky2IQwE1MjfdtqgaI2Kkec5.jpg)
+
+It was a little past 6 pm when I got to the exhibition venue, thanks to that little detour to the LA State Historic Park. They were already packing up, so I missed the speaker. Despite the unremarkable facade, there was a really cool mural behind the building, so it also deserves to be added to my Hall of Fame, and this time I do mostly agree with the ideology. 
+
+![Mural at the Community Coalition. I really like it, except that voting isn't all that effective though I would say at the local level it can somewhat help. Because the state is meant to protect the ruling class, and there are way too many things that matter that we can't vote on at all, like corporations can be managed in very authoritarian ways and we don't get to vote on eminent domain and gentrification. Nor do we democratically decide the unaffordable rent, what kind of crappy medical insurance we get, or that we get paid a living wage.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/A16M59m5O51j/b2HbWTiFhtZawaxWidgchgFQjUTEpEt0PYWEaaN1.jpg)
+
+![More of the mural](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/yUSZkxxh4Juc/RpK3SzzftK2KzpsrMI7dTt5WZS7VINJNb92GCKkB.jpg)
+
+I wasn't sure where the exhibition was. One of the staff members told me that it closed at 6 pm, but he let me in anyway. Well, maybe it was good news in a sense since it was quieter. I wasn't the only person there; maybe some were sticking around after it closed. Below are some of the artworks at the exhibition; I put my comments and thoughts in the captions:
+
+![Not for sale](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/XupSnnuyjGbN/WcNBn3Y50VfKfg9TJFy3jm3Yz7vlvlEErXbj4BmM.jpg){width=60%}
+
+![Collage made of portraits; I didn't note the artist but it's awesome. I like it because it shows the collective strength of the community.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/g1NcshunWlOU/u6LQJ0owl0ue8RnoUZdBn8US4hPdgsdf0aJWazTj.jpg){width=60%}
+
+![I Live Here Too, oil on doors by Omari Booker. I like it that it's painted on doors, which separates the house from the homeless.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/LuJ2Ap5wCwJt/ppS4kM5VkGDQ5lOFOJH9ILTbMK5XXUSA5eQiSxCJ.jpg)
+
+![La Vida Es Fria. Painted cloth, somewhat reminiscent of a homeless camp in my interpretation. With gentrification, homelessness is at the cusp of more currently housed people.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/P2Ow2Ivv2WX0/a9KpUXBTIAQxULVesudY2H6aUHVpAueD2fhxKpBe.jpg)
+
+![The left side of the box on the left. I'm not sure what these boxes with sexy images mean. This Earth image says "THIS is what the world looks like after you make a mistake. Always ~~keep~~ continue trying." Do I agree? Yes and no. No, because the world will look different if we don't fight climate change, but the system that is destroying the planet is not a mistake, but designed to be this way.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/7t9CsxCDv0KB/NhbbekmuBRzOtvvSu0mNnBSi4CUriiGk9zhc7G5O.jpg)
+
+![Figures showing the extent of the racist housing crisis. Left: 46,000 evictions annually. Black & Latinx renters are the most impacted by all forms of eviction. The result: housing insecurity and homelessness. Center: Can you afford to rend in Los Angeles? You need to make $7,273 per month to afford the average rent for a 2 bedroom home in LA County. Right: Invectors target Black neighborhoods. Share of homes bought by investors nationally: 2021: 12% in other zip codes, 30% in majority Black zip codes. My comments: Investors, or monsters? That's why I think real estate speculation is an abomination. It's an abomination when some rich people own multiple properties they don't live in for investment purposes while there are so many homeless people.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/pKNBpZS0w7t7/GVCwCYF9ezCePFl5zlnNw4ARt8E6PQ8QmSH6HCes.jpg)
+
+![Ungentrify the Hood!](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/Dmss6zhDG2wS/5lVcPxAJX76eDi74ekVLpIS8EUdxSGaA6SUMY8MO.jpg){width=60%}
+
+![That painting showing a Spanish bungalow style house saying American Dream at the top of a hill, but the road to it says "No Trespassing" to a Black family. So true.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/VK8RTQhuSgPE/z2D8STfKdOg6RuWGif09MCUQTuZaj88HiJxo8cjn.jpg){width=60%}
+
+![Artfully United mural tour in South LA. The map is shown and the text can be read in the full resolution version of the photo, so I can plan another trip to visit all of these murals.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/OSiD9fvSXYSf/PyETSoJEup7L1nYKzzk3Antm1m1DLQX8Yhc5lVY1.jpg){width=60%}
+
+![Photos taken by students throughout South LA. I've been to some of these places, so it feels special. I get the vibe of South LA. It's actually really awesome and interesting, despite some really bad stereotypes.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/Zo4AdsJcUUc5/pWQvhVu5VYRDjnHMi7uA5MU0OzgWDqN4TSyzL0PB.jpg){width=60%}
+
+![Jordan Downs by Terrick Gutierrez. It seems that it's made of colored pieces of non-woven fabric. Jordan Downs is a social housing project in Watts. I visited in the Eastside Riders Ride of Love in February, see Captain's Log here: https://lambdamoses.github.io/thevoyages/posts/2023-02-20-east-side-riders/](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/VUQlsx11hoDM/cOoJy12GaRNEjUlVrjaUSKjONZk0ZA9Bwzo7RRtt.jpg){width=60%}
+
+!["The resilience within my culture makes me proud to be a Black LA Resident" -Kate Deciccio. Which is why while I know the dark side of LA very well, I still love LA.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/YyKV4HFgAcyH/A8tP5y0Pu92QbxIflzkXCkFprnfxMHBsSjkBrDwE.jpg)
+
+![South Central Sunshine by Jessi Ujazi. Thank you Jessi! This is amazing, showing how cool South Central really is. I'll use this when I want to make a Tour of South Central ride with the PAA, most member of which don't visit South Central.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/swn4lmxurzPt/owS66cPFPUaOowNp0ZaGaW3C6eLuauduEbagD2gB.jpg){width=60%}
+
+![Super-Vision by Jessi Ujazi. Yep, the Vision theatre at Leimert Park is really cool. I also really like the Great Wall of Crenshaw mural a little to the south. Oh, spatial transcriptomics. When I typed "Vision", my muscle memory couldn't help but typed "Visium".](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/Jh8oL1rE1Ck7/VLdl191r9APF2gS6lAnL9U0jJ7nVe3XHkBNlMGcx.jpg){width=60%}
+
+![Built to Last by Jessi Ujazi. That's the Kia Forum near SoFi Stadium in Inglewood. I really enjoyed my trip to Inglewood back in February. See Captain's Log here: https://lambdamoses.github.io/thevoyages/posts/2023-02-21-where-the-big-jet-engines-roar/](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/YmVudgDF0EeT/o1MLd2S71lw5Aebv2aSloKoozADDOKUqUZp94o9G.jpg){width=60%}
+
+![No, I didn't read all this info. Separate and unequal. More separate, more unequal. Still separate, still unequal, Have we learned nothing? Separate and unequal.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/EyWL14UY4Sk9/GX7pSEVEpICB2hoVZ2MHwcp6yYtEo1Oxy1vsHAjv.jpg)
+
+![Power to the People by Jimmy Centeno. Note that it's actually a sewing pattern. What does it mean? Does it mean that everyone, well, with the sewing skills, can make power? If so, that would be nice.](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/R8s85Qw9g1Lz/5eUqEFZ3ZGcBFEdXQAtw0syNaCOpDzLRnWN359xl.jpg){width=60%}
+
+After I finished viewing the exhibition, I listened to a conversation between a staff member and visitors from Norwalk and Boyle Heights on Latinos and gentrificationl. One of the staff members said it's much easier to gentrify Latino neighborhoods than Black neighborhoods, because unlike Blacks, many Latinos aspire to be White. He said that Downey (I visited last October; it's pretty nice and interesting) is the Latino Beverly Hills, but it's for the whitest Latinos, not those who look more like Native Americans. Also we have entertainment to distract us from the real issue. For example, many Latinos are huge Dodgers fans (a trip to Villas Tacos in Highland Park and to many Mexican restaurants and shops in Eastside will make this evident), yet the Dodger Stadium has a dark history. The Latino community [Chavez Ravine](https://www.kcet.org/shows/lost-la/chavez-ravine-community-to-controversial-real-estate) used to be where Dodger Stadium currently stands; it was forcibly demolished, initially for social housing that was never built, and then the land was bought by Dodgers. And who does the fandom benefit? The White capitalist owner of Dodgers. Busy work also numbs us to the real problem, because when too busy, we can't bother to think about anything other than work. This way the capitalists rule over us. 
+
+When I returned to unlock Wayfarer, a man riding a mountain bike living nearby asked me if it's an All City Space Horse. I said yes. He said he just went to the Cub House invitational, which I saw on Strava. See, this is why I feel like I'm a misfit among athletes -- I'm a night owl, while athletic events tend to be early in the morning. I'm still in bed when they have returned from their rides, but often I'm still riding after they have gone to bed. See, night owls aren't lazy. We stay up to get more things done, which larks find very difficult. I told him about this exhibition and told him to talk to the staff member whose conversation I just listened to as he came out. The staff member said the place will be open next Monday.
+
+# The way back
+I rode north on Avalon and Central, enjoying the murals along the way, to get to Boyle Heights, as I wanted to check out the Otomisan Japanese restaurant, a historical landmark of Boyle Heights, testifying to the diverse history of the now Latino neighborhood. On Avalon, I saw some cool murals, including one at Avalon and 66th St, one at 62nd St, and at 40th (didn't always stop for photos as I was kind of in a rush to make more time for Otomisan before it closes):
+
+![Mural at 62th St and Avalon](https://pxscdn.com/public/m/_v2/529845376367415532/c537ce87c-f5971d/9FgL1KDeWd2b/1Iim2eXZcpLirWrDXl1dXJaHU3c25YixCcDxW9Ws.jpg)
+
+Unfortunately, Otomisan was closed when I got there at around 7:45 pm, though Apple Maps says it closes at 8 pm. My damned social jet lag! Anyway, I looked at its menu and there's no vegan option, or at least no decent ones. I rode all the way back to Pasadena, short on fuel and water as I didn't get to refill. I just saved some money and burnt some fat. The rest of the route on 1st and Monterey Pass then going through Alhambra is familiar, so nothing new to add.
