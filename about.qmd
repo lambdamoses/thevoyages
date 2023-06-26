@@ -23,7 +23,7 @@ Space, the current frontier, where "space" means geospatial as often assumed in 
 
 My name is Lambda, she/her. I live in Hahamongna, Tongva/Kizh/Gabrieleno territory, or in Anglo terms, Pasadena, Los Angeles (LA) County. One of my favorite aspects of LA is that there are many crazy people, crazy in cool ways. Hopefully I'm one of them. I'm a left-wing heterodox Muslim convert Aspie cultural rebel zero waster living in LA without a car for over 9 years. 
 
-This blog is about Voyager. On the one hand, data analyses related to the R package Voyager, bringing decades of glorious tradition of spatial data analysis to the relatively new field of spatial -omics. On the other hand, the starship Voyager, which is my human powered ship that made me learn about the different cultures and landscapes of LA. Starship Voyager also made me think about spatial statistics and inspired many ideas in the R package Voyager project. This is the personal side of the "from geospatial to spatial -omics" on R package Voyager's documentation website.
+This blog is about Voyager. On the one hand, spatial -omics data analysis inspired by the geospatial tradition. On the other hand, the starship Voyager, which is my human powered ship that made me learn about the different cultures and landscapes of LA. Starship Voyager also made me think about spatial statistics and inspired many ideas in the R package Voyager project. This is the personal side of the "from geospatial to spatial -omics" on R package Voyager's documentation website.
 
 ## Education
 California Institute of Technology | Pasadena, CA | postdoc | June 2023 - present
