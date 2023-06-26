@@ -26,8 +26,9 @@ My name is Lambda, she/her. I live in Hahamongna, Tongva/Kizh/Gabrieleno territo
 This blog is about Voyager. On the one hand, data analyses related to the R package Voyager, bringing decades of glorious tradition of spatial data analysis to the relatively new field of spatial -omics. On the other hand, the starship Voyager, which is my human powered ship that made me learn about the different cultures and landscapes of LA. Starship Voyager also made me think about spatial statistics and inspired many ideas in the R package Voyager project. This is the personal side of the "from geospatial to spatial -omics" on R package Voyager's documentation website.
 
 ## Education
+California Institute of Technology | Pasadena, CA | postdoc | June 2023 - present
 
-California Institute of Technology | Pasadena, CA | PhD in Biology | Sept 2017 - present
+California Institute of Technology | Pasadena, CA | PhD in Biology | Sept 2017 - June 2023
 
 University of California, Los Angeles | Los Angeles, CA | B.S. in Molecular, Cell, and Developmental Biology, and Computation and Systems Biology, _summa cum laude_ | Sept 2013 - June 2017
 
@@ -52,10 +53,13 @@ University of California, Los Angeles | Los Angeles, CA | B.S. in Molecular, Cel
 **Modular, efficient and constant-memory single-cell RNA-seq preprocessing.** Melsted P, Booeshaghi AS, Liu L, Gao F, _Moses L_, Min KHJ, da Veiga Beltrame E, Hjörleifsson KE, Gehring J, Pachter L. Nature Biotechnology. 2021 Jul;39(7):813-818. doi: 10.1038/s41587-021-00870-2. Epub 2021 Apr 1. PMID: 33795888.
 
 ## Presentations
+2023 | Workshop: Voyager: Exploratory spatial data analysis from geospatial to spatial -omics, Bioconductor Conference, Dana-Farber Cancer Institute
+
+2023 | Invited talk: Voyager: Exploratory spatial data analysis from geospatial to spatial -omics, Cedars-Sinai Medical Center
 
 2023 | Invited talk: From geospatial to spatial -omics with SpatialFeatureExperiment and Voyager, Advanced Biomedical Computation series, Brigham & Women's Hospital, Harvard Medical School
 
-2022 | Package demo: SpatialFeatureExperiment: An S4 Class Bringing Geospatial Tools To Spatial Omics, Bioconductor Conference ([video](https://youtu.be/LNClJFoFlSA))
+2022 | Package demo: SpatialFeatureExperiment: An S4 Class Bringing Geospatial Tools To Spatial Omics, Bioconductor Conference, Seattle Children's Hospital ([video](https://youtu.be/LNClJFoFlSA))
 
 2020 | Short talk: Museum of Spatial Transcriptomics, Bioconductor Conference ([video](https://youtu.be/bD_zaBpzCKY?t=1347))
 
