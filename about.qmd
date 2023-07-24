@@ -21,7 +21,7 @@ about:
 
 Space, the current frontier, where "space" means geospatial as often assumed in spatial statistics. These are the voyages of the starship Voyager. Its ongoing mission, to explore strange new worlds, to seek out new views and new neighborhoods, to boldly go where Lambda has never gone before.
 
-My name is Lambda, she/her. I live in Hahamongna, Tongva/Kizh/Gabrieleno territory, or in Anglo terms, Pasadena, Los Angeles (LA) County. One of my favorite aspects of LA is that there are many crazy people, crazy in cool ways. Hopefully I'm one of them. I'm a left-wing heterodox Muslim convert Aspie cultural rebel zero waster living in LA without a car for over 9 years. 
+My name is Lambda, she/her. I live in Hahamongna, Tongva/Kizh/Gabrieleno territory, or in Anglo terms, Pasadena, Los Angeles (LA) County. One of my favorite aspects of LA is that there are many crazy people, crazy in cool ways. Hopefully I'm one of them. I'm a left-wing heterodox Muslim convert Aspie cultural rebel zero waster living in LA without a car for 10 years. 
 
 This blog is about Voyager. On the one hand, spatial -omics data analysis inspired by the geospatial tradition. On the other hand, the starship Voyager, which is my human powered ship that made me learn about the different cultures and landscapes of LA. Starship Voyager also made me think about spatial statistics and inspired many ideas in the R package Voyager project. This is the personal side of the "from geospatial to spatial -omics" on R package Voyager's documentation website.
 
@@ -30,7 +30,7 @@ California Institute of Technology | Pasadena, CA | postdoc | June 2023 - presen
 
 California Institute of Technology | Pasadena, CA | PhD in Biology | Sept 2017 - June 2023
 
-University of California, Los Angeles | Los Angeles, CA | B.S. in Molecular, Cell, and Developmental Biology, and Computation and Systems Biology, _summa cum laude_ | Sept 2013 - June 2017
+University of California, Los Angeles | Los Angeles, CA | B.S. in Molecular, Cell, and Developmental Biology (highest departmental honor), and Computation and Systems Biology (valedictorian), _summa cum laude_, Phi Beta Kappa | Sept 2013 - June 2017
 
 [ORCID](https://orcid.org/0000-0002-7092-9427)
 
@@ -47,6 +47,16 @@ University of California, Los Angeles | Los Angeles, CA | B.S. in Molecular, Cel
 [BUSpaRse](https://bioconductor.org/packages/release/bioc/html/BUSpaRse.html) | R utilities for kallisto bustools from their early days; kept for historical reasons, use the newest version of kallisto and bustools instead of this package.
 
 ## Publications
+
+**Voyager: exploratory single-cell genomics data analysis with geospatial statistics**
+_Lambda Moses_, Pétur Helgi Einarsson, Kayla C Jackson, Laura Luebbert, Ali Sina Booeshaghi, Sindri Emmanúel Antonsson, Páll Melsted, Lior Pachter
+bioRxiv. 2023 July. doi: 10.1101/2023.07.20.549945
+
+**Quantitative assessment of single-cell RNA-seq clustering with CONCORDEX** Kayla Jackson, A. Sina Booeshaghi, Ángel Gálvez-Merchán, _Lambda Moses_, Tara Chari, Lior Pachter
+bioRxiv. 2023 June. doi: 10.1101/2023.06.28.546949
+
+**The Genetic Architecture of Dietary Iron Overload and Associated Pathology in Mice** Brie K. Fuqua, _Lambda Moses_, Stela McLachlan, Calvin Pan, Richard C. Davis, Simon T. Hui, Nam Che, Zhiqiang Zhou, Carmen Ng, Sarada Charugundla, Montgomery Blencowe, Zara Saleem, Aika Miikeda, Beyza Ozdemir, Chester Hui, Thy Li, Clara L. Stolin, Marianne Kozuch, Jie Zhou, Kathryn Page, Hiro Irimagawa, Nam Ku, Kodi Taraszka, Nathan LaPierre, David W. Killilea, David M. Frazer, Xia Yang, Eleazar Eskin, Chris D. Vulpe, Aldons J. Lusis.
+bioRxiv. 2023 June. doi: 10.1101/2023.06.05.543764
 
 **Museum of spatial transcriptomics.** _Moses L_, Pachter L. Nature Methods. 2022 May;19(5):534-546. doi: 10.1038/s41592-022-01409-2. Epub 2022 Mar 10. Erratum in: Nature Methods. 2022 Apr 19;: PMID: 35273392.
 
